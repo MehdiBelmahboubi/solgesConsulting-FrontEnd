@@ -1,6 +1,6 @@
 import {Client} from "./client.model";
 import {Image} from "./image.model";
-import {UnitOrganisational} from "../client/unit-organisational/UnitOrganisational.model";
+import {Unity} from "./Unity.model";
 export class Company {
   public id!: number;
   public name!: string;
@@ -21,7 +21,7 @@ export class Company {
   public filialCompany!: Company[];
   public number!:string;
   public parentCompany!: Company;
-  public unitOrganisationalList!: UnitOrganisational[];
+  public unitOrganisationalList!: Unity[];
   constructor(name:string,code:string,address:string,number:string) {
     this.address=address;
     this.name=name;
