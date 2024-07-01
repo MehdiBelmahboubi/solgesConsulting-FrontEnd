@@ -1,0 +1,10 @@
+<div class="file-drop-area">
+  <!--<button mat-raised-button color="primary">Choose file</button>-->
+  <div *ngIf="file">
+    <div>
+      <img class="image-thumbnail" style="max-width: 100px" [src]="imageMin">
+    </div>
+  </div>
+  <span><strong>{{file ? file.name : 'Choisissez l\'image ou faites glisser le içi ' }}</strong></span>
+  <input (change)="onFileSelected($event)" class="file-input" type="file" accept="image/png, image/jpeg, image/jpg">
+</div>

@@ -1,0 +1,246 @@
+<div class="auth-container" >
+  <div class="row auth-main">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper >
+        <mat-step [stepControl]="authForm!">
+          <ng-template matStepLabel>Information Compte</ng-template>
+          <div class="form-creation">
+            <div class="custom-div" [style.background-color]="backgroundColorGreen">
+              <h4 class="welcome-msg">Création du compte :</h4>
+            </div>
+            <form class="validate-form" [formGroup]="authForm" >
+              <div class="row">
+                <div class="col-md-5">
+                  <hr>
+                </div>
+                <div class="col-md-3 text-center">
+                  <p>Informations du sociéte </p>
+                </div>
+                <div class="col-md-4">
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nom du sociéte</mat-label>
+                    <input matInput formControlName="companyName" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>business</mat-icon>
+                    <mat-error *ngIf="authForm.get('companyName')?.hasError('required')">
+                      Nom du société est obligatoire
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Abréviation du sociéte</mat-label>
+                    <input matInput formControlName="companyCode" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>business</mat-icon>
+                    <mat-error *ngIf="authForm.get('companyCode')?.hasError('required')">
+                      Abréviation  du sociéte est obligatoire
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Addresse du sociéte</mat-label>
+                    <input matInput formControlName="companyAddress" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>location_on</mat-icon>
+
+                    <mat-error *ngIf="authForm.get('companyAddress')?.hasError('required')">
+                      Addresse  du sociéte est obligatoire
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>N° du sociéte</mat-label>
+                    <input matInput formControlName="companyPhone" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>call</mat-icon>
+
+                    <mat-error *ngIf="authForm.get('companyPhone')?.hasError('required')">
+                      Addresse is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <form [formGroup]="fileUploadForm">
+                    <mat-label>Importer Logo de l'entreprise :</mat-label>
+                    <app-file-upload (fileSelected)="onFileSelected($event)" formControlName="fileUpload"></app-file-upload>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <hr>
+                </div>
+                <div class="col-md-3 text-center">
+                  <p>Informations d'administrateur</p>
+                </div>
+                <div class="col-md-4">
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nom d'administrateur </mat-label>
+                    <input matInput formControlName="firstName" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-error *ngIf="authForm.get('firstName')?.hasError('required')">
+                      Prénom est Obligatoire
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Prénom d'administrateur </mat-label>
+                    <input matInput formControlName="lastName" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-error *ngIf="authForm.get('lastName')?.hasError('required')">
+                      Nom est Obligatoire
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email d'administrateur </mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="authForm.get('email')?.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="flex-sb-m w-full  p-b-20">
+                <div>
+                <span>Déjà enregistré? <a routerLink="/authentication/signin">
+                    Login
+                  </a></span>
+                </div>
+              </div>
+              <div *ngIf="!this.registerProcess" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 mb-3">
+                <div class="container-auth-form-btn" [style.background-color]="backgroundColorBlue">
+                  <button mat-button class="auth-form-btn-stp-one" (click)="onSubmitStpOne()" [disabled]="!authForm.valid" type="submit" >
+                    Register</button>
+                </div>
+              </div>
+              <div *ngIf="this.registerProcess" class="preloader">
+                <div class="spinner-layer pl-teal">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="authForm!">
+          <ng-template matStepLabel>Comfirmation</ng-template>
+          <div class="form-creation">
+            <div class="custom-div" [style.background-color]="backgroundColorGreen">
+              <h4 class="welcome-msg">Création du compte :</h4>
+            </div>
+            <form class="form-stepper-to" [formGroup]="formStepTo" >
+              <div class="row-stepper-to">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Code Reçu</mat-label>
+                    <input matInput formControlName="uuid"  required>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>contact_mail</mat-icon>
+                    <mat-error *ngIf="authForm.get('uuid')?.hasError('required')">
+                      UUID is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row-stepper-to">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="passWord" [type]="hide ? 'password' : 'text'" required>
+                    <mat-icon matSuffix class="material-icons-outlined pwd-toggle p-3" (click)="hide = !hide">
+                      {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="authForm.get('passWord')?.hasError('required')">
+                      Password is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row-stepper-to">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput formControlName="confirmPassWord" [type]="chide ? 'password' : 'text'" required>
+                    <mat-icon matSuffix class="material-icons-outlined pwd-toggle p-3" (click)="chide = !chide">
+                      {{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="authForm.get('confirmPassWord')?.hasError('required')">
+                      Confirm Password is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div *ngIf="!this.confirmationProcess" class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-3">
+                  <div class="container-auth-form-btn" [style.background-color]="backgroundColorGray">
+                    <div style="text-align:center">
+                      <button mat-button class="auth-form-btn-stp-one"  matStepperPrevious>
+                        Précedent</button>
+                    </div>
+                  </div>
+                </div>
+                <div  class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-3">
+                  <div class="container-auth-form-btn" [style.background-color]="backgroundColorBlue">
+                    <div style="text-align:center">
+                      <button mat-button class="auth-form-btn-stp-one" (click)="onSubmitStpTwo()" [disabled]="!authForm.valid">
+                        Suivant</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="this.confirmationProcess" class="preloader">
+                <div class="spinner-layer pl-teal">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="authForm!">
+          <ng-template matStepLabel>Done</ng-template>
+          <div class="form-creation-done">
+            <div class="stepper-done" [style.background-color]="backgroundColorGreen">
+              <h4 class="welcome-msg">Votre compte est créé avec succès !</h4>
+            </div>
+              <div class="row-success">
+                <div  class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-3">
+                  <div class="container-auth-form-btn" [style.background-color]="backgroundColorBlue">
+                    <div style="text-align:center">
+                      <button mat-button class="auth-form-btn-stp-one" (click)="authenticate()">
+                        Authentifier</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+  </div>
+</div>

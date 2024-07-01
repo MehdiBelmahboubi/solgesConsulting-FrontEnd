@@ -1,0 +1,16 @@
+.container-auth-form-btn{
+  border-radius: 30px;
+  margin-bottom: 40px;
+
+  .auth-form-btn-stp-one {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px !important;
+    border-radius: 10px;
+    cursor: pointer;
+    button {
+      width: 100%;
+    }
+  }
+}
