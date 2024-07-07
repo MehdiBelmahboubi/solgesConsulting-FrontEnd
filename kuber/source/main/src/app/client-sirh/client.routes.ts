@@ -2,11 +2,16 @@ import { Page404Component } from '../authentication/page404/page404.component';
 import { Route } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CollaborateurComponent } from './collaborateur/collaborateur.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+  },
+  {
+    path: 'collaborateur',
+    component: CollaborateurComponent, 
   },
 
 

@@ -1,0 +1,91 @@
+.example-container mat-form-field {
+  margin-left: 8px;
+  margin-top: 20px;
+}
+
+  table {
+    width: 100%;
+  }
+
+  .example-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-fields {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-container button {
+    margin-left: 8px; 
+ 
+  }
+  
+  .indeterminate_check_box {
+    color: rgb(23, 16, 16);
+    margin-right: 8px;
+    background-color: transparent; 
+    border: none;
+   
+  }
+
+  .custom-button {
+    background-color: #2196f3; 
+    border-radius: 50%;
+    color: white;
+  }
+  
+  
+  .delete-icon {
+    background-color: #f32121; 
+    border-radius: 50%; 
+    color: white;    
+  }
+  
+  .update-icon {
+    background-color: #d7f321; 
+    border-radius: 50%;
+    color: white;
+  }
+  
+  .add-icon {
+    background-color: #2196f3; 
+    border-radius: 50%; 
+    color: white; 
+  }
+  
+  .excel-icon {
+    background-color: #09a509; /* Exemple de couleur de fond */
+    border-radius: 50%; /* Pour rendre le bouton rond, si nécessaire */
+    color: white; /* Couleur du texte */
+    /* Autres styles personnalisés */
+  }
+
+  .search-input {
+    margin-left: auto;
+    margin-right: 10px; /* Adjust as needed for spacing */
+    width: 250px; /* Adjust width as needed */
+    padding: 5px 10px; /* Add padding for better appearance */
+    border: 1px solid #ccc; /* Border for the input */
+    border-radius: 4px; /* Rounded corners */
+  }
+
+  .search-input:focus {
+    outline: none; /* Remove default outline */
+    border-color: #3f51b5; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.5); /* Add shadow on focus */
+  }
+
+
+
+  
+
+  
+  
