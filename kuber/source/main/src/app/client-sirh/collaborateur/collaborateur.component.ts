@@ -16,6 +16,8 @@ import { MatIcon } from '@angular/material/icon';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -51,7 +53,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-collaborateur',
   standalone: true,
-  imports: [BreadcrumbComponent,MatProgressSpinner, HeaderSirhClientComponent,MatIcon, MatTableModule, MatSortModule,MatCardModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule],
+  imports: [BreadcrumbComponent,MatProgressSpinner,RouterLink, HeaderSirhClientComponent,MatIcon, MatTableModule, MatSortModule,MatCardModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './collaborateur.component.html',
   styleUrls: ['./collaborateur.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
