@@ -1,0 +1,173 @@
+<section class="content">
+  <app-header-sirh-client [title]="'Configuration'" [items]="['Configuration']" [active_item]="'Types UO'"></app-header-sirh-client>
+  <div class="materialTableHeader">
+    <div class="left">
+      <ul class="header-buttons-left ms-0">
+        <li class="tbl-title">
+          <h2>Types des unités </h2>
+        </li>
+
+        <li class="tbl-search-box ">
+          <label ><i class="material-icons search-icon">search</i></label>
+          <input placeholder="Recherche" type="text" class="browser-default search-field filter"
+                 aria-label="Search box" (keyup)="applyFilter($event)" >
+        </li>
+        <!--<li *ngIf="false" class="tbl-search-box ">
+          <div class="filter-active">
+            <h2 >Archiver </h2>
+            <mat-checkbox
+              (change)="onCheckboxChangeActive($event)"
+              [checked]="checkboxDisabled"
+            >
+            </mat-checkbox>
+          </div>
+        </li>-->
+        <li class="tbl-search-box">
+          <div class="m-l-10" >
+            <button mat-mini-fab class="custom-mini-fab filter-list" color="accent" [matMenuTriggerFor]="filterMenu">
+              <mat-icon class="col-white " ngbDropdownToggle>filter_list</mat-icon>
+            </button>
+            <mat-menu #filterMenu="matMenu" class="profile-menu">
+              <div class="noti-list">
+                <div class="menu ">
+                  <div class="user_dw_menu">
+                    <button *ngIf="archive" mat-menu-item class="user-item-list"  (click)="archiverType(false)">
+                      <mat-icon class="icon-filter">unarchive</mat-icon> désarchivé
+                    </button>
+                    <button *ngIf="!archive" mat-menu-item class="user-item-list" (click)="archiverType(true)">
+                      <mat-icon class="icon-filter">archive</mat-icon>archivé
+                    </button>
+                    <button mat-menu-item class="user-item-list" (click)="advancedSearch()">
+                      <mat-icon class="icon-filter">filter_vintage</mat-icon>Filtrage
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="right">
+      <ul class="tbl-export-btn">
+        <li class="tbl-header-btn">
+          <div class="m-l-10" matTooltip="Ajouter Unité">
+            <button mat-mini-fab class="custom-mini-fab" color="primary" (click)="openComponentAddTypeUnity()">
+              <mat-icon class="col-white">add</mat-icon>
+            </button>
+          </div>
+        </li>
+        <li class="tbl-header-btn">
+          <div class="m-l-10" matTooltip="Refresh">
+            <button mat-mini-fab class="custom-mini-fab" color="primary" (click)="refresh()">
+              <mat-icon class="col-white">refresh</mat-icon>
+            </button>
+          </div>
+        </li>
+        <li class="tbl-header-btn">
+          <div class="m-l-10" matTooltip="Delete">
+            <button mat-mini-fab class="custom-mini-fab" color="warn" >
+              <mat-icon class="col-white">delete
+              </mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div class="tab-content">
+      <mat-table  class="users mat-elevation-z8" [dataSource]="dataSource"
+                  (matSortChange)="sortData($event)"
+                  matSort matSortDisableClear matSortActive="id" matSortDirection="asc" >
+        <ng-container matColumnDef="name" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <mat-checkbox [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          (change)="toggleAll()">
+            </mat-checkbox>
+            Nom
+          </mat-header-cell>
+          <mat-cell *matCellDef="let typeUnity" class="cell-name">
+            <mat-checkbox (change)="onTypeToggled(typeUnity)"
+                          [checked]="selection.isSelected(typeUnity)">
+            </mat-checkbox>
+            {{typeUnity.name}} ({{typeUnity.code}})
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Niveau</mat-header-cell>
+          <mat-cell *matCellDef="let  typeUnity">
+            <p>{{typeUnity.level}}</p>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="color" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header >Couleur</mat-header-cell>
+          <mat-cell *matCellDef="let  typeUnity" class="cell-color">
+            <div  class="color-type" [style.background]="typeUnity.color" ></div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="active" >
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>Status</mat-header-cell>
+          <mat-cell *matCellDef="let  typeUnity">
+            <div class="cell-status">
+              <p *ngIf="typeUnity.active" [style.color]="getColorsTrueOrFalse(typeUnity.active)" > Actif</p>
+              <p *ngIf="!typeUnity.active" [style.color]="getColorsTrueOrFalse(typeUnity.active)" >Archiver</p>
+              <div *ngIf="typeUnity.active" class="circle-indicator pulse" ></div>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="start-end-date" >
+          <mat-header-cell *matHeaderCellDef>Dernières mises à jour</mat-header-cell>
+          <mat-cell *matCellDef="let  typeUnity">
+            <p>{{typeUnity.updateDate ? (typeUnity.updateDate | date) : '------'}}</p>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+          <mat-cell *matCellDef="let typeUnity">
+            <button mat-mini-fab class="custom-mini-fab"
+                    (click)="viewTypeUnity(typeUnity)"
+                    matTooltip="Detail" color="accent" matTooltipPosition="above"  >
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-mini-fab class="custom-mini-fab m-lg-2"
+                    (click)="updateType(typeUnity)"
+                    matTooltip="modifier" color="primary" matTooltipPosition="above"  >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab class="custom-mini-fab"
+                    (click)="duplicate(typeUnity)"
+                    matTooltip="Dupliquer" color="accent" matTooltipPosition="above"  >
+              <mat-icon>content_copy</mat-icon>
+            </button>
+            <button mat-mini-fab class="custom-mini-fab m-lg-2"  color="warn"
+                    (click)="deleteTypeUnity(typeUnity.id)"
+                    matTooltip="supprimer" matTooltipPosition="above"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns; sticky:true"></mat-header-row>
+        <mat-row *matRowDef="let typeUnity;columns:displayColumns" ></mat-row>
+      </mat-table>
+      <div class="spinner-container" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+    <mat-paginator  class="mat-elevation-z8"  style="background-color: #f5f5f5;"
+                    [length]="dataSource.data.length"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[3,5,8]"
+    ></mat-paginator>
+  </div>
+  <div class="footer-page"></div>
+</section>
+

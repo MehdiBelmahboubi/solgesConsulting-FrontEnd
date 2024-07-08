@@ -1,17 +1,33 @@
+section.content {
+  background: #ecf4f4;
+  margin-right: 0.1ch;
+}
+
 .example-container mat-form-field {
   margin-left: 8px;
   margin-top: 20px;
+}
+
+.body{
+  margin-right: 0.6cm;
+}
+
+.block-header{
+  margin-left: -0.6cm;
+}
+
+.example-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
 }
 
   table {
     width: 100%;
   }
 
-  .example-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  
   
   .form-fields {
     display: flex;

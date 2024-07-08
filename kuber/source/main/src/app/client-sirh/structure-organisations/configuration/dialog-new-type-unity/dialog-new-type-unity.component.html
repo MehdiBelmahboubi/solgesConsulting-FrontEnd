@@ -1,0 +1,62 @@
+
+<mat-card class = "type-unit-edit-card">
+  <mat-card-title class="type-unit-edit-title">
+    <p>Créer un nouveau type d'unité:</p>
+    <button class="close-btn" mat-icon-button matTooltip="Close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title>
+  <hr>
+  <form class="type-unit-form" [formGroup]="formGroup">
+    <mat-card-content>
+      <div class="type-unit-content">
+        <div class="row">
+          <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+            <p *ngIf="newTypeError" class="mt-3" ><strong>{{newTypeError}}</strong> </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Nom du type :</mat-label>
+              <input matInput formControlName="nom" (blur)="checkNameIsNotExist()" (focus)="onFocusName()" required>
+              <mat-error *ngIf="formGroup.get('nom')?.hasError('required')">
+                Nom est Obligatoire
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Abréviation du type :</mat-label>
+              <input matInput formControlName="code" (blur)="checkCodeIsNotExist()" (focus)="onFocusCode()" required>
+              <mat-error *ngIf="formGroup.get('code')?.hasError('required')">
+                Abréviation est obligatoire
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Niveau du type : </mat-label>
+              <input matInput formControlName="level" (blur)="checkLevelIsNotExist()"  (focus)="onFocusLevel()" required>
+              <mat-error *ngIf="formGroup.get('level')?.hasError('required')">
+                Niveau est Obligatoire
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Couleur</mat-label>
+              <input matInput formControlName="color" type="color" placeholder="Couleur" value="#FFFFFF" (blur)="colorDone()">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions class="card-actions justify-content-end">
+      <button mat-raised-button [style.background-color]="backgroundColorBlue" class="add-type-unit"
+              (click)="addTypeUnity()" [disabled]="!formGroup.valid"
+      >Ajouter</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

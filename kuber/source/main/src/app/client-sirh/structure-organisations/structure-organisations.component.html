@@ -1,0 +1,74 @@
+<section class="content">
+  <div class="content-block" >
+    <div class="block-header" style="position: fixed; width: 100%;">
+      <div class="sousBar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item user_profile">
+            <button class="button-menu" mat-button [matMenuTriggerFor]="structureMenu">
+              <div class="item"  ngbDropdownToggle >
+                <span> Structure</span>
+              </div>
+            </button>
+            <mat-menu #structureMenu="matMenu" class="profile-menu">
+              <div class="noti-list">
+                <div class="menu ">
+                  <div class="user_dw_menu">
+                    <button mat-menu-item class="user-item-list" (click)="findComponentActive('listUnityComponent')">
+                      <app-feather-icons [icon]="'list'" [class]="'user-menu-icons'"></app-feather-icons>Liste des unités
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+          </li>
+          <li class="nav-item user_profile">
+            <button class="button-menu" mat-button [matMenuTriggerFor]="profilemenu">
+              <div class="item"  ngbDropdownToggle >
+                <span> Organigramme</span>
+              </div>
+            </button>
+            <mat-menu #profilemenu="matMenu" class="profile-menu">
+              <div class="noti-list">
+                <div class="menu ">
+                  <div class="user_dw_menu">
+                    <button mat-menu-item class="user-item-list" (click)="findComponentActive('organigrammeComponent')">
+                      <i class="fas fa-sitemap"></i>Hiérarchie
+                    </button>
+                    <button mat-menu-item class="user-item-list">
+                      <app-feather-icons [icon]="'users'" [class]="'user-menu-icons'"></app-feather-icons>
+                      Manager
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+          </li>
+          <li class="nav-item user_profile">
+            <button class="button-menu" mat-button [matMenuTriggerFor]="configurationMenu" >
+              <div class="item" ngbDropdownToggle >
+                <span> Configuration</span>
+              </div>
+            </button>
+            <mat-menu #configurationMenu="matMenu" class="profile-menu">
+              <div class="noti-list">
+                <div class="menu ">
+                  <div class="user_dw_menu">
+                    <button mat-menu-item  class="user-item-list" (click)="findComponentActive('listTypeUnitComponent')">
+                      <app-feather-icons [icon]="'list'" [class]="'user-menu-icons'"></app-feather-icons>Liste des types</button>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+
+    <app-list-type-unity *ngIf="listTypeUnitComponent"
+                         (refreshTypesUnityEmitter)="refreshEmitter($event)"
+    ></app-list-type-unity>
+  </div>
+</section>

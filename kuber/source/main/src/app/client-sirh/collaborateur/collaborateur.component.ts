@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -50,13 +51,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-collaborateur',
   standalone: true,
-  imports: [BreadcrumbComponent, HeaderSirhClientComponent,MatIcon, MatTableModule, MatSortModule,MatCardModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule],
+  imports: [BreadcrumbComponent,MatProgressSpinner, HeaderSirhClientComponent,MatIcon, MatTableModule, MatSortModule,MatCardModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './collaborateur.component.html',
   styleUrls: ['./collaborateur.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollaborateurComponent implements AfterViewInit {
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol' ,'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 

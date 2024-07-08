@@ -1,0 +1,34 @@
+.add-unity{
+  background-color: #FFFFFF;
+}
+.navbar-nav {
+
+  &.navbar-right {
+    float: left !important;
+    display: block !important;
+    //flex-direction: unset;
+  }
+}
+.item{
+  margin-top: -20px;
+}
+
+section.content {
+  background-color: #c2c6c6;
+  margin-right: 20px;
+}
+.sousBar{
+  background-color: #0c0c0c;
+
+}
+.block-header{
+  //background-color: #c2c6c6;
+  margin-left: -25px;
+  height: 35px;
+  background-color: #848989;
+  z-index: 1000 !important;
+}
+.button-menu{
+  height: 16px;
+}
+
