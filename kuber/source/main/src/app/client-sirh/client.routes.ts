@@ -2,6 +2,7 @@ import { Page404Component } from '../authentication/page404/page404.component';
 import { Route } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {StructureOrganisationsComponent} from "./structure-organisations/structure-organisations.component";
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -15,7 +16,10 @@ export const CLIENT_ROUTE: Route[] = [
     loadChildren: () =>
       import('./administrators/administrators.routes').then((m) => m.CLIENT_ADMINISTRATORS_ROUTE),
   },
-
+  {
+    path: 'organisations',
+    component: StructureOrganisationsComponent,
+  },
   { path: '**', component: Page404Component },
 
   // put your routes here
