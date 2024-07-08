@@ -1,0 +1,177 @@
+section.content {
+  margin-left: 2px;
+  margin-right: -16px;
+  background: #ecf4f4;
+  margin-bottom: -40px;
+}
+.tab-content{
+
+}
+.header{
+  padding: 1px 13px 19px;
+  height: 82px;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.container-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .container-content-right{
+    width: 70%;
+    .filter{
+      width: 50%;
+    }
+  }
+}
+
+.cell-name{
+  font-size: 13px;
+  font-weight: bolder;
+}
+.spinner-container {
+  display: flex;
+  padding-top: 40px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+.red{
+  color: red;
+}
+.yellow{
+  color: #f59607;
+}
+.green{
+  color: #42B72A;
+
+}
+.list-unit{
+  height: 10px;
+}
+
+
+
+.mat-mdc-row:hover{
+  cursor: pointer;
+  background-color: #ddd8d8;
+}
+
+.mat-mdc-header-row {
+  background: #f3f3f3;
+}
+.container-auth-form-btn {
+  width: 30px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  border-radius: 50%; /* Creates a circle */
+  background-color: #3f51b5; /* Change color as desired */
+  display: flex; /* Allows centering the "+" symbol */
+  justify-content: center; /* Centers the "+" symbol horizontally */
+  align-items: center; /* Centers the "+" symbol vertically */
+}
+.materialTableHeader .header-buttons-left input.search-field{
+  height: 32px;
+  width: 210px;
+  z-index: -100 !important;
+}
+
+
+.mat-column-code,
+.mat-column-level,
+.mat-column-active,
+.mat-column-start-end-date{
+  text-align: center;
+}
+.cell-color{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+ .cell-status{
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   .circle-indicator {
+     width: 8px;
+     height: 8px;
+     border-radius: 50%;
+     position: absolute;
+     margin-top: 6px;
+     margin-left: 50px;
+     background: #77d545;
+     &.pulse {
+       animation: pulse-animation 1.2s infinite;
+     }
+   }
+ }
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(113, 191, 69, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 7px rgba(17, 64, 126, 0);
+  }
+}
+.filter-active{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  h2{
+    margin-right: 3px;
+  }
+}
+.footer-page{
+  margin-bottom: 40px;
+  height: 50px;
+}
+/* Adjust the size of the mini-fab button */
+.custom-mini-fab {
+  width: 1.8em;
+  height: 1.8em;
+  min-width: 1.8em;
+  min-height: 1.8em;
+
+}
+.mat-mdc-mini-fab.mat-accent {
+  --mdc-fab-small-container-color: #787676;
+}
+/* Adjust the size of the icon */
+.custom-mini-fab .mat-icon {
+  font-size: 1.5em;
+  line-height: 1.2em;
+
+}
+.filter-list{
+  margin-top: 5px;
+}
+.filter_dw_menu {
+  width: 160px;
+  max-width: 160px !important;
+  right: 6px;
+  .mat-mdc-menu-content {
+    padding: 0px;
+  }
+}
+mat-header-row{
+  min-height: 46px;
+}
+/*.mat-column-name{
+  border-right:1px solid #9f9c9c;
+  padding-right: 0px;
+
+  text-align: start;
+}*/
+
+.color-type{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: 6px;
+  margin-left: 50px;
+}
