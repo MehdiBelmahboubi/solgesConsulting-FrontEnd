@@ -1,80 +1,83 @@
 <section class="content">
-    <div class="example-container">
-      <form class="body">
-        <div class="block-header">
-          <h2 class="title" >Ajouter collaborateur</h2>
+  <div class="example-container">
+    <form class="body">
+      <div class="block-header">
+        <h2 class="title">Ajouter collaborateur</h2>
+      </div>
+      <div class="form-pairs">
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Matricule</mat-label>
+            <input matInput [(ngModel)]="collaborater.matricule" name="matricule" placeholder="Matricule" required>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput [(ngModel)]="collaborater.firstname" name="lastname" placeholder="Nom" required>
+          </mat-form-field>
         </div>
-        <div class="form-pairs">
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Matricule</mat-label>
-              <input matInput placeholder="Matricule" required>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Nom</mat-label>
-              <input matInput placeholder="Nom" required>
-            </mat-form-field>
-          </div>
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Prénom</mat-label>
-              <input matInput placeholder="Prénom" required>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>CNIE</mat-label>
-              <input matInput placeholder="CNIE" required>
-            </mat-form-field>
-          </div>
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Nationalité 1</mat-label>
-              <input matInput placeholder="Nationalité 1" required>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Nationalité 2</mat-label>
-              <input matInput placeholder="Nationalité 2">
-            </mat-form-field>
-          </div>
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Initiale</mat-label>
-              <input matInput placeholder="Initiale" required>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Lieu de naissance</mat-label>
-              <input matInput placeholder="Lieu de naissance" required>
-            </mat-form-field>
-          </div>
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Date de naissance</mat-label>
-              <input matInput [matDatepicker]="picker" placeholder="Date de naissance" required>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Téléphone</mat-label>
-              <input matInput placeholder="Téléphone" required>
-            </mat-form-field>
-          </div>
-          <div class="form-pair">
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput type="email" placeholder="Email" required>
-            </mat-form-field>
-            <mat-form-field class="half-width" appearance="outline">
-              <mat-label>Civilité</mat-label>
-              <mat-select>
-                <mat-option value="mr">Monsieur</mat-option>
-                <mat-option value="mm">Madame</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Prénom</mat-label>
+            <input matInput [(ngModel)]="collaborater.lastname" name="firstname" placeholder="Prénom" required>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>CNIE</mat-label>
+            <input matInput [(ngModel)]="collaborater.cnie" name="cnie" placeholder="CNIE" required>
+          </mat-form-field>
         </div>
-        <div class="button-container">
-          <button mat-raised-button color="primary">Ajouter</button>
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Nationalité 1</mat-label>
+            <mat-select [(ngModel)]="collaborater.countryCode1" name="nationality1">
+              <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Nationalité 2</mat-label>
+            <mat-select [(ngModel)]="collaborater.countryCode2" name="nationality2">
+              <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-      </form>
-    </div>
-  </section>
-  
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Initiale</mat-label>
+            <input matInput [(ngModel)]="collaborater.initiales" name="initiales" placeholder="Initiale" required>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Lieu de naissance</mat-label>
+            <input matInput [(ngModel)]="collaborater.lieuNaissance" name="lieuNaissance" placeholder="Lieu de naissance" required>
+          </mat-form-field>
+        </div>
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Date de naissance</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="collaborater.dateNaissance" name="dateNaissance" placeholder="Date de naissance" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Téléphone</mat-label>
+            <input matInput [(ngModel)]="collaborater.telephone" name="telephone" placeholder="Téléphone" required>
+          </mat-form-field>
+        </div>
+        <div class="form-pair">
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="collaborater.email1" name="email1" placeholder="Email" required>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Civilité</mat-label>
+            <mat-select [(ngModel)]="collaborater.civilite" name="civilite">
+              <mat-option value="Mr">Monsieur</mat-option>
+              <mat-option value="Mme">Madame</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Ajouter</button>
+      </div>
+    </form>
+  </div>
+</section>

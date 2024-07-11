@@ -12,7 +12,7 @@ export const CLIENT_ROUTE: Route[] = [
   },
   {
     path: 'collaborateur',
-    component: CollaborateurComponent, 
+    component: CollaborateurComponent,
   },
   {
     path:'addcollaborateur',
