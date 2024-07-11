@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {StructureOrganisationsComponent} from "./structure-organisations/structure-organisations.component";
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
 import { AddCollaboraterComponent } from './collaborateur/add-collaborater/add-collaborater.component';
+import { DetailsCollaboraterComponent } from './collaborateur/details-collaborater/details-collaborater.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -17,6 +18,10 @@ export const CLIENT_ROUTE: Route[] = [
   {
     path:'addcollaborateur',
     component:AddCollaboraterComponent
+  },
+  {
+    path:'detailsCollaborateur',
+    component:DetailsCollaboraterComponent
   },
   {
     path: 'organisations',
