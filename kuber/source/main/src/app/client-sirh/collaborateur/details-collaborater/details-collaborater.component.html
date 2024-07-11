@@ -1,0 +1,50 @@
+<section class="content">
+    <div class="content-block" >
+      <div class="block-header" style="position: fixed; width: 100%;">
+        <div class="sousBar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item user_profile">
+              <button class="button-menu" mat-button [matMenuTriggerFor]="contrateMenu">
+                <div class="item"  ngbDropdownToggle >
+                  <span>Contrat</span>
+                </div>
+              </button>
+              <mat-menu #contrateMenu="matMenu" class="profile-menu">
+                <div class="noti-list">
+                  <div class="menu ">
+                    <div class="user_dw_menu">
+                      <button mat-menu-item class="user-item-list" (click)="findComponentActive('contratCollaboraterComponent')">
+                        <app-feather-icons [icon]="'list'" [class]="'user-menu-icons'"></app-feather-icons>Liste des contrats
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </mat-menu>
+            </li>
+            <li class="nav-item user_profile">
+              <button class="button-menu" mat-button [matMenuTriggerFor]="classificationMenu" >
+                <div class="item" ngbDropdownToggle >
+                  <span> Classification</span>
+                </div>
+              </button>
+              <mat-menu #classificationMenu="matMenu" class="profile-menu">
+                <div class="noti-list">
+                  <div class="menu ">
+                    <div class="user_dw_menu">
+                      <button mat-menu-item  class="user-item-list" (click)="findComponentActive('classificationCollaboraterComponent')">
+                        <app-feather-icons [icon]="'list'" [class]="'user-menu-icons'"></app-feather-icons>Liste des types</button>
+                    </div>
+                  </div>
+                </div>
+              </mat-menu>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+        <app-contrat-collaborater *ngIf="contratCollaboraterComponent"></app-contrat-collaborater>
+        <app-classification-collaborater *ngIf="classificationCollaboraterComponent"></app-classification-collaborater>
+    </div>
+  </section>
+  
