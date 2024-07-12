@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
 
@@ -32,21 +32,22 @@ import { Collaborater } from 'app/models/collaborater.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
+
   collaboraters: Collaborater[] = [];
   displayedColumns: string[] = ['select', 'matricule', 'initiales','email', 'lieuNaissance', 'sexe', 'civNomPrenom', 'cnie', 'action'];
-  dataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
+  collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private collaboraterService: CollaboraterService) {}
+  constructor(private collaboraterService: CollaboraterService,private router: Router) {}
 
   ngOnInit() {
     this.collaboraterService.getByComany().subscribe({
       next: (value) => {
         this.collaboraters = value;
-        this.dataSource.data = this.collaboraters;
+        this.collaboraterDataSource.data = this.collaboraters;
       },
       error: (err) => {
         console.error('Error fetching Collaboraters:', err);
@@ -55,13 +56,13 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.collaboraterDataSource.paginator = this.paginator;
+    this.collaboraterDataSource.sort = this.sort;
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.collaboraterDataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -71,7 +72,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
       return;
     }
 
-    this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.collaboraterDataSource.data);
   }
 
   checkboxLabel(row?: Collaborater): string {
@@ -79,5 +80,9 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.matricule}`;
+  }
+
+  openCollaboraterDetails(collaborater: Collaborater) {
+    this.router.navigate(['/client/detailsCollaborateur'], { state: { collaborater } });
   }
 }
