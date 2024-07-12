@@ -85,4 +85,9 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   openCollaboraterDetails(collaborater: Collaborater) {
     this.router.navigate(['/client/detailsCollaborateur'], { state: { collaborater } });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.collaboraterDataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

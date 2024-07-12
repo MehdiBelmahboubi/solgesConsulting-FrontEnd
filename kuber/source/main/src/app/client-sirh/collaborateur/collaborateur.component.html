@@ -7,7 +7,7 @@
     <div class="body">
       <div class="example-container">
         <div class="form-fields">
-          <input matInput placeholder="Rechercher" class="search-input">
+          <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
           <div class="custom-select">
             <span class="select-label"></span>
             <select>
