@@ -80,4 +80,9 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.matricule}`;
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

@@ -7,7 +7,7 @@
     <div class="body">
       <div class="example-container">
         <div class="form-fields">
-          <input matInput placeholder="Rechercher" class="search-input">
+          <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
           <div class="custom-select">
             <span class="select-label"></span>
             <select>
@@ -17,9 +17,11 @@
             </select>
             <div class="select-arrow"></div>
           </div>
+          <div class="bttn-menu">
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
+        </div>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>
               <mat-icon>search</mat-icon>
@@ -109,8 +111,8 @@
           </ng-container>
 
           <!-- Action Column -->
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef style="justify-content: center;">Action</th>
+          <ng-container matColumnDef="action" >
+            <th mat-header-cell *matHeaderCellDef >Action</th>
             <td mat-cell *matCellDef>
               <button mat-icon-button>
                 <mat-icon>create</mat-icon>
