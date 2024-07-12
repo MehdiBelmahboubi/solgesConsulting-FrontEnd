@@ -16,7 +16,6 @@
 section.content {
   background-color: #c2c6c6;
   margin-right: 20px;
-
 }
 .sousBar{
   background-color: #0c0c0c;
@@ -25,10 +24,19 @@ section.content {
 .block-header{
   //background-color: #c2c6c6;
   margin-left: -25px;
-  height: 35px;
+  margin-right: -20px;
   background-color: #848989;
   z-index: 1000 !important;
 }
+
+.block-header1{
+  margin-left: -25px;
+  margin-right: -20px;
+  height: 43px;
+  background-color: #FFFFFF;
+  z-index: 1000 !important;
+}
+
 .button-menu{
   height: 16px;
 }
@@ -37,3 +45,8 @@ section.content {
   margin-left: -260px;
   margin-right: -23px;
 }
+
+.nav-link{
+  margin-top: -5px;
+}
+
