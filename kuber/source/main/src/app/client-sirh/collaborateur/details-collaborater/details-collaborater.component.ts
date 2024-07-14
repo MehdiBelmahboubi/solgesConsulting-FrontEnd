@@ -12,6 +12,7 @@ import { NgClass, NgIf } from "@angular/common";
 import { ContratCollaboraterComponent } from "./contrat-collaborater/contrat-collaborater.component";
 import { ClassificationCollaboraterComponent } from './classification-collaborater/classification-collaborater.component';
 import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/header-sirh-client.component';
+import { PersoInfosCollaboraterComponent } from './perso-infos-collaborater/perso-infos-collaborater.component';
 
 export function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -37,6 +38,7 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
     NgClass,
     NgIf,
     RouterOutlet,
+    PersoInfosCollaboraterComponent,
     ContratCollaboraterComponent,
     ClassificationCollaboraterComponent
   ],
@@ -44,6 +46,7 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
   styleUrls: ['./details-collaborater.component.scss']
 })
 export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
+  persoInfosCollaboraterComponent: boolean = true;
   contratCollaboraterComponent: boolean = true;
   classificationCollaboraterComponent: boolean = false;
   componentActive: string = '';
@@ -53,10 +56,16 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
 
   findComponentActive(componentActive: string) {
     this.componentActive = componentActive;
-    if (componentActive === 'contratCollaboraterComponent') {
+    if (componentActive === 'persoInfosCollaboraterComponent') {
+      this.persoInfosCollaboraterComponent = true;
+      this.contratCollaboraterComponent = false;
+      this.classificationCollaboraterComponent = false;
+    } else if (componentActive === 'contratCollaboraterComponent') {
+      this.persoInfosCollaboraterComponent = false;
       this.contratCollaboraterComponent = true;
       this.classificationCollaboraterComponent = false;
-    } else if (componentActive === 'classificationCollaboraterComponent') {
+    }else if (componentActive === 'classificationCollaboraterComponent') {
+      this.persoInfosCollaboraterComponent = false;
       this.classificationCollaboraterComponent = true;
       this.contratCollaboraterComponent = false;
     } else {
@@ -65,7 +74,7 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.findComponentActive('contratCollaboraterComponent');
+    this.findComponentActive('persoInfosCollaboraterComponent');
   }
 
   ngAfterViewInit(): void {}

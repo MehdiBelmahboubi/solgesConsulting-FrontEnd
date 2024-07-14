@@ -3,24 +3,22 @@ section.content {
   margin-right: 0.1ch;
 }
 
+.content-block{
+  margin-left: -0.64cm;
+}
+
 .example-container mat-form-field {
   margin-left: 8px;
   margin-top: 20px;
-}
-
-.body{
-  margin-right: 0.6cm;
-}
-
-.block-header{
-  margin-left: -0.6cm;
 }
 
 .example-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 10px;
+  border: 0px solid #ccc; /* Add border */
+  background-color: #ccc;
+  height: 38px;
 }
 
   table {
@@ -37,6 +35,7 @@ section.content {
   .icon-container {
     display: flex;
     align-items: center;
+    margin-right: 20px;
   }
   
   .icon-container button {
@@ -60,12 +59,6 @@ section.content {
 }
 
 
-.small-icon-button {
-  width: 33px; /* Définir la largeur souhaitée */
-  height: 33px; /* Définir la hauteur souhaitée */
-  
-}
-
 
 
 /* Styles pour le conteneur de la barre de sélection */
@@ -75,6 +68,20 @@ section.content {
   margin: 10px;
   
 }
+
+.small-icon-button{
+  width: 2em;
+  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
+}
+
+/* Adjust the size of the icon */
+.small-icon-button .mat-icon{
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
 
 /* Style pour l'étiquette par défaut */
 .select-label {

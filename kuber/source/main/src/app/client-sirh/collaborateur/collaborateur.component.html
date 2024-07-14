@@ -2,54 +2,56 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-header-sirh-client [title]="'Collaborateur'" [items]="['Home']" [active_item]="'Collaborateur '"></app-header-sirh-client>
+      <app-header-sirh-client [title]="'Collaborateur'" [items]="['Home']"
+        [active_item]="'Collaborateur '"></app-header-sirh-client>
     </div>
     <div class="body">
-      <div class="example-container">
-        <div class="form-fields">
-          <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
-          <div class="custom-select">
-            <span class="select-label"></span>
-            <select>
-              <option value="contrat"></option>
-              <option value="type">Par type</option>
-              <option value="contrat">Par contrat</option>
-            </select>
-            <div class="select-arrow"></div>
+        <div class="example-container">
+          <div class="form-fields">
+            <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
+            <div class="custom-select">
+              <span class="select-label"></span>
+              <select>
+                <option value="contrat"></option>
+                <option value="type">Par type</option>
+                <option value="contrat">Par contrat</option>
+              </select>
+              <div class="select-arrow"></div>
+            </div>
+            <button mat-mini-fab [matMenuTriggerFor]="menu" style="background-color:cadetblue;" class="icon-container" class="small-icon-button">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>search</mat-icon>
+                <span>Filtrage</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>archive</mat-icon>
+                <span>Archive</span>
+              </button>
+            </mat-menu>
+            <button mat-mini-fab class="icon-container" class="small-icon-button" style="margin-left: 5px;background-color:darkslategray;">
+              <mat-icon>indeterminate_check_box</mat-icon>
+            </button>
           </div>
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <mat-icon>search</mat-icon>
-              <span>Filtrage</span>
+          <div class="icon-container">
+            <button mat-mini-fab color="warn" class="small-icon-button">
+              <mat-icon>delete</mat-icon>
             </button>
-            <button mat-menu-item>
-              <mat-icon>archive</mat-icon>
-              <span>Archive</span>
+            <button mat-mini-fab style="background-color: #d7f321;" class="small-icon-button">
+              <mat-icon>replay</mat-icon>
             </button>
-          </mat-menu>
-          <button mat-icon-button class="indeterminate_check_box">
-            <mat-icon>indeterminate_check_box</mat-icon>
-          </button>
+            <button mat-mini-fab style="background-color: #2196f3;" class="small-icon-button"
+              routerLink='/client/addcollaborateur'>
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-mini-fab style="background-color: #09a509;" class="small-icon-button">
+              <mat-icon>file_copy</mat-icon>
+            </button>
+          </div>
         </div>
-        <div class="icon-container">
-          <button mat-mini-fab color="warn" class="small-icon-button">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button mat-mini-fab style="background-color: #d7f321;" class="small-icon-button">
-            <mat-icon>replay</mat-icon>
-          </button>
-          <button mat-mini-fab style="background-color: #2196f3;" class="small-icon-button"  routerLink='/client/addcollaborateur'>
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-mini-fab style="background-color: #09a509;" class="small-icon-button">
-            <mat-icon>file_copy</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z0">
         <table mat-table [dataSource]="collaboraterDataSource" matSort class="mat-elevation-z8">
           <!-- Checkbox Column -->
           <ng-container matColumnDef="select">
@@ -118,7 +120,7 @@
               <button mat-icon-button color="warn">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button mat-icon-button color="primary" (click)="openCollaboraterDetails(collaborater)" >
+              <button mat-icon-button color="primary" (click)="openCollaboraterDetails(collaborater)">
                 <mat-icon>info</mat-icon>
               </button>
               <button mat-icon-button>
@@ -131,7 +133,8 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[4, 8]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[4, 8]" showFirstLastButtons
+          aria-label="Select page of periodic elements"></mat-paginator>
       </div>
     </div>
   </div>
