@@ -1,1 +1,67 @@
-<p>perso-infos-collaborater works!</p>
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="image">
+          <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
+        </div>
+        <div style="margin-top: 10px;" *ngIf="!addMode">
+          <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="row form-inline">
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="matricule" class="form-label mr-2">MATRICULE :</label>
+          <input type="text" class="form-control form-control-sm" id="matricule" [(ngModel)]="collaborater.matricule" [readonly]="!addMode && !editMode">
+        </div>
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="initiales" class="form-label mr-2">INITIALES :</label>
+          <input type="text" class="form-control form-control-sm" id="initiales" [(ngModel)]="collaborater.initiales" [readonly]="!addMode && !editMode">
+        </div>
+      </div>
+      <div class="row form-inline">
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="cnie" class="form-label mr-2">Cnie :</label>
+          <input type="text" class="form-control form-control-sm" id="cnie" [(ngModel)]="collaborater.cnie" [readonly]="!addMode && !editMode">
+        </div>
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="sexe" class="form-label mr-2">SEXE :</label>
+          <input type="text" class="form-control form-control-sm" id="sexe" [(ngModel)]="collaborater.sexe" [readonly]="!addMode && !editMode">
+        </div>
+      </div>
+      <div class="row form-inline">
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="nom" class="form-label mr-2">NOM :</label>
+          <input type="text" class="form-control form-control-sm" id="nom" [(ngModel)]="collaborater.firstName" [readonly]="!addMode && !editMode">
+        </div>
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="prenom" class="form-label mr-2">PRENOM :</label>
+          <input type="text" class="form-control form-control-sm" id="prenom" [(ngModel)]="collaborater.lastName" [readonly]="!addMode && !editMode">
+        </div>
+      </div>
+      <div class="row form-inline">
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="lieuNaissance" class="form-label mr-2">LIEU_NAISSANCE :</label>
+          <input type="text" class="form-control form-control-sm" id="lieuNaissance" [(ngModel)]="collaborater.lieuNaissance" [readonly]="!addMode && !editMode">
+        </div>
+        <div class="col-md-6 d-flex align-items-center mb-3">
+          <label for="dateNaissance" class="form-label mr-2">DATE_NAISSANCE :</label>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput [matDatepicker]="picker" id="dateNaissance" [(ngModel)]="collaborater.dateNaissance" [disabled]="!addMode && !editMode">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end mb-3">
+          <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
+          <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+          <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

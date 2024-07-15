@@ -48,15 +48,6 @@ export class ContratCollaboraterComponent implements OnInit, AfterViewInit {
     if (history.state && history.state.collaborater) {
       this.collaborater = history.state.collaborater;
     }
-    this.contractService.getActiveContract(this.collaborater.id).subscribe({
-      next: (value) => {
-        this.contract = value;
-        this.contractDataSource.data = [this.contract];
-      },
-      error: (err) => {
-        console.error('Error fetching contract:', err);
-      }
-    });
   }
 
   ngAfterViewInit() {

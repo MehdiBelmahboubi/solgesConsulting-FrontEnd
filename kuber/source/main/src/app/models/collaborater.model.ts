@@ -9,8 +9,8 @@ export class Collaborater {
   public matricule!: string;
   public civilite!: 'Mr'|'Mme';
   public initiales!: string;
-  public firstname!: string;
-  public lastname!: string;
+  public firstName!: string;
+  public lastName!: string;
   public dateNaissance!: Date;
   public lieuNaissance!: string;
   public sexe!: 'Homme'|'Femme';

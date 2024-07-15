@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Collaborater } from 'app/models/collaborater.model';
 import { AppConfig, CONFIG_TOKEN } from "@config/config";
 import { LocalStorageService } from './storage/local-storage.service';
@@ -32,6 +32,12 @@ export class CollaboraterService extends UnsubscribeOnDestroyAdapter {
   getByComany(): Observable<Collaborater[]> {
     let id = this.localStorageService.getCurrentCompany()?.id.toString();
     return this.httpClient.get<Collaborater[]>(`${this.appConfig.apiUrl}/collaborater/company/${id}/collaboraters`);
+  }
+
+  getById(id:number): Observable<Collaborater> {
+    let param = new HttpParams();
+    param = param.set('id',id);
+    return this.httpClient.get<Collaborater>(`${this.appConfig.apiUrl}/collaborater/get`,{params : param});
   }
   /** CRUD METHODS */
 

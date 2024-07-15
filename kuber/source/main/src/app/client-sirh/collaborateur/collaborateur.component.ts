@@ -32,9 +32,8 @@ import { Collaborater } from 'app/models/collaborater.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
-
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['select', 'matricule', 'initiales','email', 'lieuNaissance', 'sexe', 'civNomPrenom', 'cnie', 'action'];
+  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales','email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
 
@@ -84,6 +83,14 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
 
   openCollaboraterDetails(collaborater: Collaborater) {
     this.router.navigate(['/client/detailsCollaborateur'], { state: { collaborater } });
+  }
+
+  openAddCollaborater() {
+    this.router.navigate(['/client/detailsCollaborateur']);
+  }
+
+  openEditCollaborater(collaboraterEdit: Collaborater) {
+    this.router.navigate(['/client/detailsCollaborateur'], { state: { collaboraterEdit } });
   }
 
   applyFilter(event: Event) {
