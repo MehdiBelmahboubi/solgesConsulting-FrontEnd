@@ -1,89 +1,97 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <app-header-sirh-client [title]="'Details'" [items]="['Collaborateur']" [active_item]="'Details'"></app-header-sirh-client>
+      <app-header-sirh-client [title]="'Details'" [items]="['Collaborateur']"
+        [active_item]="'Details'"></app-header-sirh-client>
     </div>
     <div class="block-tabs">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            [ngClass]="{'active': componentActive === 'persoInfosCollaboraterComponent'}"
-            id="infosperso-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#infosperso-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="infosperso-tab-pane"
-            (click)="findComponentActive('persoInfosCollaboraterComponent')"
-          >
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'persoInfosCollaboraterComponent'}"
+            id="infosperso-tab" data-bs-toggle="tab" data-bs-target="#infosperso-tab-pane" type="button" role="tab"
+            aria-controls="infosperso-tab-pane" (click)="findComponentActive('persoInfosCollaboraterComponent')">
             Informations Personnels
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            [ngClass]="{'active': componentActive === 'contratCollaboraterComponent'}"
-            id="contrat-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#contrat-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="contrat-tab-pane"
-            (click)="findComponentActive('contratCollaboraterComponent')"
-          >
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'contratCollaboraterComponent'}"
+            id="contrat-tab" data-bs-toggle="tab" data-bs-target="#contrat-tab-pane" type="button" role="tab"
+            aria-controls="contrat-tab-pane" (click)="findComponentActive('contratCollaboraterComponent')">
             Contrat
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            [ngClass]="{'active': componentActive === 'classificationCollaboraterComponent'}"
-            id="classification-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#classification-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="classification-tab-pane"
-            (click)="findComponentActive('classificationCollaboraterComponent')"
-          >
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'classificationCollaboraterComponent'}"
+            id="classification-tab" data-bs-toggle="tab" data-bs-target="#classification-tab-pane" type="button"
+            role="tab" aria-controls="classification-tab-pane"
+            (click)="findComponentActive('classificationCollaboraterComponent')">
             Classification
           </button>
         </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'immatriculationCollaboraterComponent'}"
+            id="immatriculation-tab" data-bs-toggle="tab" data-bs-target="#immatriculation-tab-pane" type="button"
+            role="tab" aria-controls="immatriculation-tab-pane"
+            (click)="findComponentActive('immatriculationCollaboraterComponent')">
+            Immatriculation
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'coordonneesCollaboraterComponent'}"
+            id="coordonnees-tab" data-bs-toggle="tab" data-bs-target="#coordonnees-tab-pane" type="button"
+            role="tab" aria-controls="coordonnees-tab-pane"
+            (click)="findComponentActive('coordonneesCollaboraterComponent')">
+            Coordonnées
+          </button>
+        </li>
+      <li>
+        <button class="nav-link" [ngClass]="{'active': componentActive === 'familleCollaboraterComponent'}"
+            id="famille-tab" data-bs-toggle="tab" data-bs-target="#famille-tab-pane" type="button"
+            role="tab" aria-controls="famille-tab-pane"
+            (click)="findComponentActive('familleCollaboraterComponent')">
+            Famille
+          </button>
+        </li>
+        <li>
+          <button class="nav-link" [ngClass]="{'active': componentActive === 'autreinfoCollaboraterComponent'}"
+              id="autreinfo-tab" data-bs-toggle="tab" data-bs-target="#autreinfo-tab-pane" type="button"
+              role="tab" aria-controls="autreinfo-tab-pane"
+              (click)="findComponentActive('autreinfoCollaboraterComponent')">
+              Autre Informations
+            </button>
+          </li>
       </ul>
     </div>
   </div>
   <div class="body">
     <div class="tab-content" id="myTabContent">
-      <div
-        class="tab-pane fade"
-        [ngClass]="{'show active': componentActive === 'persoInfosCollaboraterComponent'}"
-        id="infosperso-tab-pane"
-        role="tabpanel"
-        aria-labelledby="infosperso-tab"
-        tabindex="0"
-      >
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'persoInfosCollaboraterComponent'}"
+        id="infosperso-tab-pane" role="tabpanel" aria-labelledby="infosperso-tab" tabindex="0">
         <app-perso-infos-collaborater></app-perso-infos-collaborater>
       </div>
-      <div
-        class="tab-pane fade"
-        [ngClass]="{'show active': componentActive === 'contratCollaboraterComponent'}"
-        id="contrat-tab-pane"
-        role="tabpanel"
-        aria-labelledby="contrat-tab"
-        tabindex="0"
-      >
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'contratCollaboraterComponent'}"
+        id="contrat-tab-pane" role="tabpanel" aria-labelledby="contrat-tab" tabindex="0">
         <app-contrat-collaborater></app-contrat-collaborater>
       </div>
-      <div
-        class="tab-pane fade"
-        [ngClass]="{'show active': componentActive === 'classificationCollaboraterComponent'}"
-        id="classification-tab-pane"
-        role="tabpanel"
-        aria-labelledby="classification-tab"
-        tabindex="0"
-      >
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'classificationCollaboraterComponent'}"
+        id="classification-tab-pane" role="tabpanel" aria-labelledby="classification-tab" tabindex="0">
         <app-classification-collaborater></app-classification-collaborater>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'immatriculationCollaboraterComponent'}"
+        id="immatriculation-tab-pane" role="tabpanel" aria-labelledby="immatriculation-tab" tabindex="0">
+        <app-immatriculation-collaborater></app-immatriculation-collaborater>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'coordonneesCollaboraterComponent'}"
+        id="coordonnees-tab-pane" role="tabpanel" aria-labelledby="coordonnees-tab" tabindex="0">
+        <app-coordonnees-collaborater></app-coordonnees-collaborater>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'familleCollaboraterComponent'}"
+        id="famille-tab-pane" role="tabpanel" aria-labelledby="famille-tab" tabindex="0">
+        <app-famille-collaborater></app-famille-collaborater>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'autreinfoCollaboraterComponent'}"
+        id="autreinfo-tab-pane" role="tabpanel" aria-labelledby="autreinfo-tab" tabindex="0">
+        <app-autreinfo-collaborater></app-autreinfo-collaborater>
       </div>
     </div>
   </div>
