@@ -20,6 +20,7 @@ import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/he
 import { Collaborater } from 'app/models/collaborater.model';
 import { ContractService } from 'app/services/contract.service';
 import { Contract } from 'app/models/contract.model';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-contrat-collaborater',
@@ -28,7 +29,7 @@ import { Contract } from 'app/models/contract.model';
     MatIconModule, MatIcon, HeaderSirhClientComponent, RouterLink, BreadcrumbComponent,
     MatIconModule, MatProgressSpinnerModule, MatTableModule, MatSortModule, MatCardModule,
     MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule,
-    ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule
+    ReactiveFormsModule, MatButtonModule, MatMenuModule, MatIconModule,MatDatepickerModule,
   ],
   templateUrl: './contrat-collaborater.component.html',
   styleUrls: ['./contrat-collaborater.component.scss']
