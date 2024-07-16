@@ -36,15 +36,4 @@ export class ImmatriculationCollaboraterComponent implements OnInit {
     this.editMode = true;
     this.addMode = false;
   }
-
-  addCollaborater() {
-    this.collaboraterService.addCollaborateur(this.collaborater).subscribe({
-      next: () => {
-        console.log('Collaborateur Added');
-      },
-      error: () => {
-        console.error('Error Adding Collaborateur:');
-      }
-    });
-  }
 }

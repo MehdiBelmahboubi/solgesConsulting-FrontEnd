@@ -5,7 +5,7 @@
           <div class="image">
             <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
           </div>
-          <div style="margin-top: 10px;" >
+          <div style="margin-top: 10px;" *ngIf="!addMode">
             <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
           </div>
         </div>
@@ -63,7 +63,7 @@
           <div class="col-md-6 d-flex align-items-center mb-3">
             <label for="contractType" class="form-label mr-2">Contract Type :</label>
             <select class="form-select form-control form-control-sm" id="contractType">
-              <option *ngFor="let type of contractTypes" [value]="type">{{ type }}</option>
+              <option></option>
             </select>
           </div>
         </div>
@@ -71,8 +71,7 @@
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-end mb-3">
                     <button mat-flat-button color="primary" *ngIf="addMode" >Ajouter</button>
-                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
-                        >Modifier</button>
+                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
                     <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                 </div>
             </div>

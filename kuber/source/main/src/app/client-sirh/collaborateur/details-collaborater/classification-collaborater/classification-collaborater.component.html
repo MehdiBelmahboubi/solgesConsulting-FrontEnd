@@ -43,21 +43,21 @@
           <div class="col-md-6 d-flex align-items-center mb-3">
             <label for="dateFin" class="form-label mr-2">Date Fin :</label>
             <mat-form-field appearance="fill" class="w-100">
-              <input matInput [matDatepicker]="pickerDateFin" id="dateFin">
-              <mat-datepicker-toggle matSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
-              <mat-datepicker #pickerDateFin></mat-datepicker>
+              <input matInput [matDatepicker]="pickerDateFinClf" id="dateFin">
+              <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDateFinClf></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="col-md-6 d-flex align-items-center mb-3">
             <label for="classificationType" class="form-label mr-2">Classification Type :</label>
             <select class="form-select form-control form-control-sm" id="classificationType" >
-              <option *ngFor="let type of classificationTypes" [value]="type">{{ type }}</option>
+              <option ></option>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 d-flex justify-content-end mb-3">
-            <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
+            <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
             <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
             <button mat-flat-button color="primary" *ngIf="editMode" >Enregistrer</button>
           </div>
