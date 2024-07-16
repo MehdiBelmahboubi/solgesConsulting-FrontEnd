@@ -50,4 +50,8 @@ export class CollaboraterService extends UnsubscribeOnDestroyAdapter {
       throw new Error('Current company ID is undefined');
     }
   }
+
+  editCollaborateur(collaborater:Collaborater): Observable<any> {
+    return this.httpClient.put(`${this.appConfig.apiUrl}/collaborater/update`, collaborater);
+  }
 }

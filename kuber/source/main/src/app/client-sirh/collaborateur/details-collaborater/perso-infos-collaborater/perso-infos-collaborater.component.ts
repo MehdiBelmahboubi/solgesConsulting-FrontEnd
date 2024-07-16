@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
+import { SnackBarService } from 'app/services/snackBar.service';
 
 @Component({
   selector: 'app-perso-infos-collaborater',
@@ -21,7 +22,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   editMode: boolean = false;
 
 
-  constructor(private collaboraterService: CollaboraterService) { }
+  constructor(private collaboraterService: CollaboraterService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -43,11 +44,22 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   addCollaborater() {
     this.collaboraterService.addCollaborateur(this.collaborater).subscribe({
       next: () => {
-        console.log('Collaborateur Added');
+        this.snackBarService.showSuccess('Collaborator est créé avec succès ! ');
       },
       error: () => {
         console.error('Error Adding Collaborateur:');
       }
     });
+  }
+
+  editCollaborater() {
+    this.collaboraterService.editCollaborateur(this.collaborater).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Collaborator est Mofidié avec succès ! ');
+      },
+      error: () => {
+        console.error('Error Updating Collaborateur:');
+      }
+    })
   }
 }
