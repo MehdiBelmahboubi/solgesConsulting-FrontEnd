@@ -1,0 +1,61 @@
+<section class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="image">
+            <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
+          </div>
+          <div style="margin-top: 10px;" *ngIf="!addMode">
+            <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="row form-inline">
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="telephone" class="form-label mr-2">Téléphone :</label>
+            <input type="text" class="form-control form-control-sm" id="telephone" [(ngModel)]="collaborater.telephone" [readonly]="!addMode && !editMode">
+          </div>
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="tel1" class="form-label mr-2">TEL 1 :</label>
+            <input type="text" class="form-control form-control-sm" id="tel1" [(ngModel)]="collaborater.tel1" [readonly]="!addMode && !editMode">
+          </div>
+        </div>
+        <div class="row form-inline">
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="tel2" class="form-label mr-2">TEL 2 :</label>
+            <input type="text" class="form-control form-control-sm" id="tel2" [(ngModel)]="collaborater.tel2" [readonly]="!addMode && !editMode">
+          </div>
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="tel3" class="form-label mr-2">TEL 3 :</label>
+            <input type="text" class="form-control form-control-sm" id="tel3" [(ngModel)]="collaborater.tel3" [readonly]="!addMode && !editMode">
+          </div>
+        </div>
+        <div class="row form-inline">
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="email1" class="form-label mr-2">Email :</label>
+            <input type="text" class="form-control form-control-sm" id="email1" [(ngModel)]="collaborater.email1" [readonly]="!addMode && !editMode">
+          </div>
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="email2" class="form-label mr-2">Email 2 :</label>
+            <input type="text" class="form-control form-control-sm" id="email2" [(ngModel)]="collaborater.email2" [readonly]="!addMode && !editMode">
+          </div>
+        </div>
+        <div class="row form-inline">
+          <div class="col-md-6 d-flex align-items-center mb-3">
+            <label for="email3" class="form-label mr-2">Email 3 :</label>
+            <input type="text" class="form-control form-control-sm" id="email3" [(ngModel)]="collaborater.email3" [readonly]="!addMode && !editMode">
+          </div>
+         
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end mb-3">
+            <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
+            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+            <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

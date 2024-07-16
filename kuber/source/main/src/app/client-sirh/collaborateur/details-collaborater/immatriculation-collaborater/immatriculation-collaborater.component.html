@@ -1,0 +1,112 @@
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="image">
+                    <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
+                </div>
+                <div style="margin-top: 10px;" *ngIf="!addMode">
+                    <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="row form-inline">
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="cnie" class="form-label mr-2">cnie:</label>
+                    <input type="text" class="form-control form-control-sm" id="matricule"
+                        [(ngModel)]="collaborater.cnie" [readonly]="!addMode && !editMode">
+                </div>
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="cnieDelivreeLe" class="form-label mr-2">Delivration cnie :</label>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <input matInput [matDatepicker]="picker" id="cnieDelivreeLe"
+                            [(ngModel)]="collaborater.cnieDelivreeLe" [disabled]="!addMode && !editMode">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                
+
+            </div>
+            <div class="row form-inline">
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="cnieExpireLe" class="form-label mr-2">Expiration cnie :</label>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <input matInput [matDatepicker]="picker" id="cnieExpireLe"
+                            [(ngModel)]="collaborater.cnieExpireLe" [disabled]="!addMode && !editMode">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="cnieDelivreePar" class="form-label mr-2">Cnie Delivrer par:</label>
+                    <input type="text" class="form-control form-control-sm" id="cnieDelivreePar"
+                        [(ngModel)]="collaborater.cnieDelivreePar" [readonly]="!addMode && !editMode">
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="numPermisSejour" class="form-label mr-2">Numero Permis Sejour :</label>
+                    <input type="text" class="form-control form-control-sm" id="numPermisSejour"
+                        [(ngModel)]="collaborater.numPermisSejour" [readonly]="!addMode && !editMode">
+                </div>
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="natPermisSejour" class="form-label mr-2">Nat Permis Sejour :</label>
+                    <input type="text" class="form-control form-control-sm" id="natPermisSejour"
+                        [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="permisSejourDelivreLe" class="form-label mr-2">Delivration Permis Sejour :</label>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <input matInput [matDatepicker]="picker" id="permisSejourDelivreLe"
+                            [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="permisSejourDebVal" class="form-label mr-2">Permis Sejour deb val</label>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <input matInput [matDatepicker]="picker" id="permisSejourDebVal"
+                            [(ngModel)]="collaborater.permisSejourDebVal" [disabled]="!addMode && !editMode">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        
+
+            <div class="row form-inline">
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="permisSejourFinVal" class="form-label mr-2">Fin val permis de séjour:</label>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <input matInput [matDatepicker]="picker" id="permisSejourFinVal"
+                            [(ngModel)]="collaborater.permisSejourFinVal" [disabled]="!addMode && !editMode">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 d-flex align-items-center mb-3">
+                    <label for="numPermisTravail" class="form-label mr-2">Num Permis travail :</label>
+                    <input type="text" class="form-control form-control-sm" id="numPermisTravail"
+                    [(ngModel)]="collaborater.numPermisTravail" [readonly]="!addMode && !editMode">
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end mb-3">
+                    <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
+                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
+                        (click)="openEditMode()">Modifier</button>
+                    <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
