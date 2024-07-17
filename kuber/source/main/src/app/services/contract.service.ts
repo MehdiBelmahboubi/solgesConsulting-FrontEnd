@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { AppConfig, CONFIG_TOKEN } from "@config/config";
 import { Contract } from 'app/models/contract.model';
 
@@ -22,6 +22,8 @@ export class ContractService extends UnsubscribeOnDestroyAdapter {
   }
 
   getActiveContract(id:number): Observable<Contract>{
-    return this.httpClient.get<Contract>(`${this.appConfig.apiUrl}/contract/collaborater/${id}/contracts`);
+    let param = new HttpParams();
+    param = param.set('id',id);
+    return this.httpClient.get<Contract>(`${this.appConfig.apiUrl}/contract/collaborater`,{params:param});
   }
 }

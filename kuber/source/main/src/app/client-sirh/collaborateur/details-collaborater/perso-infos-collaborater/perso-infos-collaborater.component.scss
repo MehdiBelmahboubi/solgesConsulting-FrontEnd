@@ -1,3 +1,11 @@
+:host ::ng-deep .mdc-text-field--outlined {
+  padding-left: max(16px, calc(var(--mdc-shape-small, 4px) + 4px));
+  height: 32px !important;
+  display: flex;
+  align-items: center;
+  border: #FFFFFF;
+}
+
 section.content {
   background: white;
   margin-right: 0.1ch;
@@ -14,7 +22,21 @@ section.content {
 }
 
 .body{
-  margin-top: 80px;
+  margin-top: 100px;
+}
+
+.field-width-date{
+  width: 45%;
+  height: 20px;
+}
+
+.field-width{
+  width: 45%;
+  height: 20px;
+}
+
+.mr-2 {
+  margin-right: 10px;
 }
 
 .form-label {
