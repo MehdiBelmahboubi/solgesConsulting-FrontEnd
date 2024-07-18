@@ -1,58 +1,73 @@
 <section class="content">
     <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <div class="image">
-            <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
-          </div>
-          <div style="margin-top: 10px;" *ngIf="!addMode">
-            <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
-          </div>
-        </div>
-      </div>
         <div class="body">
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nomJeuneFille" class="form-label mr-2">Nom Jeune Fille :</label>
-                    <input type="text" class="form-control form-control-sm" id="nomJeuneFille" [(ngModel)]="collaborater.nomJeuneFille" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEnfantsSaisi" class="form-label mr-2">Nb Enfants Saisi :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEnfantsSaisi" [(ngModel)]="collaborater.nbEnfantsSaisi" [readonly]="!addMode && !editMode">
-                </div>
-            </div>
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEnfants" class="form-label mr-2">Nb Enfants :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEnfants" [(ngModel)]="collaborater.nbEnfants" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nb Enfants Charge Saisi :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEnfantsChargeSaisi" [(ngModel)]="collaborater.nbEnfantsChargeSaisi" [readonly]="!addMode && !editMode">
-                </div>
-            </div>
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEnfantsCharge" class="form-label mr-2">Nb Enfants Charge :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEnfantsCharge" [(ngModel)]="collaborater.nbEnfantCharge" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbPersCharge" class="form-label mr-2">Nb Pers Charge :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge" [readonly]="!addMode && !editMode">
+            <!-- Section Epouse -->
+            <div class="bordered-section">
+                <div class="section-header">Epouse</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-4">
+                            <label for="nbEpousesSaisi" class="form-label mr-4">Nombre d'épouses saisi :</label>
+                            <mat-radio-group [(ngModel)]="labelPosition">
+                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-4">
+                            <label for="nbEpouses" class="form-label mr-4">Nombre d'épouses :</label>
+                            <input matInput class="field-width" id="nbEpouses" [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEpousesSaisi" class="form-label mr-2">Nb Epouses Saisi :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEpousesSaisi" [(ngModel)]="collaborater.nbEpousesSaisi" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="nbEpouses" class="form-label mr-2">Nb Epouses :</label>
-                    <input type="text" class="form-control form-control-sm" id="nbEpouses" [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
+
+            <!-- Section Enfants -->
+            <div class="bordered-section">
+                <div class="section-header">Enfants</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbEnfantsSaisi" class="form-label mr-2">Nombre d'enfants saisi :</label>
+                            <mat-radio-group [(ngModel)]="labelPosition2">
+                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbEnfants" class="form-label mr-2">Nombre d'enfants :</label>
+                            <input matInput class="field-width" id="nbEnfants" [(ngModel)]="collaborater.nbEnfants" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants en charge saisi :</label>
+                            <mat-radio-group [(ngModel)]="labelPosition3">
+                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants en charge :</label>
+                            <input matInput class="field-width" id="nbEnfantsCharge" [(ngModel)]="collaborater.nbEnfantCharge" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes en charge :</label>
+                            <input matInput class="field-width" id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-4">
+                            <label for="nomJeuneFille" class="form-label mr-4">Nom du jeune fille :</label>
+                            <input matInput class="field-width" id="nomJeuneFille" [(ngModel)]="collaborater.nomJeuneFille" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Action Buttons -->
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-end mb-3">
+                    <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
                     <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
                     <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
                     <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>

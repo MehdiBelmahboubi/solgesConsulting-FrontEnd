@@ -1,89 +1,169 @@
 <section class="content">
     <div class="container">
         <div class="body">
-            <div class="row form-inline">
-                <div class="col-md-3 d-flex align-items-center mb-3">
-                    <label for="cnie" class="form-label mr-2">cnie:</label>
-                    <input matInput class="field-width" id="matricule" [(ngModel)]="collaborater.cnie" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-3 d-flex align-items-center mb-3">
-                    <label for="cnieDelivreeLe" class="form-label mr-2">Delivrater le:</label>
-                    <mat-form-field class="field-width-date" appearance="outline">
-                        <input matInput [matDatepicker]="pickerDateCnie" id="cnieDelivreeLe"
-                            [(ngModel)]="collaborater.cnieDelivreeLe" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="pickerDateCnie"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerDateCnie></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-3 d-flex align-items-center mb-3">
-                    <label for="cnieDelivreePar" class="form-label mr-2">Delivrer par:</label>
-                    <input matInput class="field-width" id="cnieDelivreePar"
-                        [(ngModel)]="collaborater.cnieDelivreePar" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-3 d-flex align-items-center mb-3">
-                    <label for="cnieExpireLe" class="form-label mr-2">Expiration le:</label>
-                    <mat-form-field class="field-width-date" appearance="outline">
-                        <input matInput [matDatepicker]="pickerDateExpireCnie" id="cnieExpireLe"
-                            [(ngModel)]="collaborater.cnieExpireLe" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="pickerDateExpireCnie"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerDateExpireCnie></mat-datepicker>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row form-inline">
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="numPermisSejour" class="form-label mr-2">Numero Permis Sejour :</label>
-                    <input matInput class="field-width" id="numPermisSejour"
-                        [(ngModel)]="collaborater.numPermisSejour" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="natPermisSejour" class="form-label mr-2">Nat Permis Sejour :</label>
-                    <input matInput class="field-width" id="natPermisSejour"
-                        [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="permisSejourDelivreLe" class="form-label mr-2">Delivration Permis Sejour :</label>
-                    <mat-form-field class="field-width-date" appearance="outline">
-                        <input matInput [matDatepicker]="pickerDatePermisSejour" id="permisSejourDelivreLe"
-                            [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="pickerDatePermisSejour"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerDatePermisSejour></mat-datepicker>
-                    </mat-form-field>
+            <!-- CNIE Section -->
+            <div class="bordered-section">
+                <div class="section-header">CNIE</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="cnie" class="form-label mr-2">Numéro :</label>
+                            <input matInput class="field-width" id="cnie" [(ngModel)]="collaborater.cnie" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="cnieDelivreeLe" class="form-label mr-2">Délivrée le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDateCnie" id="cnieDelivreeLe" [(ngModel)]="collaborater.cnieDelivreeLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDateCnie"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDateCnie></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="cnieDelivreePar" class="form-label mr-2">Délivrée par :</label>
+                            <input matInput class="field-width" id="cnieDelivreePar" [(ngModel)]="collaborater.cnieDelivreePar" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="cnieExpireLe" class="form-label mr-2">Expire le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDateExpireCnie" id="cnieExpireLe" [(ngModel)]="collaborater.cnieExpireLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDateExpireCnie"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDateExpireCnie></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row form-inline">
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="permisSejourDebVal" class="form-label mr-2">Permis Sejour deb val</label>
-                    <mat-form-field class="field-width-date" appearance="outline">
-                        <input matInput [matDatepicker]="pickerDebutPermisSejour" id="permisSejourDebVal"
-                            [(ngModel)]="collaborater.permisSejourDebVal" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="pickerDebutPermisSejour"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerDebutPermisSejour></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="permisSejourFinVal" class="form-label mr-2">Fin val permis de séjour:</label>
-                    <mat-form-field class="field-width-date" appearance="outline">
-                        <input matInput [matDatepicker]="pickerFinPermisSejour" id="permisSejourFinVal"
-                            [(ngModel)]="collaborater.permisSejourFinVal" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="pickerFinPermisSejour"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerFinPermisSejour></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4 d-flex align-items-center mb-3">
-                    <label for="numPermisTravail" class="form-label mr-2">Num Permis travail :</label>
-                    <input matInput class="field-width" id="numPermisTravail"
-                    [(ngModel)]="collaborater.numPermisTravail" [readonly]="!addMode && !editMode">
+
+            <!-- Permis de Séjour Section -->
+            <div class="bordered-section">
+                <div class="section-header">Permis de Séjour</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="numPermisSejour" class="form-label mr-2">Numéro :</label>
+                            <input matInput class="field-width" id="numPermisSejour" [(ngModel)]="collaborater.numPermisSejour" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="natPermisSejour" class="form-label mr-2">Nat :</label>
+                            <input matInput class="field-width" id="natPermisSejour" [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisSejourDelivreLe" class="form-label mr-2">Délivré le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDatePermisSejour" id="permisSejourDelivreLe" [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDatePermisSejour"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDatePermisSejour></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisSejourDebVal" class="form-label mr-2">Début de validité :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDebutPermisSejour" id="permisSejourDebVal" [(ngModel)]="collaborater.permisSejourDebVal" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDebutPermisSejour"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDebutPermisSejour></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisSejourFinVal" class="form-label mr-2">Fin de validité :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerFinPermisSejour" id="permisSejourFinVal" [(ngModel)]="collaborater.permisSejourFinVal" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFinPermisSejour"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFinPermisSejour></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Permis de Travail Section -->
+            <div class="bordered-section">
+                <div class="section-header">Permis de Travail</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="numPermisTravail" class="form-label mr-2">Numéro :</label>
+                            <input matInput class="field-width" id="numPermisTravail" [(ngModel)]="collaborater.numPermisTravail" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="natPermisTravail" class="form-label mr-2">Nat :</label>
+                            <input matInput class="field-width" id="natPermisTravail" [(ngModel)]="collaborater.natPermisTravail" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisTravailDelivreLe" class="form-label mr-2">Délivré le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDatePermisTravail" id="permisTravailDelivreLe" [(ngModel)]="collaborater.permisTravailDelivreLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDatePermisTravail"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDatePermisTravail></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisTravailDebVal" class="form-label mr-2">Début de validité :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDebutPermisTravail" id="permisTravailDebVal" [(ngModel)]="collaborater.permisTravailDebVal" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDebutPermisTravail"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDebutPermisTravail></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="permisTravailFinVal" class="form-label mr-2">Fin de validité :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerFinPermisTravail" id="permisTravailFinVal" [(ngModel)]="collaborater.permisTravailFinVal" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFinPermisTravail"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFinPermisTravail></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passeport Section -->
+            <div class="bordered-section">
+                <div class="section-header">Passeport</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="numPassePort" class="form-label mr-2">Numéro :</label>
+                            <input matInput class="field-width" id="numPassePort" [(ngModel)]="collaborater.numPassePort" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="passePortDelivreLe" class="form-label mr-2">Délivré le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDatePassePortDelivreLe" id="passePortDelivreLe" [(ngModel)]="collaborater.passePortDelivreLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDatePassePortDelivreLe"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDatePassePortDelivreLe></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="passePortExpireLe" class="form-label mr-2">Expire le :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="pickerDatePassePortExpireLe" id="passePortExpireLe" [(ngModel)]="collaborater.passePortExpireLe" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDatePassePortExpireLe"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDatePassePortExpireLe></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="passePortDelivrePar" class="form-label mr-2">Délivré par :</label>
+                            <input matInput class="field-width" id="passePortDelivrePar" [(ngModel)]="collaborater.passePortDelivrePar" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
             <div class="row form-inline">
+                <div class="d-flex justify-content-end mt-4">
                 <div class="col-md-11 d-flex justify-content-end mb-3">
-                  <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
-                  <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-                  <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
-                  <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                    <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
+                    <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                    <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
+</div>
 </section>

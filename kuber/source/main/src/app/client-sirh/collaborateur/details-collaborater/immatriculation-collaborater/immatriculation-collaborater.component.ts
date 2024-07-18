@@ -7,11 +7,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+
 @Component({
   selector: 'app-immatriculation-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatDividerModule, MatCardModule],
   templateUrl: './immatriculation-collaborater.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './immatriculation-collaborater.component.scss'
 })
 export class ImmatriculationCollaboraterComponent implements OnInit {

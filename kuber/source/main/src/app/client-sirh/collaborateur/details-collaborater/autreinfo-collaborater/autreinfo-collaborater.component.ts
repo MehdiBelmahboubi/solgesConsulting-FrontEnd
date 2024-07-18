@@ -17,6 +17,9 @@ import { CollaboraterService } from 'app/services/collaborater.service';
   styleUrl: './autreinfo-collaborater.component.scss'
 })
 export class AutreinfoCollaboraterComponent implements OnInit {
+cancel() {
+throw new Error('Method not implemented.');
+}
   collaborater: Collaborater = new Collaborater();
   addMode!: Boolean;
   editMode: boolean = false;
