@@ -17,6 +17,9 @@ import { CollaboraterService } from 'app/services/collaborater.service';
   styleUrl: './coordonnees-collaborater.component.scss'
 })
 export class CoordonneesCollaboraterComponent implements OnInit{
+cancel() {
+throw new Error('Method not implemented.');
+}
   collaborater: Collaborater = new Collaborater();
   addMode!: Boolean;
   editMode: boolean = false;

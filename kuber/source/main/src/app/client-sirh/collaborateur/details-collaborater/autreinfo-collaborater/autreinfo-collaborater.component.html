@@ -1,71 +1,84 @@
 <section class="content">
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="image">
-                    <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
-                </div>
-                <div style="margin-top: 10px;" *ngIf="!addMode">
-                    <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
-                </div>
-            </div>
-        </div>
         <div class="body">
-          
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="dateDeces" class="form-label mr-2">Date Décès :</label>
-                    <mat-form-field appearance="fill" class="w-100">
-                        <input matInput [matDatepicker]="picker1" id="dateDeces" [(ngModel)]="collaborater.dateDeces" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="dateCertifDeces" class="form-label mr-2">Date Certif Décès :</label>
-                    <mat-form-field appearance="fill" class="w-100">
-                        <input matInput [matDatepicker]="picker2" id="dateCertifDeces" [(ngModel)]="collaborater.dateCertifDeces" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                </div>
-            </div>
-        
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="dateNaturalisation" class="form-label mr-2">Date Naturalisation :</label>
-                    <mat-form-field appearance="fill" class="w-100">
-                        <input matInput [matDatepicker]="picker3" id="dateNaturalisation" [(ngModel)]="collaborater.dateNaturalisation" [disabled]="!addMode && !editMode">
-                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                        <mat-datepicker #picker3></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="actif" class="form-label mr-2">Actif :</label>
-                    <input type="text" class="form-control form-control-sm" id="actif" [(ngModel)]="collaborater.active" [readonly]="!addMode && !editMode">
+            <!-- Décès Section -->
+            <div class="bordered-section">
+                <div class="section-header">Décès</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="dateDeces" class="form-label mr-2">Date de décès :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="picker1" id="dateDeces" [(ngModel)]="collaborater.dateDeces" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="dateCertifDeces" class="form-label mr-2">Date du certificat de décès :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="picker2" id="dateCertifDeces" [(ngModel)]="collaborater.dateCertifDeces" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="recrutable" class="form-label mr-2">Recrutable :</label>
-                    <input type="text" class="form-control form-control-sm" id="recrutable" [(ngModel)]="collaborater.recrutable" [readonly]="!addMode && !editMode">
-                </div>
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="excluDeclaration" class="form-label mr-2">Exclu Declaration :</label>
-                    <input type="text" class="form-control form-control-sm" id="excluDeclaration" [(ngModel)]="collaborater.excluDeclaration" [readonly]="!addMode && !editMode">
+
+            <!-- Naturalisation Section -->
+            <div class="bordered-section">
+                <div class="section-header">Naturalisation</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="dateNaturalisation" class="form-label mr-2">Date de naturalisation :</label>
+                            <mat-form-field class="field-width-date" appearance="outline">
+                                <input matInput [matDatepicker]="picker3" id="dateNaturalisation" [(ngModel)]="collaborater.dateNaturalisation" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="actif" class="form-label mr-2">Actif :</label>
+                            <input matInput class="field-width" id="actif" [(ngModel)]="collaborater.active" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row form-inline">
-                <div class="col-md-6 d-flex align-items-center mb-3">
-                    <label for="matriculeRecrutement" class="form-label mr-2">Matricule Recrutement :</label>
-                    <input type="text" class="form-control form-control-sm" id="matriculeRecrutement" [(ngModel)]="collaborater.matriculeRecrutement" [readonly]="!addMode && !editMode">
+
+            <!-- Divers Section -->
+            <div class="bordered-section">
+                <div class="section-header">Divers</div>
+                <div class="section-content">
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="recrutable" class="form-label mr-2">Recrutable :</label>
+                            <input matInput class="field-width" id="recrutable" [(ngModel)]="collaborater.recrutable" [readonly]="!addMode && !editMode">
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="excluDeclaration" class="form-label mr-2">Déclaration de l'exclusion :</label>
+                            <input matInput class="field-width" id="excluDeclaration" [(ngModel)]="collaborater.excluDeclaration" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="matriculeRecrutement" class="form-label mr-2">Matricule de recrutement :</label>
+                            <input matInput class="field-width" id="matriculeRecrutement" [(ngModel)]="collaborater.matriculeRecrutement" [readonly]="!addMode && !editMode">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-end mb-3">
-                    <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
-                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
-                    <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+
+            <!-- Action Buttons -->
+            <div class="row form-inline">
+                <div class="d-flex justify-content-end mt-4">
+                    <div class="col-md-11 d-flex justify-content-end mb-3">
+                        <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
+                        <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
+                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                    </div>
                 </div>
             </div>
         </div>
