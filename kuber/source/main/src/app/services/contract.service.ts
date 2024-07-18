@@ -24,6 +24,6 @@ export class ContractService extends UnsubscribeOnDestroyAdapter {
   getActiveContract(id:number): Observable<Contract>{
     let param = new HttpParams();
     param = param.set('id',id);
-    return this.httpClient.get<Contract>(`${this.appConfig.apiUrl}/contract/collaborater`,{params:param});
+    return this.httpClient.get<Contract>(`${this.appConfig.apiUrl}/contract/get`,{params:param});
   }
 }
