@@ -2,9 +2,12 @@
     <div class="container">
         <div class="body">
             <!-- Décès Section -->
-            <div class="bordered-section">
-                <div class="section-header">Décès</div>
-                <div class="section-content">
+            <mat-card class="styled-card">
+                <mat-list>
+                    <mat-list-item>Décès</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+                <mat-card-content>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateDeces" class="form-label mr-2">Date de décès :</label>
@@ -23,13 +26,16 @@
                             </mat-form-field>
                         </div>
                     </div>
-                </div>
-            </div>
+                </mat-card-content>
+            </mat-card>
 
             <!-- Naturalisation Section -->
-            <div class="bordered-section">
-                <div class="section-header">Naturalisation</div>
-                <div class="section-content">
+            <mat-card class="styled-card">
+                <mat-list>
+                    <mat-list-item>Naturalisation</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+                <mat-card-content>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateNaturalisation" class="form-label mr-2">Date de naturalisation :</label>
@@ -44,31 +50,33 @@
                             <input matInput class="field-width" id="actif" [(ngModel)]="collaborater.active" [readonly]="!addMode && !editMode">
                         </div>
                     </div>
-                </div>
-            </div>
+                </mat-card-content>
+            </mat-card>
 
             <!-- Divers Section -->
-            <div class="bordered-section">
-                <div class="section-header">Divers</div>
-                <div class="section-content">
+            <mat-card class="styled-card">
+                <mat-list>
+                    <mat-list-item>Divers</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+                <mat-card-content>
                     <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
+                        <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="recrutable" class="form-label mr-2">Recrutable :</label>
                             <input matInput class="field-width" id="recrutable" [(ngModel)]="collaborater.recrutable" [readonly]="!addMode && !editMode">
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
+                        <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="excluDeclaration" class="form-label mr-2">Déclaration de l'exclusion :</label>
                             <input matInput class="field-width" id="excluDeclaration" [(ngModel)]="collaborater.excluDeclaration" [readonly]="!addMode && !editMode">
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
+                        <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="matriculeRecrutement" class="form-label mr-2">Matricule de recrutement :</label>
                             <input matInput class="field-width" id="matriculeRecrutement" [(ngModel)]="collaborater.matriculeRecrutement" [readonly]="!addMode && !editMode">
                         </div>
                     </div>
-                </div>
-            </div>
+                    
+                </mat-card-content>
+            </mat-card>
 
             <!-- Action Buttons -->
             <div class="row form-inline">

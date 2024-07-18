@@ -1,68 +1,89 @@
 <section class="content">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <div class="image">
-            <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
-          </div>
-          <div style="margin-top: 10px;" *ngIf="!addMode">
-            <h5>{{ collaborater.civilite + " " + collaborater.civNomPrenom }}</h5>
-          </div>
-        </div>
-      </div>
+  <div class="container">
       <div class="body">
-        <div class="row form-inline">
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="dateClassification" class="form-label mr-2">Date Classification :</label>
-            <mat-form-field appearance="fill" class="w-100">
-              <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification">
-              <mat-datepicker-toggle matSuffix [for]="pickerDateClassification"></mat-datepicker-toggle>
-              <mat-datepicker #pickerDateClassification></mat-datepicker>
-            </mat-form-field>
+          <!-- CNIE Section -->
+          <mat-card class="styled-card">
+              <mat-list>
+                  <mat-list-item>
+                      Classification
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                </mat-list>
+              <mat-card-content>
+                  <div class="row form-inline">
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="classificationType" class="form-label mr-2">Type :</label>
+                          <input matInput class="field-width" id="classificationType" >
+                      </div>
+                     
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="refClassification" class="form-label mr-2">Référence :</label>
+                          <input matInput class="field-width" id="refClassification" >
+                      </div>
+                    
+
+                      <div class="row form-inline"></div>
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="dateClassification" class="form-label mr-2">Date de classification :</label>
+                          <mat-form-field class="field-width-date" appearance="outline">
+                              <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification">
+                              <mat-datepicker-toggle matSuffix [for]="pickerDateClassification"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerDateClassification></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="DateFinClf" class="form-label mr-2">Date fin :</label>
+                          <mat-form-field class="field-width-date" appearance="outline">
+                              <input matInput [matDatepicker]="pickerDateFinClf" id="DateFinClf" >
+                              <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerDateFinClf></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </mat-card-content>
+          </mat-card>
+            <!-- Passeport Section -->
+            <mat-card class="styled-card">
+              <mat-list>
+                  <mat-list-item>Catégorie</mat-list-item>
+                  <mat-divider></mat-divider>
+                </mat-list>
+              
+              <mat-card-content>
+                  <div class="row form-inline">
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="numPasseport" class="form-label mr-2">Catégorie professionnelle :</label>
+                          <input matInput class="field-width" id="numPasseport" [(ngModel)]="collaborater.numPassePort" [readonly]="!addMode && !editMode">
+                      </div>
+                      <div class="col-md-5 d-flex align-items-center mb-3">
+                          <label for="passeportDelivreLe" class="form-label mr-2">Date de catégorie professionnelle :</label>
+                          <mat-form-field class="field-width-date" appearance="outline">
+                              <input matInput [matDatepicker]="pickerDatePasseport" id="passeportDelivreLe" [(ngModel)]="collaborater.passePortDelivreLe" [disabled]="!addMode && !editMode">
+                              <mat-datepicker-toggle matSuffix [for]="pickerDatePasseport"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerDatePasseport></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                    
+                     
+                  </div>
+              </mat-card-content>
+          </mat-card>
+
+          
+
+        
+
+          <!-- Action Buttons -->
+          <div class="row form-inline">
+              <div class="d-flex justify-content-end mt-4">
+                  <div class="col-md-11 d-flex justify-content-end mb-3">
+                      <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Anuler</button>
+                      <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+                      <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                      <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                  </div>
+              </div>
           </div>
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="refClassification" class="form-label mr-2">Ref Classification :</label>
-            <input type="text" class="form-control form-control-sm" id="refClassification" >
-          </div>
-        </div>
-        <div class="row form-inline">
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="categorieProf" class="form-label mr-2">Categorie Prof :</label>
-            <input type="text" class="form-control form-control-sm" id="categorieProf" >
-          </div>
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="dateCategorieProf" class="form-label mr-2">Date Categorie Prof :</label>
-            <mat-form-field appearance="fill" class="w-100">
-              <input matInput [matDatepicker]="pickerDateCategorieProf" id="dateCategorieProf" >
-              <mat-datepicker-toggle matSuffix [for]="pickerDateCategorieProf"></mat-datepicker-toggle>
-              <mat-datepicker #pickerDateCategorieProf></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row form-inline">
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="dateFin" class="form-label mr-2">Date Fin :</label>
-            <mat-form-field appearance="fill" class="w-100">
-              <input matInput [matDatepicker]="pickerDateFinClf" id="dateFin">
-              <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
-              <mat-datepicker #pickerDateFinClf></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6 d-flex align-items-center mb-3">
-            <label for="classificationType" class="form-label mr-2">Classification Type :</label>
-            <select class="form-select form-control form-control-sm" id="classificationType" >
-              <option ></option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 d-flex justify-content-end mb-3">
-            <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
-            <button mat-flat-button color="primary" *ngIf="editMode" >Enregistrer</button>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-  
+  </div>
+</section>

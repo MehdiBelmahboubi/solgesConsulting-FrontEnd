@@ -8,15 +8,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgIf } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-contrat-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
   templateUrl: './contrat-collaborater.component.html',
   styleUrls: ['./contrat-collaborater.component.scss']
 })
 export class ContratCollaboraterComponent implements OnInit{
+cancel() {
+throw new Error('Method not implemented.');
+}
   collaborater!: Collaborater;
   contract: Contract = new Contract();
   addMode!: Boolean;

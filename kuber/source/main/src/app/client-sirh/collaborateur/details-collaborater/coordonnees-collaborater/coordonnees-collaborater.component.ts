@@ -7,12 +7,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
+import { MatCardModule } from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 
 @Component({
   selector: 'app-coordonnees-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, ],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatCardModule,MatListModule ],
   templateUrl: './coordonnees-collaborater.component.html',
   styleUrl: './coordonnees-collaborater.component.scss'
 })

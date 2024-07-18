@@ -1,36 +1,40 @@
 section.content {
-    background: white;
+    background: rgba(255, 255, 255, 0.959);
     margin-right: 0.1ch;
 }
 
-.image {
-    margin-top: 40px;
-}
-
-.avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
-
 .body {
-    margin-top: 60px;
+    margin-top: 50px;
+}
+
+.field-width-date {
+    width: 45%;
+    height: 20px;
 }
 
 .field-width {
-  width: 45%;
-  height: 20px;
+    width: 45%;
+    height: 20px;
+    outline: none; /* Remove default outline */
+    border-color: #3f51b5; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(190, 196, 228, 0.5); /* Add shadow on focus */
+    margin-right: 1px; /* Adjust as needed for spacing */
+    padding: 12px 10px; /* Add padding for better appearance */
+    border: 1px solid #ccc; /* Border for the input */
+    border-radius: 4px; /* Rounded corners */
 }
 
 .mr-2 {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .form-label {
-    font-weight: bold;
-    width: 120px;
-    text-align: left;
-    margin-right: 10px;
+    font-weight: normal; /* Remove bold font weight */
+    width: 120px; /* Fixed width for labels */
+    text-align: left; /* Align text to the right */
+    margin-right: 10px; /* Margin between label and input */
+    color: #333; /* Text color */
+    font-size: 14px; /* Font size */
 }
 
 .form-inline {
@@ -39,37 +43,33 @@ section.content {
 
 .form-control-sm {
     width: 50px;
-    flex-grow: 1;
+    flex-grow: 1; /* Let the input take remaining space */
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Space between form groups */
 }
 
 .content {
-    padding: 20px;
+    padding: 1px; /* Padding around content */
 }
 
-.bordered-section {
-    position: relative;
-    border: 1px solid #000;
-    padding: 20px 10px 10px;
-    margin-bottom: 20px;
+.styled-card {
+    margin-bottom: 15px;
+    padding: 5px;
+    border-color: #373b52; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(63, 66, 77, 0.5); /* Add shadow on focus */
 }
 
-.section-header {
-    position: absolute;
-    top: -15px;
-    left: 10px;
-    background: white;
-    padding: 0 10px;
+.styled-card mat-card-header {
+    background-color: #ffffff; /* Light grey background for headers */
+    border-bottom: 1px solid #ffffff; /* Light border at the bottom of headers */
+}
+
+.styled-card mat-card-title {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 1.2em;
-}
-
-.section-content {
-    margin-top: 20px;
 }
 
 .d-flex {

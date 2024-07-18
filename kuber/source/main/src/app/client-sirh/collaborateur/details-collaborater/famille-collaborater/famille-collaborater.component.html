@@ -2,75 +2,80 @@
     <div class="container">
         <div class="body">
             <!-- Section Epouse -->
-            <div class="bordered-section">
-                <div class="section-header">Epouse</div>
-                <div class="section-content">
+            <mat-card class="styled-card">
+                <mat-list>
+                    <mat-list-item>Epouse</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+                <mat-card-content>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-4">
                             <label for="nbEpousesSaisi" class="form-label mr-4">Nombre d'épouses saisi :</label>
-                            <mat-radio-group [(ngModel)]="labelPosition">
-                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
-                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
-                              </mat-radio-group>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin"></mat-checkbox>
+                              </section>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-4">
                             <label for="nbEpouses" class="form-label mr-4">Nombre d'épouses :</label>
                             <input matInput class="field-width" [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
                         </div>
                     </div>
-                </div>
-            </div>
+                </mat-card-content>
+            </mat-card>
 
             <!-- Section Enfants -->
-            <div class="bordered-section">
-                <div class="section-header">Enfants</div>
-                <div class="section-content">
+            <mat-card class="styled-card">
+                <mat-list>
+                    <mat-list-item>Enfants</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+                <mat-card-content>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="nbEnfantsSaisi" class="form-label mr-2">Nombre d'enfants saisi :</label>
-                            <mat-radio-group [(ngModel)]="labelPosition2">
-                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
-                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
-                              </mat-radio-group>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin"></mat-checkbox>
+                              </section>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants à charge saisi :</label>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin"></mat-checkbox>
+                              </section>
+                        </div>
+                        
+                    </div>
+                    <div class="row form-inline">
+                        <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbEnfants" class="form-label mr-2">Nombre d'enfants :</label>
                             <input matInput class="field-width" id="nbEnfants" [(ngModel)]="collaborater.nbEnfants" [readonly]="!addMode && !editMode">
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants en charge saisi :</label>
-                            <mat-radio-group [(ngModel)]="labelPosition3">
-                                <mat-radio-button class="example-margin" value="after">oui</mat-radio-button>
-                                <mat-radio-button class="example-margin" value="before">non</mat-radio-button>
-                              </mat-radio-group>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants en charge :</label>
+                        
+                        <div class="col-md-4 d-flex align-items-center mb-2">
+                            <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
                             <input matInput class="field-width" id="nbEnfantsCharge" [(ngModel)]="collaborater.nbEnfantCharge" [readonly]="!addMode && !editMode">
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes en charge :</label>
+                        <div class="col-md-4 d-flex align-items-center mb-2">
+                            <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes à charge :</label>
                             <input matInput class="field-width" id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge" [readonly]="!addMode && !editMode">
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-4">
-                            <label for="nomJeuneFille" class="form-label mr-4">Nom du jeune fille :</label>
-                            <input matInput class="field-width" id="nomJeuneFille" [(ngModel)]="collaborater.nomJeuneFille" [readonly]="!addMode && !editMode">
-                        </div>
                     </div>
-                </div>
-            </div>
+
+                  
+                   
+                  
+                </mat-card-content>
+            </mat-card>
 
             <!-- Action Buttons -->
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-end mb-3">
-                    <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
-                    <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
-                    <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
-                    <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+            <div class="row form-inline">
+                <div class="d-flex justify-content-end mt-4">
+                    <div class="col-md-11 d-flex justify-content-end mb-3">
+                        <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Annuler</button>
+                        <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                    </div>
                 </div>
             </div>
         </div>

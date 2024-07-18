@@ -7,12 +7,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
-
+import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-autreinfo-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
   templateUrl: './autreinfo-collaborater.component.html',
   styleUrl: './autreinfo-collaborater.component.scss'
 })

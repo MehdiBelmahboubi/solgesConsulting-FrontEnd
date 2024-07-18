@@ -15,6 +15,11 @@
                             <label for="cnie" class="form-label mr-2">Numéro :</label>
                             <input matInput class="field-width" id="cnie" [(ngModel)]="collaborater.cnie" [readonly]="!addMode && !editMode">
                         </div>
+                       
+                        <div class="col-md-3 d-flex align-items-center mb-3">
+                            <label for="cnieDelivreePar" class="form-label mr-2">Délivrée par :</label>
+                            <input matInput class="field-width" id="cnieDelivreePar" [(ngModel)]="collaborater.cnieDelivreePar" [readonly]="!addMode && !editMode">
+                        </div>
                         <div class="col-md-3 d-flex align-items-center mb-3">
                             <label for="cnieDelivreeLe" class="form-label mr-2">Délivrée le :</label>
                             <mat-form-field class="field-width-date" appearance="outline">
@@ -22,10 +27,6 @@
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateCnie"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateCnie></mat-datepicker>
                             </mat-form-field>
-                        </div>
-                        <div class="col-md-3 d-flex align-items-center mb-3">
-                            <label for="cnieDelivreePar" class="form-label mr-2">Délivrée par :</label>
-                            <input matInput class="field-width" id="cnieDelivreePar" [(ngModel)]="collaborater.cnieDelivreePar" [readonly]="!addMode && !editMode">
                         </div>
                         <div class="col-md-3 d-flex align-items-center mb-3">
                             <label for="cnieExpireLe" class="form-label mr-2">Expire le :</label>
@@ -87,17 +88,18 @@
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="natPermisSejour" class="form-label mr-2">Nature :</label>
                             <input matInput class="field-width" id="natPermisSejour" [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="permisSejourDelivreLe" class="form-label mr-2">Délivré le :</label>
-                            <mat-form-field class="field-width-date" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDatePermisSejour" id="permisSejourDelivreLe" [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
-                                <mat-datepicker-toggle matSuffix [for]="pickerDatePermisSejour"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDatePermisSejour></mat-datepicker>
-                            </mat-form-field>
-                        </div>
+                     
                     </div>
                     <div class="row form-inline">
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center mb-3">
+                        <label for="permisSejourDelivreLe" class="form-label mr-2">Délivré le :</label>
+                        <mat-form-field class="field-width-date" appearance="outline">
+                            <input matInput [matDatepicker]="pickerDatePermisSejour" id="permisSejourDelivreLe" [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDatePermisSejour"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDatePermisSejour></mat-datepicker>
+                        </mat-form-field>
+                    </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="permisSejourDebVal" class="form-label mr-2">Début de validité :</label>
                             <mat-form-field class="field-width-date" appearance="outline">

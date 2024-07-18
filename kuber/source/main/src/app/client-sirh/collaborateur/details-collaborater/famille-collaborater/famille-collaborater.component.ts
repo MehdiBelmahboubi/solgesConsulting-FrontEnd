@@ -8,11 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @Component({
   selector: 'app-famille-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatRadioModule],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatRadioModule,MatListModule, MatCardModule,MatCheckboxModule],
   templateUrl: './famille-collaborater.component.html',
   styleUrl: './famille-collaborater.component.scss'
 })
