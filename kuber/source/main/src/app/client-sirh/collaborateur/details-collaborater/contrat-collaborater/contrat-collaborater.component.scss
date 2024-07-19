@@ -16,13 +16,13 @@ section.content {
 }
 
 .field-width-date {
-  width: 45%;
-  height: 20px;
+  height: 30px;
+  width: 200px;
 }
 
 .field-width {
   width: 45%;
-  height: 20px;
+  height: 30px;
 }
 
 .mr-2 {
@@ -31,7 +31,7 @@ section.content {
 
 .form-label {
   font-weight: normal; /* Remove bold font weight */
-  width: 120px; /* Fixed width for labels */
+  width: 150px; /* Fixed width for labels */
   text-align: left; /* Align text to the right */
   margin-right: 10px; /* Margin between label and input */
   color: #333; /* Text color */

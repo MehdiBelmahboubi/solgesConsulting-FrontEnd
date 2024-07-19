@@ -81,11 +81,11 @@
                   </mat-list>
                 <mat-card-content>
                     <div class="row form-inline">
-                        <div class="col-md-4 d-flex align-items-center mb-3">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="numPermisSejour" class="form-label mr-2">Numéro :</label>
                             <input matInput class="field-width" id="numPermisSejour" [(ngModel)]="collaborater.numPermisSejour" [readonly]="!addMode && !editMode">
                         </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="natPermisSejour" class="form-label mr-2">Nature :</label>
                             <input matInput class="field-width" id="natPermisSejour" [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
                      
@@ -128,11 +128,11 @@
                   </mat-list>
                 <mat-card-content>
                     <div class="row form-inline">
-                        <div class="col-md-4 d-flex align-items-center mb-3">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="numPermisTravail" class="form-label mr-2">Numéro :</label>
                             <input matInput class="field-width" id="numPermisTravail" [(ngModel)]="collaborater.numPermisTravail" [readonly]="!addMode && !editMode">
                         </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
+                        <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="natPermisTravail" class="form-label mr-2">Nature :</label>
                             <input matInput class="field-width" id="natPermisTravail" [(ngModel)]="collaborater.natPermisTravail" [readonly]="!addMode && !editMode">
                         </div>
@@ -170,7 +170,7 @@
           
 
             <!-- Action Buttons -->
-            <div class="row form-inline">
+            <div>
                 <div class="d-flex justify-content-end mt-4">
                     <div class="col-md-11 d-flex justify-content-end mb-3">
                         <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Anuler</button>
