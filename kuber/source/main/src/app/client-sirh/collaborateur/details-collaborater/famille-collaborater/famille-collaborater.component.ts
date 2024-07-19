@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, model, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -24,6 +24,8 @@ export class FamilleCollaboraterComponent implements OnInit {
 labelPosition: any;
 labelPosition2: any;
 labelPosition3: any;
+readonly enable = model(false);
+
 cancel() {
 throw new Error('Method not implemented.');
 }
