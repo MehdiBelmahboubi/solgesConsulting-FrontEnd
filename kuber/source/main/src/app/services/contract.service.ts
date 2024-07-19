@@ -4,6 +4,7 @@ import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { AppConfig, CONFIG_TOKEN } from "@config/config";
 import { Contract } from 'app/models/contract.model';
+import { contractType } from 'app/models/contractType.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class ContractService extends UnsubscribeOnDestroyAdapter {
     let param = new HttpParams();
     param = param.set('id',id);
     return this.httpClient.get<Contract>(`${this.appConfig.apiUrl}/contract/get`,{params:param});
+  }
+
+  getAllTypes() : Observable<contractType[]>{
+    return this.httpClient.get<contractType[]>(`${this.appConfig.apiUrl}/contract/getTypes`)
   }
 }

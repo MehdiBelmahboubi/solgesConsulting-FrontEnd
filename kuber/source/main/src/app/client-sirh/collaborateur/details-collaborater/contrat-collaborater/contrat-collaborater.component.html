@@ -12,8 +12,8 @@
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="contractType" class="form-label mr-2">Type :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <mat-select name="contractType">
-                                    <mat-option></mat-option>
+                                <mat-select [(ngModel)]="contract.typeId" name="contractType">
+                                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType.id">{{ contractType.code}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

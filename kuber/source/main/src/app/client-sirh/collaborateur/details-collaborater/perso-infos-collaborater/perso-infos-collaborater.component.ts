@@ -19,7 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-perso-infos-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule,MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatOptionModule,MatFormFieldModule, MatFormFieldModule,NgFor,MatSelectModule,],
+  imports: [FormsModule, MatDatepickerModule,MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatOptionModule,MatFormFieldModule, MatFormFieldModule,NgFor,MatSelectModule],
   templateUrl: './perso-infos-collaborater.component.html',
   styleUrl: './perso-infos-collaborater.component.scss'
 })
