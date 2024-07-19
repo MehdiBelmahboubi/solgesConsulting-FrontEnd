@@ -22,21 +22,21 @@
               <label for="matricule" class="form-label mr-2">Matricule :</label>
               <mat-form-field class="field-width" appearance="outline">
               <input matInput [(ngModel)]="collaborater.matricule" id="matricule"
-                [readonly]="!addMode && !editMode">
+                [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
             <div class="col-md-4 d-flex align-items-center mb-3">
               <label for="nom" class="form-label mr-2">Nom :</label>
               <mat-form-field class="field-width" appearance="outline">
               <input matInput id="nom" [(ngModel)]="collaborater.firstName"
-                [readonly]="!addMode && !editMode">
+                [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
             <div class="col-md-4 d-flex align-items-center mb-3">
               <label for="prenom" class="form-label mr-2">Prénom :</label>
               <mat-form-field class="field-width" appearance="outline">
               <input matInput  id="prenom" [(ngModel)]="collaborater.lastName"
-                [readonly]="!addMode && !editMode">
+                [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
           </div>
@@ -45,7 +45,7 @@
               <label for="lieuNaissance" class="form-label mr-2">Lieu de naissance:</label>
               <mat-form-field class="field-width" appearance="outline">
                 <input matInput id="lieuNaissance" [(ngModel)]="collaborater.lieuNaissance"
-                  [readonly]="!addMode && !editMode">
+                  [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
             <div class="col-md-4 d-flex align-items-center mb-3">
@@ -76,7 +76,7 @@
             <div class="col-md-4 d-flex align-items-center mb-3">
               <label for="nationalite1" class="form-label mr-2">Nationalité 1 :</label>
               <mat-form-field class="field-width" appearance="outline">
-                <mat-select [(ngModel)]="collaborater.countryCode1" name="nationality1">
+                <mat-select [(ngModel)]="collaborater.countryCode1" name="nationality1" [disabled]="!addMode && !editMode">
                   <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                     }}</mat-option>
                 </mat-select>
@@ -85,7 +85,7 @@
             <div class="col-md-4 d-flex align-items-center mb-3">
               <label for="nationalite2" class="form-label mr-2">Nationalité 2 :</label>
               <mat-form-field class="field-width" appearance="outline">
-                <mat-select [(ngModel)]="collaborater.countryCode2" name="nationality2">
+                <mat-select [(ngModel)]="collaborater.countryCode2" name="nationality2" [disabled]="!addMode && !editMode">
                   <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                     }}</mat-option>
                 </mat-select>
@@ -95,7 +95,7 @@
               <label for="initiales" class="form-label mr-2">initiales:</label>
               <mat-form-field class="field-width" appearance="outline">
               <input matInput  id="initiales" [(ngModel)]="collaborater.initiales"
-                [readonly]="!addMode && !editMode">
+                [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
           </div>
@@ -104,7 +104,7 @@
               <label for="nomJeuneFille" class="form-label mr-2">Nom du jeune fille :</label>
               <mat-form-field class="field-width" appearance="outline">
               <input matInput  id="nomJeuneFille" [(ngModel)]="collaborater.nomJeuneFille"
-                [readonly]="!addMode && !editMode">
+                [disabled]="!addMode && !editMode">
               </mat-form-field>
             </div>
           </div>

@@ -18,7 +18,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-4">
                             <label for="nbEpouses" class="form-label mr-4">Nombre d'épouses :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
+                                <input matInput [(ngModel)]="collaborater.nbEpouses" [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <label for="nbEnfants" class="form-label mr-2">Nombre d'enfants :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="nbEnfants" [(ngModel)]="collaborater.nbEnfants"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
 
@@ -62,14 +62,14 @@
                             <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="nbEnfantsCharge" [disabled]="enable()"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes à charge :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>

@@ -114,7 +114,7 @@
                             <label for="matriculeRecrutement" class="form-label mr-2">Matricule de recrutement :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="matriculeRecrutement"
-                                    [(ngModel)]="collaborater.matriculeRecrutement" [readonly]="!addMode && !editMode">
+                                    [(ngModel)]="collaborater.matriculeRecrutement" [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>

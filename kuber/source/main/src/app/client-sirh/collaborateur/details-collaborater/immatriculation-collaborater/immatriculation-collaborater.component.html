@@ -15,7 +15,7 @@
                             <label for="cnie" class="form-label mr-2">Numéro :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="cnie" [(ngModel)]="collaborater.cnie"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
 
@@ -23,7 +23,7 @@
                             <label for="cnieDelivreePar" class="form-label mr-2">Délivrée par :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="cnieDelivreePar" [(ngModel)]="collaborater.cnieDelivreePar"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-3 d-flex align-items-center mb-3">
@@ -74,7 +74,7 @@
                             <label for="numPasseport" class="form-label mr-2">Numéro :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="numPasseport" [(ngModel)]="collaborater.numPassePort"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -127,14 +127,14 @@
                             <label for="numPermisSejour" class="form-label mr-2">Numéro :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="numPermisSejour" [(ngModel)]="collaborater.numPermisSejour"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="natPermisSejour" class="form-label mr-2">Nature :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="natPermisSejour"
-                                    [(ngModel)]="collaborater.natPermisSejour" [readonly]="!addMode && !editMode">
+                                    [(ngModel)]="collaborater.natPermisSejour" [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
@@ -204,14 +204,14 @@
                             <label for="numPermisTravail" class="form-label mr-2">Numéro :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="numPermisTravail"
-                                    [(ngModel)]="collaborater.numPermisTravail" [readonly]="!addMode && !editMode">
+                                    [(ngModel)]="collaborater.numPermisTravail" [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="natPermisTravail" class="form-label mr-2">Nature :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="natPermisTravail"
-                                    [(ngModel)]="collaborater.natPermisTravail" [readonly]="!addMode && !editMode">
+                                    [(ngModel)]="collaborater.natPermisTravail" [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
 

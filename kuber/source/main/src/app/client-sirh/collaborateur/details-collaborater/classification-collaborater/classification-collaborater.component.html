@@ -14,7 +14,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="classificationType" class="form-label mr-2">Type :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <mat-select [(ngModel)]="classification.typeId" name="contractType">
+                                <mat-select [(ngModel)]="classification.typeId" name="contractType" [disabled]="!addMode && !editMode">
                                     <mat-option *ngFor="let classificationType of classificationTypes" [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -22,7 +22,8 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="refClassification" class="form-label mr-2">Référence :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="refClassification"></mat-form-field>
+                                <input matInput id="refClassification" [disabled]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
 
 
@@ -30,7 +31,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateClassification" class="form-label mr-2">Date de classification :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification">
+                                <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDateClassification"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateClassification></mat-datepicker>
@@ -39,7 +40,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="DateFinClf" class="form-label mr-2">Date fin :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateFinClf" id="DateFinClf">
+                                <input matInput [matDatepicker]="pickerDateFinClf" id="DateFinClf" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateFinClf></mat-datepicker>
                             </mat-form-field>
@@ -59,18 +60,18 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="numPasseport" class="form-label mr-2">Catégorie professionnelle :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="numPasseport" [(ngModel)]="collaborater.numPassePort"
-                                    [readonly]="!addMode && !editMode">
+                                <input matInput id="numPasseport" [(ngModel)]="classification.categorieProf"
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="passeportDelivreLe" class="form-label mr-2">Date de catégorie professionnelle
                                 :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDatePasseport" id="passeportDelivreLe"
-                                    [(ngModel)]="collaborater.passePortDelivreLe" [disabled]="!addMode && !editMode">
-                                <mat-datepicker-toggle matSuffix [for]="pickerDatePasseport"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDatePasseport></mat-datepicker>
+                                <input matInput [matDatepicker]="pickerDateCategorieProf" id="dateCategorieProf"
+                                    [(ngModel)]="classification.dateCategorieProf" [disabled]="!addMode && !editMode">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDateCategorieProf"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDateCategorieProf></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>

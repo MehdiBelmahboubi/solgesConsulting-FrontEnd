@@ -13,14 +13,14 @@
                             <label for="telephone" class="form-label mr-2">Téléphone :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="telephone" [(ngModel)]="collaborater.telephone"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="tel1" class="form-label mr-2">TEL 1 :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="tel1" [(ngModel)]="collaborater.tel1"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
@@ -29,14 +29,14 @@
                             <label for="tel2" class="form-label mr-2">TEL 2 :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="tel2" [(ngModel)]="collaborater.tel2"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="tel3" class="form-label mr-2">TEL 3 :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="tel3" [(ngModel)]="collaborater.tel3"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
@@ -55,14 +55,14 @@
                             <label for="email1" class="form-label mr-2">Email :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="email1" [(ngModel)]="collaborater.email1"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="email2" class="form-label mr-2">Email 2 :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="email2" [(ngModel)]="collaborater.email2"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             <label for="email3" class="form-label mr-2">Email 3 :</label>
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput id="email3" [(ngModel)]="collaborater.email3"
-                                    [readonly]="!addMode && !editMode">
+                                    [disabled]="!addMode && !editMode">
                             </mat-form-field>
                         </div>
                     </div>
