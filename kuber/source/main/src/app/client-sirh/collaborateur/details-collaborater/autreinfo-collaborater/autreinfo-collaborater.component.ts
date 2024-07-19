@@ -9,11 +9,11 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @Component({
   selector: 'app-autreinfo-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
+  imports: [FormsModule,MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
   templateUrl: './autreinfo-collaborater.component.html',
   styleUrl: './autreinfo-collaborater.component.scss'
 })

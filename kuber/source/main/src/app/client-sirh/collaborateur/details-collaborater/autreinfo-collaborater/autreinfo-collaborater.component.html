@@ -42,6 +42,12 @@
                 <mat-card-content>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
+                            <label for="actif" class="form-label mr-2">Actif :</label>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin" [disabled]="!addMode && !editMode"></mat-checkbox>
+                            </section>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateNaturalisation" class="form-label mr-2">Date de naturalisation :</label>
                             <mat-form-field class="field-width" appearance="outline">
 
@@ -51,13 +57,7 @@
                                 <mat-datepicker #picker3></mat-datepicker>
                             </mat-form-field>
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="actif" class="form-label mr-2">Actif :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="actif" [(ngModel)]="collaborater.active"
-                                    [readonly]="!addMode && !editMode">
-                            </mat-form-field>
-                        </div>
+                        
                     </div>
                 </mat-card-content>
             </mat-card>
@@ -72,17 +72,15 @@
                     <div class="row form-inline">
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="recrutable" class="form-label mr-2">Recrutable :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="recrutable" [(ngModel)]="collaborater.recrutable"
-                                    [readonly]="!addMode && !editMode">
-                            </mat-form-field>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin" [disabled]="!addMode && !editMode"></mat-checkbox>
+                            </section>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="excluDeclaration" class="form-label mr-2">Déclaration de l'exclusion :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="excluDeclaration" [(ngModel)]="collaborater.excluDeclaration"
-                                    [readonly]="!addMode && !editMode">
-                            </mat-form-field>
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin" [disabled]="!addMode && !editMode"></mat-checkbox>
+                            </section>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="matriculeRecrutement" class="form-label mr-2">Matricule de recrutement :</label>
