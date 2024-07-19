@@ -16,7 +16,16 @@
                                 <input matInput [matDatepicker]="picker1" id="dateDeces"
                                     [(ngModel)]="collaborater.dateDeces" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1></mat-datepicker>
+                                <mat-datepicker #picker1>
+                                    <mat-datepicker-actions>
+                                       <button mat-icon-button matDatepickerCancel>
+                                            <mat-icon>close</mat-icon>
+                                          </button>
+                                      <button mat-mini-fab color="primary" matDatepickerApply>
+                                            <mat-icon>check</mat-icon>
+                                          </button>
+                                      </mat-datepicker-actions>
+                                </mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
@@ -26,7 +35,17 @@
                                 <input matInput [matDatepicker]="picker2" id="dateCertifDeces"
                                     [(ngModel)]="collaborater.dateCertifDeces" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                <mat-datepicker #picker2></mat-datepicker>
+                                <mat-datepicker #picker2>
+                                    <mat-datepicker-actions>
+                                        <button mat-icon-button matDatepickerCancel>
+                                             <mat-icon>close</mat-icon>
+                                           </button>
+                                       <button mat-mini-fab color="primary" matDatepickerApply>
+                                             <mat-icon>check</mat-icon>
+                                           </button>
+                                       </mat-datepicker-actions>
+                                </mat-datepicker>
+                                
                             </mat-form-field>
                         </div>
                     </div>
@@ -54,7 +73,16 @@
                                 <input matInput [matDatepicker]="picker3" id="dateNaturalisation"
                                     [(ngModel)]="collaborater.dateNaturalisation" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                                <mat-datepicker #picker3></mat-datepicker>
+                                <mat-datepicker #picker3>
+                                    <mat-datepicker-actions>
+                                        <button mat-icon-button matDatepickerCancel>
+                                             <mat-icon>close</mat-icon>
+                                           </button>
+                                       <button mat-mini-fab color="primary" matDatepickerApply>
+                                             <mat-icon>check</mat-icon>
+                                           </button>
+                                       </mat-datepicker-actions>
+                                </mat-datepicker>
                             </mat-form-field>
                         </div>
                         

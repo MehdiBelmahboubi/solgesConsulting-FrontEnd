@@ -32,7 +32,14 @@
                                 <input matInput [matDatepicker]="pickerDateCnie" id="cnieDelivreeLe"
                                     [(ngModel)]="collaborater.cnieDelivreeLe" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateCnie"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDateCnie></mat-datepicker>
+                                <mat-datepicker #pickerDateCnie> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-3 d-flex align-items-center mb-3">
@@ -41,7 +48,14 @@
                                 <input matInput [matDatepicker]="pickerDateExpireCnie" id="cnieExpireLe"
                                     [(ngModel)]="collaborater.cnieExpireLe" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateExpireCnie"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDateExpireCnie></mat-datepicker>
+                                <mat-datepicker #pickerDateExpireCnie> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>
@@ -69,7 +83,14 @@
                                 <input matInput [matDatepicker]="pickerDatePasseport" id="passeportDelivreLe"
                                     [(ngModel)]="collaborater.passePortDelivreLe" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDatePasseport"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDatePasseport></mat-datepicker>
+                                <mat-datepicker #pickerDatePasseport> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -79,7 +100,14 @@
                                     [(ngModel)]="collaborater.passePortExpireLe" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDateExpirePasseport"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDateExpirePasseport></mat-datepicker>
+                                <mat-datepicker #pickerDateExpirePasseport> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
 
@@ -117,7 +145,14 @@
                                 <input matInput [matDatepicker]="pickerDatePermisSejour" id="permisSejourDelivreLe"
                                     [(ngModel)]="collaborater.permisSejourDelivreLe" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDatePermisSejour"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDatePermisSejour></mat-datepicker>
+                                <mat-datepicker #pickerDatePermisSejour> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -127,7 +162,14 @@
                                     [(ngModel)]="collaborater.permisSejourDebVal" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDebutPermisSejour"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDebutPermisSejour></mat-datepicker>
+                                <mat-datepicker #pickerDebutPermisSejour> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -136,7 +178,14 @@
                                 <input matInput [matDatepicker]="pickerFinPermisSejour" id="permisSejourFinVal"
                                     [(ngModel)]="collaborater.permisSejourFinVal" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFinPermisSejour"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerFinPermisSejour></mat-datepicker>
+                                <mat-datepicker #pickerFinPermisSejour> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>
@@ -176,7 +225,16 @@
                                     [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDatePermisTravail"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDatePermisTravail></mat-datepicker>
+                                <mat-datepicker #pickerDatePermisTravail>
+                                    <mat-datepicker-actions>
+                                        <button mat-icon-button matDatepickerCancel>
+                                             <mat-icon>close</mat-icon>
+                                           </button>
+                                       <button mat-mini-fab color="primary" matDatepickerApply>
+                                             <mat-icon>check</mat-icon>
+                                           </button>
+                                       </mat-datepicker-actions>
+                                </mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -186,7 +244,14 @@
                                     [(ngModel)]="collaborater.permisTravailDebVal" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDebutPermisTravail"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDebutPermisTravail></mat-datepicker>
+                                <mat-datepicker #pickerDebutPermisTravail> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
@@ -195,7 +260,14 @@
                                 <input matInput [matDatepicker]="pickerFinPermisTravail" id="permisTravailFinVal"
                                     [(ngModel)]="collaborater.permisTravailFinVal" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFinPermisTravail"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerFinPermisTravail></mat-datepicker>
+                                <mat-datepicker #pickerFinPermisTravail> <mat-datepicker-actions>
+                                    <button mat-icon-button matDatepickerCancel>
+                                         <mat-icon>close</mat-icon>
+                                       </button>
+                                   <button mat-mini-fab color="primary" matDatepickerApply>
+                                         <mat-icon>check</mat-icon>
+                                       </button>
+                                   </mat-datepicker-actions></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>
