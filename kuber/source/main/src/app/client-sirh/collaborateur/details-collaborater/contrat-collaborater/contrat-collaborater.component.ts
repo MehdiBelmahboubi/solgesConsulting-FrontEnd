@@ -6,15 +6,16 @@ import { ContractService } from 'app/services/contract.service';
 import { Contract } from 'app/models/contract.model';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgIf } from '@angular/common';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-contrat-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
+  imports: [FormsModule, MatDatepickerModule,MatOptionModule,MatSelectModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatCardModule],
   templateUrl: './contrat-collaborater.component.html',
   styleUrls: ['./contrat-collaborater.component.scss']
 })

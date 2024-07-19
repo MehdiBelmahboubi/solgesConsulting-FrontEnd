@@ -9,13 +9,14 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @Component({
   selector: 'app-classification-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf,MatListModule,MatCardModule, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule,MatSelectModule, MatNativeDateModule, MatInputModule, NgIf,MatListModule,MatCardModule, MatButtonModule],
   templateUrl: './classification-collaborater.component.html',
   styleUrl: './classification-collaborater.component.scss'
 })

@@ -9,44 +9,53 @@
                 </mat-list>
                 <mat-card-content>
                     <div class="row form-inline">
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Type :</label>
-                                <select class="field-width" id="contractType">
-                                    <option></option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractRef" class="form-label mr-2">Référence :</label>
-                                <input matInput class="field-width" id="contractRef">
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="motifRecrutement" class="form-label mr-2">Motif de récrutement :</label>
-                                <input matInput class="field-width" id="motifRecrutement">
-                            </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="contractType" class="form-label mr-2">Type :</label>
+                            <mat-form-field class="field-width" appearance="outline">
+                                <mat-select name="contractType">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="contractRef" class="form-label mr-2">Référence :</label>
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="contractRef">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center mb-3">
+                            <label for="motifRecrutement" class="form-label mr-2">Motif de récrutement :</label>
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="motifRecrutement"></mat-form-field>
+                        </div>
                     </div>
                     <div class="row form-inline">
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="periodNegocible" class="form-label mr-2">Période négociable :</label>
-                            <input type="text" class="field-width" id="periodNegocible">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="periodNegocible"></mat-form-field>
                         </div>
 
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="regimeFiscal" class="form-label mr-2">Regime fiscal :</label>
-                            <input matInput class="field-width" id="regimeFiscal">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="regimeFiscal"></mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="exonerationFiscale" class="form-label mr-2">Exoneration fiscale :</label>
-                            <input matInput class="field-width" id="exonerationFiscale">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="exonerationFiscale"></mat-form-field>
                         </div>
                     </div>
                     <div class="row form-inline">
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="motifDepart" class="form-label mr-2">Motif de départ :</label>
-                            <input matInput class="field-width" id="motifDepart">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="motifDepart"></mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="dateEntree" class="form-label mr-2">Date d'entrée :</label>
-                            <mat-form-field class="field-width-date" appearance="outline">
+                            <mat-form-field class="field-width" appearance="outline">
                                 <input matInput [matDatepicker]="pickerDateEntree" id="dateEntree">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateEntree"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateEntree></mat-datepicker>
@@ -54,7 +63,7 @@
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="dateFin" class="form-label mr-2">Date Fin :</label>
-                            <mat-form-field class="field-width-date" appearance="outline">
+                            <mat-form-field class="field-width" appearance="outline">
                                 <input matInput [matDatepicker]="pickerDateFin" id="dateFin">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateFin></mat-datepicker>
@@ -68,7 +77,8 @@
                     <div class="col-md-11 d-flex justify-content-end mb-3">
                         <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Anuler</button>
                         <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
+                            (click)="openEditMode()">Modifier</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>

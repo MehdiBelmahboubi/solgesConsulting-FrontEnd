@@ -15,14 +15,10 @@ section.content {
   margin-top: 50px;
 }
 
-.field-width-date {
-  width: 45%;
-  height: 20px;
-}
-
-.field-width {
-  width: 45%;
-  height: 20px;
+.field-width { 
+  width: 200px;
+  height: 30px;
+  box-shadow: 0 0 5px rgba(190, 196, 228, 0.5); /* Add shadow on focus */
 }
 
 .mr-2 {
@@ -31,7 +27,7 @@ section.content {
 
 .form-label {
   font-weight: normal;
-  width: 150px;
+  width: 170px;
   text-align: left;
   margin-right: 50px; /* Augmentation de l'espacement ici */
   color: #333;
@@ -95,15 +91,4 @@ section.content {
 
 .mt-4 {
   margin-top: 1.5rem;
-}
-
-.field-width {
-  outline: none;
-  border-color: #3f51b5;
-  box-shadow: 0 0 5px rgba(190, 196, 228, 0.5);
-  margin-right: 1px;
-  width: 200px;
-  padding: 12px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }

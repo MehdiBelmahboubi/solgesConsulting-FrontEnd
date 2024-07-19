@@ -15,14 +15,10 @@ section.content {
   margin-top: 50px;
 }
 
-.field-width-date {
-  height: 30px;
+.field-width { 
   width: 200px;
-}
-
-.field-width {
-  width: 45%;
   height: 30px;
+  box-shadow: 0 0 5px rgba(190, 196, 228, 0.5); /* Add shadow on focus */
 }
 
 .mr-2 {
@@ -96,15 +92,4 @@ section.content {
 
 .mt-4 {
   margin-top: 1.5rem;
-}
-
-.field-width {
-  outline: none; /* Remove default outline */
-  border-color: #3f51b5; /* Change border color on focus */
-  box-shadow: 0 0 5px rgba(190, 196, 228, 0.5); /* Add shadow on focus */
-  margin-right: 1px; /* Adjust as needed for spacing */
-  width: 200px; /* Adjust width as needed */
-  padding: 12px 10px; /* Add padding for better appearance */
-  border: 1px solid #ccc; /* Border for the input */
-  border-radius: 4px; /* Rounded corners */
 }

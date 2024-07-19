@@ -13,11 +13,13 @@
                             <label for="nbEpousesSaisi" class="form-label mr-4">Nombre d'épouses saisi :</label>
                             <section class="example-section">
                                 <mat-checkbox class="example-margin" [disabled]="!addMode && !editMode"></mat-checkbox>
-                              </section>
+                            </section>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-4">
                             <label for="nbEpouses" class="form-label mr-4">Nombre d'épouses :</label>
-                            <input matInput class="field-width" [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput [(ngModel)]="collaborater.nbEpouses" [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
@@ -35,29 +37,40 @@
                             <label for="nbEnfantsSaisi" class="form-label mr-2">Nombre d'enfants saisi :</label>
                             <section class="example-section">
                                 <mat-checkbox class="example-margin" [disabled]="!addMode && !editMode"></mat-checkbox>
-                              </section>
+                            </section>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbEnfants" class="form-label mr-2">Nombre d'enfants :</label>
-                            <input matInput class="field-width" id="nbEnfants" [(ngModel)]="collaborater.nbEnfants" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="nbEnfants" [(ngModel)]="collaborater.nbEnfants"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
-                        
-                        
+
+
                     </div>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants à charge saisi :</label>
+                            <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants à charge saisi
+                                :</label>
                             <section class="example-section">
-                                <mat-checkbox class="example-margin" [(ngModel)]="enable" [disabled]="!addMode && !editMode"></mat-checkbox>
-                              </section>
+                                <mat-checkbox class="example-margin" [(ngModel)]="enable"
+                                    [disabled]="!addMode && !editMode"></mat-checkbox>
+                            </section>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
-                            <input matInput class="field-width" id="nbEnfantsCharge" [disabled]="enable()" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="nbEnfantsCharge" [disabled]="enable()"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes à charge :</label>
-                            <input matInput class="field-width" id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
@@ -69,7 +82,8 @@
                     <div class="col-md-11 d-flex justify-content-end mb-3">
                         <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Annuler</button>
                         <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
+                            (click)="openEditMode()">Modifier</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>

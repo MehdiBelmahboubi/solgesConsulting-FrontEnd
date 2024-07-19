@@ -11,21 +11,33 @@
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="telephone" class="form-label mr-2">Téléphone :</label>
-                            <input matInput class="field-width" id="telephone" [(ngModel)]="collaborater.telephone" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="telephone" [(ngModel)]="collaborater.telephone"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="tel1" class="form-label mr-2">TEL 1 :</label>
-                            <input matInput class="field-width" id="tel1" [(ngModel)]="collaborater.tel1" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="tel1" [(ngModel)]="collaborater.tel1"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="tel2" class="form-label mr-2">TEL 2 :</label>
-                            <input matInput class="field-width" id="tel2" [(ngModel)]="collaborater.tel2" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="tel2" [(ngModel)]="collaborater.tel2"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="tel3" class="form-label mr-2">TEL 3 :</label>
-                            <input matInput class="field-width" id="tel3" [(ngModel)]="collaborater.tel3" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="tel3" [(ngModel)]="collaborater.tel3"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
@@ -41,17 +53,26 @@
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="email1" class="form-label mr-2">Email :</label>
-                            <input matInput class="field-width" id="email1" [(ngModel)]="collaborater.email1" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="email1" [(ngModel)]="collaborater.email1"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="email2" class="form-label mr-2">Email 2 :</label>
-                            <input matInput class="field-width" id="email2" [(ngModel)]="collaborater.email2" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="email2" [(ngModel)]="collaborater.email2"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="email3" class="form-label mr-2">Email 3 :</label>
-                            <input matInput class="field-width" id="email3" [(ngModel)]="collaborater.email3" [readonly]="!addMode && !editMode">
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="email3" [(ngModel)]="collaborater.email3"
+                                    [readonly]="!addMode && !editMode">
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
@@ -67,15 +88,21 @@
                     <div class="row form-inline">
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="adresse" class="form-label mr-2">Adresse :</label>
-                            <input matInput class="field-width" id="adresse" >
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="adresse">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="adresse2" class="form-label mr-2">Adresse 2 :</label>
-                            <input matInput class="field-width" id="adresse2" >
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="adresse2">
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="adresse3" class="form-label mr-2">Adresse 3 :</label>
-                            <input matInput class="field-width" id="adresse3" >
+                            <mat-form-field class="field-width" appearance="outline">
+                                <input matInput id="adresse3">
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
@@ -87,7 +114,8 @@
                     <div class="col-md-11 d-flex justify-content-end mb-3">
                         <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Annuler</button>
                         <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
+                            (click)="openEditMode()">Modifier</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>
