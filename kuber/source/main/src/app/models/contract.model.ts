@@ -1,4 +1,5 @@
 export class Contract{
+    public id!:number;
     public contractRef!:string;
     public motifRecrutement!:string;
     public dateEntree!:Date;

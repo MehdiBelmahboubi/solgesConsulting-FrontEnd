@@ -14,8 +14,8 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="classificationType" class="form-label mr-2">Type :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <mat-select name="classificationType">
-                                    <mat-option></mat-option>
+                                <mat-select [(ngModel)]="classification.typeId" name="contractType">
+                                    <mat-option *ngFor="let classificationType of classificationTypes" [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

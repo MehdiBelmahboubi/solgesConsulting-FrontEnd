@@ -48,7 +48,7 @@ throw new Error('Method not implemented.');
         this.contractTypes = value;
       },
       error: (err) => {
-        console.error('Error fetching Countries:', err);
+        console.error('Error fetching Countries :', err);
       }
     })
   }
