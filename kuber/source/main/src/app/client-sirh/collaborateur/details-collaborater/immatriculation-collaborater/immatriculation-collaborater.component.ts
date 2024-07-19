@@ -11,11 +11,12 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-immatriculation-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatListModule, MatDividerModule, MatCardModule],
+  imports: [FormsModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,MatIconModule, NgIf, MatButtonModule,MatListModule, MatDividerModule, MatCardModule],
   templateUrl: './immatriculation-collaborater.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './immatriculation-collaborater.component.scss'
