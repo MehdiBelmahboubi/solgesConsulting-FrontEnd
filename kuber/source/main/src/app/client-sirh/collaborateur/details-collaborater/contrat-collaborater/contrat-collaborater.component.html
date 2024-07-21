@@ -12,8 +12,10 @@
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="contractType" class="form-label mr-2">Type :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <mat-select [(ngModel)]="contract.typeId" name="contractType" [disabled]="!addMode && !editMode">
-                                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType.id">{{ contractType.code}}</mat-option>
+                                <mat-select [(ngModel)]="contract.typeId" name="contractType"
+                                    [disabled]="!addMode && !editMode">
+                                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType.id">{{
+                                        contractType.code}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -61,7 +63,8 @@
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="dateEntree" class="form-label mr-2">Date d'entrée :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateEntree" id="dateEntree" [(ngModel)]="contract.dateEntree" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="pickerDateEntree" id="dateEntree"
+                                    [(ngModel)]="contract.dateEntree" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateEntree"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateEntree></mat-datepicker>
                             </mat-form-field>
@@ -69,7 +72,8 @@
                         <div class="col-md-4 d-flex align-items-center mb-3">
                             <label for="dateFin" class="form-label mr-2">Date Fin :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateFin" id="dateFin" [(ngModel)]="contract.dateFin" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="pickerDateFin" id="dateFin"
+                                    [(ngModel)]="contract.dateFin" [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateFin></mat-datepicker>
                             </mat-form-field>
@@ -80,10 +84,13 @@
             <div class="row form-inline">
                 <div class="d-flex justify-content-end mt-4">
                     <div class="col-md-11 d-flex justify-content-end mb-3">
-                        <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Anuler</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
+                            (click)="back()">Retour</button>
                         <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
                         <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
                             (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
+                            (click)="cancel()">Annuler</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>

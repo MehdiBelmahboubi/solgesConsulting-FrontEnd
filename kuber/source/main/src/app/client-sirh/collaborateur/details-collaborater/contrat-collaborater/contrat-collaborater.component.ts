@@ -12,6 +12,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { contractType } from 'app/models/contractType.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contrat-collaborater',
@@ -21,16 +22,13 @@ import { contractType } from 'app/models/contractType.model';
   styleUrls: ['./contrat-collaborater.component.scss']
 })
 export class ContratCollaboraterComponent implements OnInit{
-cancel() {
-throw new Error('Method not implemented.');
-}
   collaborater!: Collaborater;
   contract: Contract = new Contract();
   contractTypes!: contractType[];
   addMode!: Boolean;
   editMode: boolean = false;
 
-  constructor(private contractService: ContractService) { }
+  constructor(private contractService: ContractService,private router: Router) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -56,5 +54,13 @@ throw new Error('Method not implemented.');
   openEditMode() {
     this.editMode = true;
     this.addMode = false;
+  }
+
+  back() {
+    this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }

@@ -13,13 +13,13 @@ import { Country } from 'app/models/country.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { CountryService } from 'app/services/country.service';
 import { SnackBarService } from 'app/services/snackBar.service';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-perso-infos-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule,MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule,MatOptionModule,MatFormFieldModule, MatFormFieldModule,NgFor,MatSelectModule],
+  imports: [FormsModule, MatDatepickerModule, MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
   templateUrl: './perso-infos-collaborater.component.html',
   styleUrl: './perso-infos-collaborater.component.scss'
 })
@@ -30,7 +30,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   editMode: boolean = false;
 
 
-  constructor(private collaboraterService: CollaboraterService,private router: Router, private snackBarService: SnackBarService,private countryService:CountryService) { }
+  constructor(private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -80,7 +80,11 @@ export class PersoInfosCollaboraterComponent implements OnInit {
     })
   }
 
-  cancel() {
+  back() {
     this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }

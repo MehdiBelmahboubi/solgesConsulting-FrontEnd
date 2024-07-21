@@ -18,13 +18,13 @@
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1>
                                     <mat-datepicker-actions>
-                                       <button mat-icon-button matDatepickerCancel>
+                                        <button mat-icon-button matDatepickerCancel>
                                             <mat-icon>close</mat-icon>
-                                          </button>
-                                      <button mat-mini-fab color="primary" matDatepickerApply>
+                                        </button>
+                                        <button mat-mini-fab color="primary" matDatepickerApply>
                                             <mat-icon>check</mat-icon>
-                                          </button>
-                                      </mat-datepicker-actions>
+                                        </button>
+                                    </mat-datepicker-actions>
                                 </mat-datepicker>
                             </mat-form-field>
                         </div>
@@ -38,14 +38,14 @@
                                 <mat-datepicker #picker2>
                                     <mat-datepicker-actions>
                                         <button mat-icon-button matDatepickerCancel>
-                                             <mat-icon>close</mat-icon>
-                                           </button>
-                                       <button mat-mini-fab color="primary" matDatepickerApply>
-                                             <mat-icon>check</mat-icon>
-                                           </button>
-                                       </mat-datepicker-actions>
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab color="primary" matDatepickerApply>
+                                            <mat-icon>check</mat-icon>
+                                        </button>
+                                    </mat-datepicker-actions>
                                 </mat-datepicker>
-                                
+
                             </mat-form-field>
                         </div>
                     </div>
@@ -76,16 +76,16 @@
                                 <mat-datepicker #picker3>
                                     <mat-datepicker-actions>
                                         <button mat-icon-button matDatepickerCancel>
-                                             <mat-icon>close</mat-icon>
-                                           </button>
-                                       <button mat-mini-fab color="primary" matDatepickerApply>
-                                             <mat-icon>check</mat-icon>
-                                           </button>
-                                       </mat-datepicker-actions>
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab color="primary" matDatepickerApply>
+                                            <mat-icon>check</mat-icon>
+                                        </button>
+                                    </mat-datepicker-actions>
                                 </mat-datepicker>
                             </mat-form-field>
                         </div>
-                        
+
                     </div>
                 </mat-card-content>
             </mat-card>
@@ -125,11 +125,13 @@
             <div class="row form-inline">
                 <div class="d-flex justify-content-end mt-4">
                     <div class="col-md-11 d-flex justify-content-end mb-3">
-                        <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Cancel</button>
-                        <button mat-flat-button color="primary" *ngIf="addMode"
-                            (click)="addCollaborater()">Ajouter</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
+                            (click)="back()">Retour</button>
+                        <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
                         <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
                             (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
+                            (click)="cancel()">Annuler</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>

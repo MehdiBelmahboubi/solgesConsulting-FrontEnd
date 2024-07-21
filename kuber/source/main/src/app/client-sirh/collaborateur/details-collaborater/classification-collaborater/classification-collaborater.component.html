@@ -14,8 +14,10 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="classificationType" class="form-label mr-2">Type :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <mat-select [(ngModel)]="classification.typeId" name="contractType" [disabled]="!addMode && !editMode">
-                                    <mat-option *ngFor="let classificationType of classificationTypes" [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
+                                <mat-select [(ngModel)]="classification.typeId" name="contractType"
+                                    [disabled]="!addMode && !editMode">
+                                    <mat-option *ngFor="let classificationType of classificationTypes"
+                                        [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -31,7 +33,8 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateClassification" class="form-label mr-2">Date de classification :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="pickerDateClassification" id="dateClassification"
+                                    [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix
                                     [for]="pickerDateClassification"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateClassification></mat-datepicker>
@@ -40,7 +43,8 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="DateFinClf" class="form-label mr-2">Date fin :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateFinClf" id="DateFinClf" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="pickerDateFinClf" id="DateFinClf"
+                                    [disabled]="!addMode && !editMode">
                                 <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateFinClf></mat-datepicker>
                             </mat-form-field>
@@ -70,7 +74,8 @@
                             <mat-form-field class="field-width" appearance="outline">
                                 <input matInput [matDatepicker]="pickerDateCategorieProf" id="dateCategorieProf"
                                     [(ngModel)]="classification.dateCategorieProf" [disabled]="!addMode && !editMode">
-                                <mat-datepicker-toggle matSuffix [for]="pickerDateCategorieProf"></mat-datepicker-toggle>
+                                <mat-datepicker-toggle matSuffix
+                                    [for]="pickerDateCategorieProf"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerDateCategorieProf></mat-datepicker>
                             </mat-form-field>
                         </div>
@@ -81,10 +86,13 @@
             <div class="row form-inline">
                 <div class="d-flex justify-content-end mt-4">
                     <div class="col-md-11 d-flex justify-content-end mb-3">
-                        <button mat-flat-button color="primary" class="mr-2" (click)="cancel()">Anuler</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
+                            (click)="back()">Retour</button>
                         <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
                         <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
                             (click)="openEditMode()">Modifier</button>
+                        <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
+                            (click)="cancel()">Annuler</button>
                         <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
                     </div>
                 </div>

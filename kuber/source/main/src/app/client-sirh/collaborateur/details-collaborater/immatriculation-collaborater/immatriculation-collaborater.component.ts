@@ -12,6 +12,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-immatriculation-collaborater',
@@ -22,13 +23,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './immatriculation-collaborater.component.scss'
 })
 export class ImmatriculationCollaboraterComponent implements OnInit {
-cancel() {
-throw new Error('Method not implemented.');
-}
   collaborater: Collaborater = new Collaborater();
   addMode!: Boolean;
   editMode: boolean = false;
-  constructor(private collaboraterService: CollaboraterService) { }
+  constructor(private router: Router,private collaboraterService: CollaboraterService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -45,5 +43,13 @@ throw new Error('Method not implemented.');
   openEditMode() {
     this.editMode = true;
     this.addMode = false;
+  }
+
+  back() {
+    this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }

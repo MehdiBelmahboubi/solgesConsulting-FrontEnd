@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ClassificationService } from 'app/services/classification.service';
 import { classificationType } from 'app/models/classificationType.model';
 import { Classification } from 'app/models/classification.model';
+import { Router } from '@angular/router';
 
 
 
@@ -23,15 +24,12 @@ import { Classification } from 'app/models/classification.model';
   styleUrl: './classification-collaborater.component.scss'
 })
 export class ClassificationCollaboraterComponent {
-cancel() {
-throw new Error('Method not implemented.');
-}
   collaborater: Collaborater = new Collaborater();
   classification: Classification = new Classification();
   classificationTypes!: classificationType[];
   addMode!: Boolean;
   editMode: boolean = false;
-  constructor(private classificationService: ClassificationService) { }
+  constructor(private router: Router,private classificationService: ClassificationService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -57,5 +55,13 @@ throw new Error('Method not implemented.');
   openEditMode() {
     this.editMode = true;
     this.addMode = false;
+  }
+
+  back() {
+    this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }

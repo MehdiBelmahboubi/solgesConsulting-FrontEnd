@@ -9,6 +9,7 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { MatCardModule } from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,15 +20,12 @@ import {MatListModule} from '@angular/material/list';
   styleUrl: './coordonnees-collaborater.component.scss'
 })
 export class CoordonneesCollaboraterComponent implements OnInit{
-cancel() {
-throw new Error('Method not implemented.');
-}
   collaborater: Collaborater = new Collaborater();
   addMode!: Boolean;
   editMode: boolean = false;
 
 
-  constructor(private collaboraterService: CollaboraterService) { }
+  constructor(private router: Router,private collaboraterService: CollaboraterService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -55,5 +53,13 @@ throw new Error('Method not implemented.');
         console.error('Error Adding Collaborateur:');
       }
     });
+  }
+
+  back() {
+    this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }

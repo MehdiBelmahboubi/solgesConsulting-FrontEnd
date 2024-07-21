@@ -11,6 +11,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-autreinfo-collaborater',
   standalone: true,
@@ -19,15 +20,12 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './autreinfo-collaborater.component.scss'
 })
 export class AutreinfoCollaboraterComponent implements OnInit {
-cancel() {
-throw new Error('Method not implemented.');
-}
   collaborater: Collaborater = new Collaborater();
   addMode!: Boolean;
   editMode: boolean = false;
 
 
-  constructor(private collaboraterService: CollaboraterService) { }
+  constructor(private router: Router,private collaboraterService: CollaboraterService) { }
 
   ngOnInit(): void {
     if (history.state && history.state.collaborater) {
@@ -55,6 +53,14 @@ throw new Error('Method not implemented.');
         console.error('Error Adding Collaborateur:');
       }
     });
+  }
+
+  back() {
+    this.router.navigate(['/client/collaborateur']);
+  }
+
+  cancel() {
+    this.editMode=false;
   }
 }
 
