@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FeatherIconsComponent } from "@shared/components/feather-icons/feather-icons.component";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import { BreadcrumbComponent } from "@shared/components/breadcrumb/breadcrumb.component";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressBar } from "@angular/material/progress-bar";
@@ -17,6 +17,8 @@ import { ImmatriculationCollaboraterComponent } from "./immatriculation-collabor
 import { CoordonneesCollaboraterComponent } from "./coordonnees-collaborater/coordonnees-collaborater.component";
 import { FamilleCollaboraterComponent } from "./famille-collaborater/famille-collaborater.component";
 import { AutreinfoCollaboraterComponent } from "./autreinfo-collaborater/autreinfo-collaborater.component";
+import { CollaboraterService } from 'app/services/collaborater.service';
+import { Collaborater } from 'app/models/collaborater.model';
 
 export function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -54,6 +56,8 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
   styleUrls: ['./details-collaborater.component.scss']
 })
 export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
+  collaborater: Collaborater = new Collaborater();
+  mode!:string;
   persoInfosCollaboraterComponent: boolean = true;
   contratCollaboraterComponent: boolean = false;
   classificationCollaboraterComponent: boolean = false;
@@ -62,9 +66,6 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
   familleCollaboraterComponent: boolean = false;
   autreinfoCollaboraterComponent: boolean = false;
   componentActive: string = '';
-
-  @Input() loading = true;
-  @Output() refreshUnity!: boolean;
 
   findComponentActive(componentActive: string) {
     this.componentActive = componentActive;
@@ -131,8 +132,29 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
     }
   }
 
+  constructor(private collaboraterService: CollaboraterService, private router: Router) {
+    if (history.state && history.state.collaborater) {
+      this.collaborater = history.state.collaborater;
+    } else if (history.state && history.state.collaboraterEdit) {
+      this.collaborater = history.state.collaboraterEdit;
+      this.mode="editMode";
+    }else{
+      this.mode="addMode";
+    }
+  }
+
   ngOnInit(): void {
     this.findComponentActive('persoInfosCollaboraterComponent');
+    if (this.collaborater.id!==undefined) {
+      this.collaboraterService.getById(this.collaborater.id).subscribe({
+        next: (value) => {
+          this.collaborater = value;
+        },
+        error: (err) => {
+          console.error('Error fetching Collaborater:', err);
+        }
+      });
+    }
   }
 
   ngAfterViewInit(): void { }

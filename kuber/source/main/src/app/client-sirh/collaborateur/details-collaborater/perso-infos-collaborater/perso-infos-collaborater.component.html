@@ -28,7 +28,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="nom" class="form-label mr-2">Nom :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <input matInput formControlName="firstName" >
+                  <input matInput formControlName="firstName">
                 </mat-form-field>
               </div>
               <div class="col-md-4 d-flex align-items-center mb-3">
@@ -42,18 +42,22 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="lieuNaissance" class="form-label mr-2">Lieu de naissance:</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <input matInput formControlName="lieuNaissance" >
+                  <input matInput formControlName="lieuNaissance">
                 </mat-form-field>
               </div>
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="dateNaissance" class="form-label mr-2">Date de naissance:</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <input matInput class="field-width2" [matDatepicker]="picker" formControlName="dateNaissance" >
+                  <input matInput [matDatepicker]="picker" formControlName="dateNaissance">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker>
                     <mat-datepicker-actions>
-                      <button mat-button matDatepickerCancel>Annuler</button>
-                      <button mat-raised-button color="primary" matDatepickerApply>Appliquer</button>
+                      <button mat-icon-button matDatepickerCancel>
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="primary" matDatepickerApply>
+                        <mat-icon>check</mat-icon>
+                      </button>
                     </mat-datepicker-actions>
                   </mat-datepicker>
                 </mat-form-field>
@@ -61,7 +65,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="sexe" class="form-label mr-2">Sexe :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <mat-select formControlName="sexe" >
+                  <mat-select formControlName="sexe">
                     <mat-option value="Homme">Homme</mat-option>
                     <mat-option value="Femme">Femme</mat-option>
                   </mat-select>
@@ -72,7 +76,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="nationalite1" class="form-label mr-2">Nationalité 1 :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <mat-select formControlName="nationalite1" name="nationality1" >
+                  <mat-select formControlName="nationalite1" name="nationality1">
                     <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                       }}</mat-option>
                   </mat-select>
@@ -81,8 +85,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="nationalite2" class="form-label mr-2">Nationalité 2 :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <mat-select formControlName="nationality2" name="nationality2"
-                    >
+                  <mat-select formControlName="nationality2" name="nationality2">
                     <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                       }}</mat-option>
                   </mat-select>
@@ -91,7 +94,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="initiales" class="form-label mr-2">initiales:</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <input matInput formControlName="initiales" >
+                  <input matInput formControlName="initiales">
                 </mat-form-field>
               </div>
             </div>
@@ -99,7 +102,7 @@
               <div class="col-md-4 d-flex align-items-center mb-3">
                 <label for="nomJeuneFille" class="form-label mr-2">Nom du jeune fille :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <input matInput formControlName="nomJeuneFille" >
+                  <input matInput formControlName="nomJeuneFille">
                 </mat-form-field>
               </div>
             </div>

@@ -13,7 +13,7 @@ export class Collaborater {
   public lastName!: string;
   public dateNaissance!: Date;
   public lieuNaissance!: string;
-  public sexe!: 'Homme'|'Femme';
+  public sexe!: string;
   public civNomPrenom!: string;
   public civPrenomNom!: string;
   public photos!: string;
@@ -79,5 +79,5 @@ export class Collaborater {
   public company!: Company;
   public countries!: Country[];
 
-  constructor() {}
+  constructor(){}
 }

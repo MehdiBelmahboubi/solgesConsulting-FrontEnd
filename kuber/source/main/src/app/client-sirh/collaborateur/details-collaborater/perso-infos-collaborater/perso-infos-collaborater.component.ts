@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
@@ -15,42 +15,32 @@ import { CountryService } from 'app/services/country.service';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-perso-infos-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, ReactiveFormsModule, MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
+  imports: [FormsModule, MatDatepickerModule, ReactiveFormsModule, MatListModule,MatIconModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
   templateUrl: './perso-infos-collaborater.component.html',
   styleUrls: ['./perso-infos-collaborater.component.scss']
 })
 export class PersoInfosCollaboraterComponent implements OnInit {
-  collaborater: Collaborater = new Collaborater();
+  @Input() collaborater!:Collaborater;
+  @Input() mode!:string;
   countries!: Country[];
-  addMode: boolean = false;
-  editMode: boolean = false;
+  addMode!: boolean;
+  editMode!: boolean;
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) {
-    if (history.state && history.state.collaborater) {
-      this.collaborater = history.state.collaborater;
-    } else if (history.state && history.state.collaboraterEdit) {
-      this.collaborater = history.state.collaboraterEdit;
-      this.editMode = true;
-    } else {
-      this.addMode = true;
+  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) {}
+
+  ngOnInit(){
+    if(this.mode=="editMode"){
+      this.editMode=true;
+    }else if(this.mode=="addMode")
+    {
+      this.addMode=true;
     }
-
-    this.countryService.getAllNationalities().subscribe({
-      next: (value) => {
-        this.countries = value;
-      },
-      error: (err) => {
-        console.error('Error fetching Countries:', err);
-      }
-    });
-  }
-
-  ngOnInit(): void {
     this.formGroup = this.fb.group({
       matricule: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       firstName: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -62,6 +52,15 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       nationality2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       initiales: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       nomJeuneFille: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+    });
+    this.formGroup.patchValue(this.collaborater);
+    this.countryService.getAllNationalities().subscribe({
+      next: (value) => {
+        this.countries = value;
+      },
+      error: (err) => {
+        console.error('Error fetching Countries:', err);
+      }
     });
   }
 
