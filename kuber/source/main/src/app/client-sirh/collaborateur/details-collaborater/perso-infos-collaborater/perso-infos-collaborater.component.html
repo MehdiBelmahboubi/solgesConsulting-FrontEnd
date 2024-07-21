@@ -16,104 +16,101 @@
           <mat-list-item>Informations personnelles</mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
-        <mat-card-content>
-          <div class="row form-inline">
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="matricule" class="form-label mr-2">Matricule :</label>
-              <mat-form-field class="field-width" appearance="outline">
-              <input matInput [(ngModel)]="collaborater.matricule" id="matricule"
-                [disabled]="!addMode && !editMode">
-              </mat-form-field>
+        <form [formGroup]="formGroup">
+          <mat-card-content>
+            <div class="row form-inline">
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="matricule" class="form-label mr-2">Matricule :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="matricule">
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="nom" class="form-label mr-2">Nom :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="firstName" >
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="lastName" class="form-label mr-2">Prénom :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="lastName">
+                </mat-form-field>
+              </div>
             </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="nom" class="form-label mr-2">Nom :</label>
-              <mat-form-field class="field-width" appearance="outline">
-              <input matInput id="nom" [(ngModel)]="collaborater.firstName"
-                [disabled]="!addMode && !editMode">
-              </mat-form-field>
+            <div class="row form-inline">
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="lieuNaissance" class="form-label mr-2">Lieu de naissance:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="lieuNaissance" >
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="dateNaissance" class="form-label mr-2">Date de naissance:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput class="field-width2" [matDatepicker]="picker" formControlName="dateNaissance" >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker>
+                    <mat-datepicker-actions>
+                      <button mat-button matDatepickerCancel>Annuler</button>
+                      <button mat-raised-button color="primary" matDatepickerApply>Appliquer</button>
+                    </mat-datepicker-actions>
+                  </mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="sexe" class="form-label mr-2">Sexe :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <mat-select formControlName="sexe" >
+                    <mat-option value="Homme">Homme</mat-option>
+                    <mat-option value="Femme">Femme</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="prenom" class="form-label mr-2">Prénom :</label>
-              <mat-form-field class="field-width" appearance="outline">
-              <input matInput  id="prenom" [(ngModel)]="collaborater.lastName"
-                [disabled]="!addMode && !editMode">
-              </mat-form-field>
+            <div class="row form-inline">
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="nationalite1" class="form-label mr-2">Nationalité 1 :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <mat-select formControlName="nationalite1" name="nationality1" >
+                    <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
+                      }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="nationalite2" class="form-label mr-2">Nationalité 2 :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <mat-select formControlName="nationality2" name="nationality2"
+                    >
+                    <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
+                      }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="initiales" class="form-label mr-2">initiales:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="initiales" >
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-          <div class="row form-inline">
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="lieuNaissance" class="form-label mr-2">Lieu de naissance:</label>
-              <mat-form-field class="field-width" appearance="outline">
-                <input matInput id="lieuNaissance" [(ngModel)]="collaborater.lieuNaissance"
-                  [disabled]="!addMode && !editMode">
-              </mat-form-field>
+            <div class="row form-inline">
+              <div class="col-md-4 d-flex align-items-center mb-3">
+                <label for="nomJeuneFille" class="form-label mr-2">Nom du jeune fille :</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="nomJeuneFille" >
+                </mat-form-field>
+              </div>
             </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="dateNaissance" class="form-label mr-2">Date de naissance:</label>
-              <mat-form-field class="field-width" appearance="outline">
-                <input matInput class="field-width2" [matDatepicker]="picker" id="dateNaissance"
-                  [(ngModel)]="collaborater.dateNaissance" [disabled]="!addMode && !editMode">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker>
-                  <mat-datepicker-actions>
-                    <button mat-button matDatepickerCancel>Annuler</button>
-                    <button mat-raised-button color="primary" matDatepickerApply>Appliquer</button>
-                  </mat-datepicker-actions>
-                </mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="sexe" class="form-label mr-2">Sexe :</label>
-              <mat-form-field class="field-width" appearance="outline">
-                <mat-select [(ngModel)]="collaborater.sexe" [disabled]="!addMode && !editMode">
-                  <mat-option value="Homme">Homme</mat-option>
-                  <mat-option value="Femme">Femme</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="row form-inline">
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="nationalite1" class="form-label mr-2">Nationalité 1 :</label>
-              <mat-form-field class="field-width" appearance="outline">
-                <mat-select [(ngModel)]="collaborater.countryCode1" name="nationality1" [disabled]="!addMode && !editMode">
-                  <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
-                    }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="nationalite2" class="form-label mr-2">Nationalité 2 :</label>
-              <mat-form-field class="field-width" appearance="outline">
-                <mat-select [(ngModel)]="collaborater.countryCode2" name="nationality2" [disabled]="!addMode && !editMode">
-                  <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
-                    }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="initiales" class="form-label mr-2">initiales:</label>
-              <mat-form-field class="field-width" appearance="outline">
-              <input matInput  id="initiales" [(ngModel)]="collaborater.initiales"
-                [disabled]="!addMode && !editMode">
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="row form-inline">
-            <div class="col-md-4 d-flex align-items-center mb-3">
-              <label for="nomJeuneFille" class="form-label mr-2">Nom du jeune fille :</label>
-              <mat-form-field class="field-width" appearance="outline">
-              <input matInput  id="nomJeuneFille" [(ngModel)]="collaborater.nomJeuneFille"
-                [disabled]="!addMode && !editMode">
-              </mat-form-field>
-            </div>
-          </div>
-        </mat-card-content>
+          </mat-card-content>
+        </form>
       </mat-card>
       <div class="row form-inline">
         <div class="d-flex justify-content-end mt-4">
           <div class="col-md-11 d-flex justify-content-end mb-3">
-            <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode" (click)="back()">Retour</button>
+            <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
+              (click)="back()">Retour</button>
             <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
             <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
               (click)="openEditMode()">Modifier</button>

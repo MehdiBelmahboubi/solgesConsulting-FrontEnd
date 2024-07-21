@@ -1,6 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,27 +19,24 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-perso-infos-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
+  imports: [FormsModule, MatDatepickerModule, ReactiveFormsModule, MatListModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
   templateUrl: './perso-infos-collaborater.component.html',
-  styleUrl: './perso-infos-collaborater.component.scss'
+  styleUrls: ['./perso-infos-collaborater.component.scss']
 })
 export class PersoInfosCollaboraterComponent implements OnInit {
   collaborater: Collaborater = new Collaborater();
   countries!: Country[];
-  addMode!: Boolean;
+  addMode: boolean = false;
   editMode: boolean = false;
+  formGroup!: FormGroup;
 
-
-  constructor(private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) {
     if (history.state && history.state.collaborater) {
       this.collaborater = history.state.collaborater;
     } else if (history.state && history.state.collaboraterEdit) {
       this.collaborater = history.state.collaboraterEdit;
-      this.openEditMode();
-    }
-    else {
+      this.editMode = true;
+    } else {
       this.addMode = true;
     }
 
@@ -53,38 +50,69 @@ export class PersoInfosCollaboraterComponent implements OnInit {
     });
   }
 
-  openEditMode() {
-    this.editMode = true;
-    this.addMode = false;
+  ngOnInit(): void {
+    this.formGroup = this.fb.group({
+      matricule: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      firstName: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      lastName: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      lieuNaissance: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      dateNaissance: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      sexe: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      nationalite1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      nationality2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      initiales: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      nomJeuneFille: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+    });
   }
 
-  addCollaborater() {
+  openEditMode(): void {
+    this.editMode = true;
+    this.addMode = false;
+    this.enableFormControls();
+  }
+
+  enableFormControls(): void {
+    for (let control in this.formGroup.controls) {
+      this.formGroup.controls[control].enable();
+    }
+  }
+
+  disableFormControls(): void {
+    for (let control in this.formGroup.controls) {
+      this.formGroup.controls[control].disable();
+    }
+  }
+
+  addCollaborater(): void {
     this.collaboraterService.addCollaborateur(this.collaborater).subscribe({
       next: () => {
-        this.snackBarService.showSuccess('Collaborator est créé avec succès ! ');
+        this.snackBarService.showSuccess('Collaborator created successfully!');
+        this.back();
       },
-      error: () => {
-        console.error('Error Adding Collaborateur:');
+      error: (err) => {
+        console.error('Error Adding Collaborator:', err);
       }
     });
   }
 
-  editCollaborater() {
+  editCollaborater(): void {
     this.collaboraterService.editCollaborateur(this.collaborater).subscribe({
       next: () => {
-        this.snackBarService.showSuccess('Collaborator est Mofidié avec succès ! ');
+        this.snackBarService.showSuccess('Collaborator updated successfully!');
+        this.back();
       },
-      error: () => {
-        console.error('Error Updating Collaborateur:');
+      error: (err) => {
+        console.error('Error Updating Collaborator:', err);
       }
-    })
+    });
   }
 
-  back() {
+  back(): void {
     this.router.navigate(['/client/collaborateur']);
   }
 
-  cancel() {
-    this.editMode=false;
+  cancel(): void {
+    this.editMode = false;
+    this.disableFormControls();
   }
 }
