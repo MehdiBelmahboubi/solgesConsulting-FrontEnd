@@ -1,6 +1,7 @@
 <section class="content">
     <div class="container">
         <div class="body">
+         <form [formGroup]="formGroup">
             <!-- Décès Section -->
             <mat-card class="styled-card">
                 <mat-list>
@@ -12,9 +13,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateDeces" class="form-label mr-2">Date de décès :</label>
                             <mat-form-field class="field-width" appearance="outline">
-
-                                <input matInput [matDatepicker]="picker1" id="dateDeces"
-                                    [(ngModel)]="collaborater.dateDeces" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="picker1" formControlName="dateDeces">
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1>
                                     <mat-datepicker-actions>
@@ -31,9 +30,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateCertifDeces" class="form-label mr-2">Date du certificat de décès :</label>
                             <mat-form-field class="field-width" appearance="outline">
-
-                                <input matInput [matDatepicker]="picker2" id="dateCertifDeces"
-                                    [(ngModel)]="collaborater.dateCertifDeces" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="picker2" formControlName="dateCertifDeces">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2>
                                     <mat-datepicker-actions>
@@ -69,9 +66,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-3">
                             <label for="dateNaturalisation" class="form-label mr-2">Date de naturalisation :</label>
                             <mat-form-field class="field-width" appearance="outline">
-
-                                <input matInput [matDatepicker]="picker3" id="dateNaturalisation"
-                                    [(ngModel)]="collaborater.dateNaturalisation" [disabled]="!addMode && !editMode">
+                                <input matInput [matDatepicker]="picker3" formControlName="dateNaturalisation">
                                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                 <mat-datepicker #picker3>
                                     <mat-datepicker-actions>
@@ -113,8 +108,7 @@
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="matriculeRecrutement" class="form-label mr-2">Matricule de recrutement :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="matriculeRecrutement"
-                                    [(ngModel)]="collaborater.matriculeRecrutement" [disabled]="!addMode && !editMode">
+                                <input matInput formControlName="matriculeRecrutement">
                             </mat-form-field>
                         </div>
                     </div>
@@ -136,6 +130,7 @@
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 </section>

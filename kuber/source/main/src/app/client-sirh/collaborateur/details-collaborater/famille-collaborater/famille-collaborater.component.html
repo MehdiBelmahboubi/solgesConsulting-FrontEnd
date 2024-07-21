@@ -1,6 +1,7 @@
 <section class="content">
     <div class="container">
         <div class="body">
+            <form [formGroup]="formGroup">
             <!-- Section Epouse -->
             <mat-card class="styled-card">
                 <mat-list>
@@ -18,7 +19,7 @@
                         <div class="col-md-6 d-flex align-items-center mb-4">
                             <label for="nbEpouses" class="form-label mr-4">Nombre d'épouses :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [(ngModel)]="collaborater.nbEpouses" [disabled]="!addMode && !editMode">
+                                <input matInput formControlName="nbEpouses">
                             </mat-form-field>
                         </div>
                     </div>
@@ -42,8 +43,7 @@
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbEnfants" class="form-label mr-2">Nombre d'enfants :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="nbEnfants" [(ngModel)]="collaborater.nbEnfants"
-                                    [disabled]="!addMode && !editMode">
+                                <input matInput formControlName="nbEnfants">
                             </mat-form-field>
                         </div>
 
@@ -61,15 +61,13 @@
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="nbEnfantsCharge" [disabled]="enable()"
-                                    [disabled]="!addMode && !editMode">
+                                <input matInput formControlName="nbEnfantsCharge">
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 d-flex align-items-center mb-2">
                             <label for="nbPersCharge" class="form-label mr-2">Nombre de personnes à charge :</label>
                             <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="nbPersCharge" [(ngModel)]="collaborater.nbPersCharge"
-                                    [disabled]="!addMode && !editMode">
+                                <input matInput formControlName="nbPersCharge">
                             </mat-form-field>
                         </div>
                     </div>
@@ -91,6 +89,7 @@
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 </section>
