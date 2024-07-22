@@ -2,7 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 import { FeatherIconsComponent } from "@shared/components/feather-icons/feather-icons.component";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
-import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from "@angular/router";
 import { BreadcrumbComponent } from "@shared/components/breadcrumb/breadcrumb.component";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressBar } from "@angular/material/progress-bar";
@@ -56,7 +56,7 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
   styleUrls: ['./details-collaborater.component.scss']
 })
 export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
-  collaborater: Collaborater = new Collaborater();
+  collaborater: Collaborater = new Collaborater();  
   mode!:string;
   persoInfosCollaboraterComponent: boolean = true;
   contratCollaboraterComponent: boolean = false;
@@ -132,29 +132,39 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(private collaboraterService: CollaboraterService, private router: Router) {
-    if (history.state && history.state.collaborater) {
-      this.collaborater = history.state.collaborater;
-    } else if (history.state && history.state.collaboraterEdit) {
-      this.collaborater = history.state.collaboraterEdit;
-      this.mode="editMode";
-    }else{
-      this.mode="addMode";
-    }
-  }
+  constructor(private collaboraterService: CollaboraterService,private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.findComponentActive('persoInfosCollaboraterComponent');
-    if (this.collaborater.id!==undefined) {
-      this.collaboraterService.getById(this.collaborater.id).subscribe({
-        next: (value) => {
-          this.collaborater = value;
-        },
-        error: (err) => {
-          console.error('Error fetching Collaborater:', err);
-        }
-      });
-    }
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+      this.mode = params['mode'] || 'view';
+      
+      if (this.mode === 'update' && id) {
+        this.mode = "editMode";
+        this.collaboraterService.getById(id).subscribe({
+          next: (value) => {
+            this.collaborater = value;
+          },
+          error: (err) => {
+            console.error('Error fetching Collaborater:', err);
+          }
+        });
+      } else if (id) {
+        this.collaboraterService.getById(id).subscribe({
+          next: (value) => {
+            this.collaborater = value;
+          },
+          error: (err) => {
+            console.error('Error fetching Collaborater:', err);
+          }
+        });
+      }else{
+        this.mode = "addMode";
+        this.collaborater = new Collaborater();
+      }
+
+      this.findComponentActive('persoInfosCollaboraterComponent');
+    });
   }
 
   ngAfterViewInit(): void { }

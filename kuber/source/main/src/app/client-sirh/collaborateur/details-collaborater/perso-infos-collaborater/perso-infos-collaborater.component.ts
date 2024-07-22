@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
@@ -35,9 +35,9 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) {}
 
   ngOnInit(){
-    if(this.mode=="editMode"){
+    if(this.mode==="editMode"){
       this.editMode=true;
-    }else if(this.mode=="addMode")
+    }else if(this.mode==="addMode")
     {
       this.addMode=true;
     }
@@ -48,12 +48,12 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       lieuNaissance: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       dateNaissance: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       sexe: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      nationalite1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      nationality2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      countryCode1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      countryCode2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       initiales: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       nomJeuneFille: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
-    this.formGroup.patchValue(this.collaborater);
+    
     this.countryService.getAllNationalities().subscribe({
       next: (value) => {
         this.countries = value;
@@ -62,6 +62,12 @@ export class PersoInfosCollaboraterComponent implements OnInit {
         console.error('Error fetching Countries:', err);
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
+    }
   }
 
   openEditMode(): void {
@@ -83,10 +89,10 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   }
 
   addCollaborater(): void {
-    this.collaboraterService.addCollaborateur(this.collaborater).subscribe({
+    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
+    this.collaboraterService.addCollaborateur(newCollaborater).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborator created successfully!');
-        this.back();
       },
       error: (err) => {
         console.error('Error Adding Collaborator:', err);

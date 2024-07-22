@@ -74,18 +74,18 @@
             </div>
             <div class="row form-inline">
               <div class="col-md-4 d-flex align-items-center mb-3">
-                <label for="nationalite1" class="form-label mr-2">Nationalité 1 :</label>
+                <label for="countryCode1" class="form-label mr-2">Nationalité 1 :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <mat-select formControlName="nationalite1" name="nationality1">
+                  <mat-select formControlName="countryCode1" name="countryCode1">
                     <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                       }}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <div class="col-md-4 d-flex align-items-center mb-3">
-                <label for="nationalite2" class="form-label mr-2">Nationalité 2 :</label>
+                <label for="countryCode2" class="form-label mr-2">Nationalité 2 :</label>
                 <mat-form-field class="field-width" appearance="outline">
-                  <mat-select formControlName="nationality2" name="nationality2">
+                  <mat-select formControlName="countryCode2" name="countryCode2">
                     <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.nationality
                       }}</mat-option>
                   </mat-select>
@@ -114,7 +114,7 @@
           <div class="col-md-11 d-flex justify-content-end mb-3">
             <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
               (click)="back()">Retour</button>
-            <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+            <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
             <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
               (click)="openEditMode()">Modifier</button>
             <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode" (click)="cancel()">Annuler</button>

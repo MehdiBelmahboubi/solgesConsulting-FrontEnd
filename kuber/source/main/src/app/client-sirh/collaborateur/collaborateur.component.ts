@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
+import { mode } from 'd3';
 
 @Component({
   selector: 'app-collaborateur',
@@ -82,15 +83,15 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   openCollaboraterDetails(collaborater: Collaborater) {
-    this.router.navigate(['/client/detailsCollaborateur'], { state: { collaborater } });
+    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id:collaborater.id } });
   }
 
   openAddCollaborater() {
     this.router.navigate(['/client/detailsCollaborateur']);
   }
 
-  openEditCollaborater(collaboraterEdit: Collaborater) {
-    this.router.navigate(['/client/detailsCollaborateur'], { state: { collaboraterEdit } });
+  openEditCollaborater(id: number) {
+    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id:id , mode:"update" } });
   }
 
   applyFilter(event: Event) {
