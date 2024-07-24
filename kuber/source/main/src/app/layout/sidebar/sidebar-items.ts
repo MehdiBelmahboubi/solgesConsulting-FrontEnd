@@ -704,9 +704,9 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title:'Congés',
+    title:'GTA',
     iconType: 'feather',
-    icon: 'user',
+    icon: 'calendar',
     class: 'menu-toggle',
     groupTitle: false,
     badge: '',
@@ -714,9 +714,9 @@ export const ROUTES: RouteInfo[] = [
     role: ['client'],
     submenu: [
       {
-        path: '/client/gestionnaires/gestionnaires_1',
+        path: '/client/conge/parametrage',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.MY-PROJECTS',
-        title : 'Parametrage des congés',
+        title : 'paramétrage',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -727,9 +727,9 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: '/client/gestionnaires/gestionnaires_2',
+        path: '/client/conge/synthese',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.GESTIONNAIRES-1 ',
-        title : 'Gestion des congés',
+        title : 'synthese',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -740,9 +740,9 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: '/client/gestionnaires/gestionnaires_3',
+        path: '/client/conge/details',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.GESTIONNAIRES-1 ',
-        title : 'Gestion Planning',
+        title : 'détails',
         iconType: '',
         icon: '',
         class: 'ml-menu',
