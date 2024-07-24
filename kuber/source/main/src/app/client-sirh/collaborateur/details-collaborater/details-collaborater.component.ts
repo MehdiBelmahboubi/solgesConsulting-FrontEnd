@@ -19,6 +19,8 @@ import { FamilleCollaboraterComponent } from "./famille-collaborater/famille-col
 import { AutreinfoCollaboraterComponent } from "./autreinfo-collaborater/autreinfo-collaborater.component";
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
+import { Contract } from 'app/models/contract.model';
+import { Classification } from 'app/models/classification.model';
 
 export function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -57,6 +59,8 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
 })
 export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
   collaborater: Collaborater = new Collaborater();  
+  contract: Contract = new Contract();
+  classification: Classification = new Classification();
   mode!:string;
   persoInfosCollaboraterComponent: boolean = true;
   contratCollaboraterComponent: boolean = false;
@@ -144,6 +148,8 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
         this.collaboraterService.getById(id).subscribe({
           next: (value) => {
             this.collaborater = value;
+            this.contract = value.contract;
+            this.classification = value.classification;
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
@@ -153,6 +159,8 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
         this.collaboraterService.getById(id).subscribe({
           next: (value) => {
             this.collaborater = value;
+            this.contract = value.contract;
+            this.classification = value.classification;
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
@@ -161,6 +169,8 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
       }else{
         this.mode = "addMode";
         this.collaborater = new Collaborater();
+        this.contract = new Contract();
+        this.classification = new Classification();
       }
 
       this.findComponentActive('persoInfosCollaboraterComponent');

@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -21,26 +21,20 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrl: './coordonnees-collaborater.component.scss'
 })
 export class CoordonneesCollaboraterComponent implements OnInit{
-  collaborater: Collaborater = new Collaborater();
+  @Input() collaborater!:Collaborater;
+  @Input() mode!:string;
   addMode!: Boolean;
   editMode: boolean = false;
   formGroup!: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) {
-    if (history.state && history.state.collaborater) {
-      this.collaborater = history.state.collaborater;
-    } else if (history.state && history.state.collaboraterEdit) {
-      this.collaborater = history.state.collaboraterEdit;
-      this.editMode = true;
-    } else {
-      this.addMode = true;
-    }
-
-
-  }
+  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) {}
 
   ngOnInit(): void {
+    if(this.mode==="editMode"){
+      this.editMode=true;
+    }else if(this.mode==="addMode")
+    { this.addMode=true;}
     this.formGroup = this.fb.group({
       telephone: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       tel1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -74,7 +68,8 @@ export class CoordonneesCollaboraterComponent implements OnInit{
   }
 
   addCollaborater(): void {
-    this.collaboraterService.addCollaborateur(this.collaborater).subscribe({
+    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
+    this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborator created successfully!');
         this.back();
@@ -86,7 +81,8 @@ export class CoordonneesCollaboraterComponent implements OnInit{
   }
 
   editCollaborater(): void {
-    this.collaboraterService.editCollaborateur(this.collaborater).subscribe({
+    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
+    this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.back();

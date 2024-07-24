@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,29 +19,33 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-classification-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule,MatSelectModule, MatNativeDateModule, MatInputModule,NgFor, NgIf,MatListModule,MatCardModule, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule,ReactiveFormsModule,MatSelectModule, MatNativeDateModule, MatInputModule,NgFor, NgIf,MatListModule,MatCardModule, MatButtonModule],
   templateUrl: './classification-collaborater.component.html',
   styleUrl: './classification-collaborater.component.scss'
 })
-export class ClassificationCollaboraterComponent {
-  collaborater: Collaborater = new Collaborater();
-  classification: Classification = new Classification();
+export class ClassificationCollaboraterComponent implements OnInit{
+  @Input() classification!:Classification;
+  @Input() mode!:string;
   classificationTypes!: classificationType[];
   addMode!: Boolean;
   editMode: boolean = false;
-  constructor(private router: Router,private classificationService: ClassificationService) { }
+  formGroup!: FormGroup;
+  
+  constructor(private fb: FormBuilder,private router: Router,private classificationService: ClassificationService) { }
 
   ngOnInit(): void {
-    if (history.state && history.state.collaborater) {
-      this.collaborater = history.state.collaborater;
-    } else if (history.state && history.state.collaboraterEdit) {
-      this.collaborater = history.state.collaboraterEdit;
-      this.openEditMode();
-    }
-    else {
-      this.addMode = true;
-    }
-
+    if(this.mode==="editMode"){
+      this.editMode=true;
+    }else if(this.mode==="addMode")
+    {this.addMode=true;}
+    this.formGroup = this.fb.group({
+      classificationType: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      refClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      dateClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      DateFinClf: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      numPasseport: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      passeportDelivreLe: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+    });
     this.classificationService.getAllTypes().subscribe({
       next: (value) => {
         this.classificationTypes = value;
@@ -52,16 +56,36 @@ export class ClassificationCollaboraterComponent {
     })
   }
 
-  openEditMode() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['classification'] && this.classification&& this.formGroup) {
+      this.formGroup.patchValue(this.classification);
+    }
+  }
+
+  openEditMode(): void {
     this.editMode = true;
     this.addMode = false;
+    this.enableFormControls();
+  }
+
+  enableFormControls(): void {
+    for (let control in this.formGroup.controls) {
+      this.formGroup.controls[control].enable();
+    }
+  }
+
+  disableFormControls(): void {
+    for (let control in this.formGroup.controls) {
+      this.formGroup.controls[control].disable();
+    }
   }
 
   back() {
     this.router.navigate(['/client/collaborateur']);
   }
 
-  cancel() {
-    this.editMode=false;
+  cancel(): void {
+    this.editMode = false;
+    this.disableFormControls();
   }
 }

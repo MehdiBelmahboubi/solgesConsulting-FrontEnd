@@ -71,27 +71,27 @@
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'contratCollaboraterComponent'}"
         id="contrat-tab-pane" role="tabpanel" aria-labelledby="contrat-tab" tabindex="0">
-        <app-contrat-collaborater></app-contrat-collaborater>
+        <app-contrat-collaborater [contract]="contract" [mode]="mode"></app-contrat-collaborater>
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'classificationCollaboraterComponent'}"
         id="classification-tab-pane" role="tabpanel" aria-labelledby="classification-tab" tabindex="0">
-        <app-classification-collaborater></app-classification-collaborater>
+        <app-classification-collaborater [classification]="classification" [mode]="mode"></app-classification-collaborater>
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'immatriculationCollaboraterComponent'}"
         id="immatriculation-tab-pane" role="tabpanel" aria-labelledby="immatriculation-tab" tabindex="0">
-        <app-immatriculation-collaborater></app-immatriculation-collaborater>
+        <app-immatriculation-collaborater [collaborater]="collaborater" [mode]="mode"></app-immatriculation-collaborater>
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'coordonneesCollaboraterComponent'}"
         id="coordonnees-tab-pane" role="tabpanel" aria-labelledby="coordonnees-tab" tabindex="0">
-        <app-coordonnees-collaborater></app-coordonnees-collaborater>
+        <app-coordonnees-collaborater [collaborater]="collaborater" [mode]="mode"></app-coordonnees-collaborater>
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'familleCollaboraterComponent'}"
         id="famille-tab-pane" role="tabpanel" aria-labelledby="famille-tab" tabindex="0">
-        <app-famille-collaborater></app-famille-collaborater>
+        <app-famille-collaborater [collaborater]="collaborater" [mode]="mode"></app-famille-collaborater>
       </div>
       <div class="tab-pane fade" [ngClass]="{'show active': componentActive === 'autreinfoCollaboraterComponent'}"
         id="autreinfo-tab-pane" role="tabpanel" aria-labelledby="autreinfo-tab" tabindex="0">
-        <app-autreinfo-collaborater></app-autreinfo-collaborater>
+        <app-autreinfo-collaborater [collaborater]="collaborater" [mode]="mode"></app-autreinfo-collaborater>
       </div>
     </div>
   </div>

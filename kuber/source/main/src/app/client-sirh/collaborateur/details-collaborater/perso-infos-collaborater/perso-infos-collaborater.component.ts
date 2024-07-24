@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-perso-infos-collaborater',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule, ReactiveFormsModule, MatListModule,MatIconModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, MatFormFieldModule, NgFor, MatSelectModule],
+  imports: [FormsModule, MatDatepickerModule, ReactiveFormsModule, MatListModule,MatIconModule, MatCardModule, MatNativeDateModule, MatInputModule, NgIf, MatButtonModule, MatOptionModule, MatFormFieldModule, NgFor, MatSelectModule],
   templateUrl: './perso-infos-collaborater.component.html',
   styleUrls: ['./perso-infos-collaborater.component.scss']
 })
@@ -38,9 +38,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
     if(this.mode==="editMode"){
       this.editMode=true;
     }else if(this.mode==="addMode")
-    {
-      this.addMode=true;
-    }
+    {this.addMode=true;}
     this.formGroup = this.fb.group({
       matricule: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       firstName: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -101,7 +99,8 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   }
 
   editCollaborater(): void {
-    this.collaboraterService.editCollaborateur(this.collaborater).subscribe({
+    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
+    this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.back();

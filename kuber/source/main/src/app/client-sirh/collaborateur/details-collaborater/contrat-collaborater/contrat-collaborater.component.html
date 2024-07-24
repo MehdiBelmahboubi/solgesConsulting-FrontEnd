@@ -7,79 +7,79 @@
                     <mat-list-item>Informations du contrat</mat-list-item>
                     <mat-divider></mat-divider>
                 </mat-list>
-                <mat-card-content>
-                    <div class="row form-inline">
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="contractType" class="form-label mr-2">Type :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <mat-select [(ngModel)]="contract.typeId" name="contractType"
-                                    [disabled]="!addMode && !editMode">
-                                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType.id">{{
-                                        contractType.code}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                <form [formGroup]="formGroup">
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="contractType" class="form-label mr-2">Type :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <mat-select name="contractType" formControlName="contractType">
+                                        <mat-option *ngFor="let contractType of contractTypes"
+                                            [value]="contractType.id">{{
+                                            contractType.code}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="contractRef" class="form-label mr-2">Référence :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="contractRef">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="motifRecrutement" class="form-label mr-2">Motif de récrutement :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="motifRecrutement">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="contractRef" class="form-label mr-2">Référence :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="contractRef" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="motifRecrutement" class="form-label mr-2">Motif de récrutement :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="motifRecrutement" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="periodNegocible" class="form-label mr-2">Période négociable :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="periodNegocible" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
-                        </div>
+                        <div class="row form-inline">
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="periodNegocible" class="form-label mr-2">Période négociable :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="periodNegocible">
+                                </mat-form-field>
+                            </div>
 
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="regimeFiscal" class="form-label mr-2">Regime fiscal :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="regimeFiscal" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="regimeFiscal" class="form-label mr-2">Regime fiscal :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="regimeFiscal">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="exonerationFiscale" class="form-label mr-2">Exoneration fiscale :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="exonerationFiscale">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="exonerationFiscale" class="form-label mr-2">Exoneration fiscale :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="exonerationFiscale" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
+                        <div class="row form-inline">
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="motifDepart" class="form-label mr-2">Motif de départ :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="motifDepart">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="dateEntree" class="form-label mr-2">Date d'entrée :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput [matDatepicker]="pickerDateEntree" formControlName="dateEntree">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerDateEntree"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerDateEntree></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="dateFin" class="form-label mr-2">Date Fin :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput [matDatepicker]="pickerDateFin" formControlName="dateFin">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerDateFin></mat-datepicker>
+                                </mat-form-field>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="motifDepart" class="form-label mr-2">Motif de départ :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput id="motifDepart" [disabled]="!addMode && !editMode">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="dateEntree" class="form-label mr-2">Date d'entrée :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateEntree" id="dateEntree"
-                                    [(ngModel)]="contract.dateEntree" [disabled]="!addMode && !editMode">
-                                <mat-datepicker-toggle matSuffix [for]="pickerDateEntree"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDateEntree></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center mb-3">
-                            <label for="dateFin" class="form-label mr-2">Date Fin :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput [matDatepicker]="pickerDateFin" id="dateFin"
-                                    [(ngModel)]="contract.dateFin" [disabled]="!addMode && !editMode">
-                                <mat-datepicker-toggle matSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerDateFin></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </mat-card-content>
+                    </mat-card-content>
+                </form>
             </mat-card>
             <div class="row form-inline">
                 <div class="d-flex justify-content-end mt-4">

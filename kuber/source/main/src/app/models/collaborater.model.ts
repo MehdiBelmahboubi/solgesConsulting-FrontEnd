@@ -74,8 +74,8 @@ export class Collaborater {
   public countryCode2!:number;
   public company_id!:number;
 
-  public contracts!: Contract[];
-  public classifications!: Classification[];
+  public contract!: Contract;
+  public classification!: Classification;
   public company!: Company;
   public countries!: Country[];
 
