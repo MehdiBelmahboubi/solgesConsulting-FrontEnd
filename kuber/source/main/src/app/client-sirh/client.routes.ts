@@ -5,6 +5,9 @@ import {StructureOrganisationsComponent} from "./structure-organisations/structu
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
 import { AddCollaboraterComponent } from './collaborateur/add-collaborater/add-collaborater.component';
 import { DetailsCollaboraterComponent } from './collaborateur/details-collaborater/details-collaborater.component';
+import { ParametrageComponent } from './conge/parametrage/parametrage.component';
+import { SyntheseComponent } from './conge/synthese/synthese.component';
+import { DetailsComponent } from './conge/details/details.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -16,8 +19,16 @@ export const CLIENT_ROUTE: Route[] = [
     component: CollaborateurComponent,
   },
   {
-    path:'addcollaborateur',
-    component:AddCollaboraterComponent
+    path: 'conge/parametrage',
+    component: ParametrageComponent,
+  },
+  {
+    path: 'conge/synthese',
+    component: SyntheseComponent,
+  },
+  {
+    path: 'conge/details',
+    component: DetailsComponent,
   },
   {
     path:'detailsCollaborateur',

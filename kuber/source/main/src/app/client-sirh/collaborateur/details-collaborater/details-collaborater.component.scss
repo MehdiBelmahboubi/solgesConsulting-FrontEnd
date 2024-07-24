@@ -1,15 +1,15 @@
-.add-unity{
+.add-unity {
   background-color: #FFFFFF;
 }
-.navbar-nav {
 
+.navbar-nav {
   &.navbar-right {
     float: left !important;
     display: block !important;
-    //flex-direction: unset;
   }
 }
-.item{
+
+.item {
   margin-top: -20px;
 }
 
@@ -18,43 +18,58 @@ section.content {
   margin-right: 20px;
 }
 
-.sousBar{
+.sousBar {
   background-color: #0c0c0c;
-
 }
-.block-header{
-  //background-color: #c2c6c6;
+
+.block-header {
   margin-left: -25px;
   margin-right: -20px;
   background-color: #848989;
   z-index: 1000 !important;
 }
 
-.block-tabs{
+.block-tabs {
   margin-left: -25px;
   margin-right: -20px;
   height: 43px;
   background-color: #FFFFFF;
   z-index: 1000 !important;
-  position:fixed;
+  position: fixed;
   width: 100%;
 }
 
-.button-menu{
+.button-menu {
   height: 16px;
 }
 
-.body{
+.body {
   margin-left: -260px;
   margin-right: -23px;
-  position:fixed;
+  position: fixed;
   width: 100%;
+  overflow-y: auto; /* Add vertical scrolling */
+  max-height: calc(100vh - 43px); /* Adjust height to fill the screen below the fixed tabs */
 }
 
-
-
-.nav-link{
+.nav-link {
   margin-top: -5px;
 }
 
+.sidebar {
+  width: 250px;
+  transition: width 0.3s;
+}
 
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s;
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: 60px;
+}
