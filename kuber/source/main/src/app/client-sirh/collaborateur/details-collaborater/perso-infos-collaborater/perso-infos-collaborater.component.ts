@@ -101,9 +101,9 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   editCollaborater(): void {
     const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
     this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
-      next: () => {
+      next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
-        this.back();
+        this.collaborater=value;
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);

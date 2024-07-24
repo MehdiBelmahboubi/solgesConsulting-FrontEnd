@@ -115,10 +115,9 @@
             <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
               (click)="back()">Retour</button>
             <button mat-flat-button color="primary" *ngIf="addMode" (click)="addCollaborater()">Ajouter</button>
-            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
-              (click)="openEditMode()">Modifier</button>
+            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
             <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode" (click)="cancel()">Annuler</button>
-            <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+            <button mat-flat-button color="primary" *ngIf="editMode" (click)="editCollaborater()">Enregistrer</button>
           </div>
         </div>
       </div>

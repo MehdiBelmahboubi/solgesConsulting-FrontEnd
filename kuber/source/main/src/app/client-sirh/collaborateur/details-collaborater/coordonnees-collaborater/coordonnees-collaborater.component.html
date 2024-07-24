@@ -2,122 +2,124 @@
     <div class="container">
         <div class="body">
             <form [formGroup]="formGroup">
-            <!-- Téléphone Section -->
-            <mat-card class="styled-card">
-                <mat-list>
-                    <mat-list-item>Téléphone</mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-                <mat-card-content>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="telephone" class="form-label mr-2">Téléphone :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="telephone">
-                            </mat-form-field>
+                <!-- Téléphone Section -->
+                <mat-card class="styled-card">
+                    <mat-list>
+                        <mat-list-item>Téléphone</mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="telephone" class="form-label mr-2">Téléphone :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="telephone">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="tel1" class="form-label mr-2">TEL 1 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="tel1">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="tel1" class="form-label mr-2">TEL 1 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="tel1">
-                            </mat-form-field>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="tel2" class="form-label mr-2">TEL 2 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="tel2">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="tel3" class="form-label mr-2">TEL 3 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="tel3">
+                                </mat-form-field>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="tel2" class="form-label mr-2">TEL 2 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="tel2">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="tel3" class="form-label mr-2">TEL 3 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="tel3">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+                    </mat-card-content>
+                </mat-card>
 
-            <!-- Email Section -->
-            <mat-card class="styled-card">
-                <mat-list>
-                    <mat-list-item>Email</mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-                <mat-card-content>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="email1" class="form-label mr-2">Email :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="email1">
-                            </mat-form-field>
+                <!-- Email Section -->
+                <mat-card class="styled-card">
+                    <mat-list>
+                        <mat-list-item>Email</mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="email1" class="form-label mr-2">Email :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="email1">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="email2" class="form-label mr-2">Email 2 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="email2">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="email2" class="form-label mr-2">Email 2 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="email2">
-                            </mat-form-field>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="email3" class="form-label mr-2">Email 3 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="email3">
+                                </mat-form-field>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="email3" class="form-label mr-2">Email 3 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="email3">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+                    </mat-card-content>
+                </mat-card>
 
-            <!-- Adresse Section -->
-            <mat-card class="styled-card">
-                <mat-list>
-                    <mat-list-item>Adresse</mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-                <mat-card-content>
-                    <div class="row form-inline">
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="adresse" class="form-label mr-2">Adresse :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="adresse">
-                            </mat-form-field>
+                <!-- Adresse Section -->
+                <mat-card class="styled-card">
+                    <mat-list>
+                        <mat-list-item>Adresse</mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="adresse" class="form-label mr-2">Adresse :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="adresse">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="adresse2" class="form-label mr-2">Adresse 2 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="adresse2">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="adresse3" class="form-label mr-2">Adresse 3 :</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="adresse3">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="adresse2" class="form-label mr-2">Adresse 2 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="adresse2">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center mb-3">
-                            <label for="adresse3" class="form-label mr-2">Adresse 3 :</label>
-                            <mat-form-field class="field-width" appearance="outline">
-                                <input matInput formControlName="adresse3">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+                    </mat-card-content>
+                </mat-card>
 
-            <!-- Action Buttons -->
-            <div class="row form-inline">
-                <div class="d-flex justify-content-end mt-4">
-                    <div class="col-md-11 d-flex justify-content-end mb-3">
-                        <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
-                            (click)="back()">Retour</button>
-                        <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
-                        <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
-                            (click)="openEditMode()">Modifier</button>
-                        <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
-                            (click)="cancel()">Annuler</button>
-                        <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                <!-- Action Buttons -->
+                <div class="row form-inline">
+                    <div class="d-flex justify-content-end mt-4">
+                        <div class="col-md-11 d-flex justify-content-end mb-3">
+                            <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
+                                (click)="back()">Retour</button>
+                            <button mat-flat-button color="primary" *ngIf="addMode"
+                                (click)="editCollaborater()">Ajouter</button>
+                            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
+                                (click)="openEditMode()">Modifier</button>
+                            <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
+                                (click)="cancel()">Annuler</button>
+                            <button mat-flat-button color="primary" *ngIf="editMode"
+                                (click)="editCollaborater()">Enregistrer</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
         </div>
     </div>
 </section>

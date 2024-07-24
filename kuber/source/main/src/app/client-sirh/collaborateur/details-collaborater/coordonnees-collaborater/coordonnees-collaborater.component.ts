@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -49,6 +49,12 @@ export class CoordonneesCollaboraterComponent implements OnInit{
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
+    }
+  }
+
   openEditMode() {
     this.editMode = true;
     this.addMode = false;
@@ -67,25 +73,12 @@ export class CoordonneesCollaboraterComponent implements OnInit{
     }
   }
 
-  addCollaborater(): void {
-    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
-    this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
-      next: () => {
-        this.snackBarService.showSuccess('Collaborator created successfully!');
-        this.back();
-      },
-      error: (err) => {
-        console.error('Error Adding Collaborator:', err);
-      }
-    });
-  }
-
   editCollaborater(): void {
     const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
     this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
-      next: () => {
+      next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
-        this.back();
+        this.collaborater=value;
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
