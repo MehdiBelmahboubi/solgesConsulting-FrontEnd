@@ -3,11 +3,11 @@ import { Route } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {StructureOrganisationsComponent} from "./structure-organisations/structure-organisations.component";
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
-import { AddCollaboraterComponent } from './collaborateur/add-collaborater/add-collaborater.component';
 import { DetailsCollaboraterComponent } from './collaborateur/details-collaborater/details-collaborater.component';
-import { ParametrageComponent } from './conge/parametrage/parametrage.component';
+import { ArchivedCollaboraterComponent } from './collaborateur/archived-collaborater/archived-collaborater/archived-collaborater.component';
+/* import { ParametrageComponent } from './conge/parametrage/parametrage.component';
 import { SyntheseComponent } from './conge/synthese/synthese.component';
-import { DetailsComponent } from './conge/details/details.component';
+import { DetailsComponent } from './conge/details/details.component'; */
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -18,7 +18,7 @@ export const CLIENT_ROUTE: Route[] = [
     path: 'collaborateur',
     component: CollaborateurComponent,
   },
-  {
+  /* {
     path: 'conge/parametrage',
     component: ParametrageComponent,
   },
@@ -29,10 +29,14 @@ export const CLIENT_ROUTE: Route[] = [
   {
     path: 'conge/details',
     component: DetailsComponent,
-  },
+  }, */
   {
     path:'detailsCollaborateur',
     component:DetailsCollaboraterComponent
+  },
+  {
+    path:'archiveCollaborateur',
+    component:ArchivedCollaboraterComponent
   },
   {
     path: 'organisations',
