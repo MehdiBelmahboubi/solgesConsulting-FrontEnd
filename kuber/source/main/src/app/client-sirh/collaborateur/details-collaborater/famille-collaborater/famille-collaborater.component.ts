@@ -65,25 +65,12 @@ export class FamilleCollaboraterComponent implements OnInit {
     }
   }
 
-  addCollaborater(): void {
-    const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
-    this.collaboraterService.addCollaborateur(newCollaborater).subscribe({
-      next: () => {
-        this.snackBarService.showSuccess('Collaborator created successfully!');
-        this.back();
-      },
-      error: (err) => {
-        console.error('Error Adding Collaborator:', err);
-      }
-    });
-  }
-
   editCollaborater(): void {
     const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
     this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
-      next: () => {
+      next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
-        this.back();
+        this.collaborater=value;
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);

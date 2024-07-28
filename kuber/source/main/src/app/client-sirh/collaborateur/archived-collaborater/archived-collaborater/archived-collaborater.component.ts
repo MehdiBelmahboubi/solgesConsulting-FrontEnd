@@ -2,11 +2,10 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HeaderSirhClientComponent } from '../header-sirh-client/header-sirh-client.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -18,10 +17,11 @@ import { Router, RouterLink } from '@angular/router';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
+import { HeaderSirhClientComponent } from "../../../header-sirh-client/header-sirh-client.component";
 import { Page } from 'app/models/page.models';
 
 @Component({
-  selector: 'app-collaborateur',
+  selector: 'app-archived-collaborater',
   standalone: true,
   imports: [
     BreadcrumbComponent, RouterLink, HeaderSirhClientComponent, MatTableModule,
@@ -29,11 +29,10 @@ import { Page } from 'app/models/page.models';
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
     MatButtonModule, MatMenuModule, MatIconModule
   ],
-  templateUrl: './collaborateur.component.html',
-  styleUrls: ['./collaborateur.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './archived-collaborater.component.html',
+  styleUrl: './archived-collaborater.component.scss'
 })
-export class CollaborateurComponent implements AfterViewInit, OnInit {
+export class ArchivedCollaboraterComponent implements OnInit{
   collaboraters: Collaborater[] = [];
   displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
@@ -46,14 +45,14 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
+  constructor(private collaboraterService: CollaboraterService, private router: Router,private snackBarService:SnackBarService) { }
 
   ngOnInit() {
-    this.getCollaboraters(this.page, this.size);
+   this.getArchivedCollaboraters(this.page, this.size);
   }
 
-  getCollaboraters(page: number, size: number) {
-    this.collaboraterService.getByComany(page, size).subscribe({
+  getArchivedCollaboraters(page: number, size: number) {
+    this.collaboraterService.getArchived(page, size).subscribe({
       next: (data: Page<Collaborater>) => {
         this.collaboraters = data.content;
         this.collaboraterDataSource.data = this.collaboraters;
@@ -65,12 +64,13 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
       }
     });
   }
-
+  
   onPageChange(event: any) {
     this.page = event.pageIndex;
     this.size = event.pageSize;
-    this.getCollaboraters(this.page, this.size);
+    this.getArchivedCollaboraters(this.page, this.size);
   }
+
 
   ngAfterViewInit() {
     this.collaboraterDataSource.paginator = this.paginator;
@@ -111,10 +111,6 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id: id, mode: "update" } });
   }
 
-  openArchivedCollaborateur() {
-    this.router.navigate(['/client/archiveCollaborateur']);
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.collaboraterDataSource.filter = filterValue.trim().toLowerCase();
@@ -124,7 +120,6 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.collaboraterService.deleteCollaborater(id).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborateur Supprimer !!!');
-        this.getCollaboraters(this.page, this.size);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
