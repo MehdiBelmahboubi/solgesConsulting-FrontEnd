@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,15 +17,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
-import { mode } from 'd3';
+import { SnackBarService } from 'app/services/snackBar.service';
+import { Page } from 'app/models/page.models';
 
 @Component({
   selector: 'app-collaborateur',
   standalone: true,
   imports: [
-    BreadcrumbComponent, RouterLink, HeaderSirhClientComponent, MatTableModule, 
-    MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule, 
-    MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, 
+    BreadcrumbComponent, RouterLink, HeaderSirhClientComponent, MatTableModule,
+    MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
+    MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
     MatButtonModule, MatMenuModule, MatIconModule
   ],
   templateUrl: './collaborateur.component.html',
@@ -34,25 +35,41 @@ import { mode } from 'd3';
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales','email', 'lieuNaissance', 'sexe', 'action'];
+  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
+  page: number = 0;
+  size: number = 4;
+  totalElements: number = 0;
+  totalPages: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private collaboraterService: CollaboraterService,private router: Router) {}
+  constructor(private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
-    this.collaboraterService.getByComany().subscribe({
-      next: (value) => {
-        this.collaboraters = value;
+    this.getCollaboraters(this.page, this.size);
+  }
+
+  getCollaboraters(page: number, size: number) {
+    this.collaboraterService.getByComany(page, size).subscribe({
+      next: (data: Page<Collaborater>) => {
+        this.collaboraters = data.content;
         this.collaboraterDataSource.data = this.collaboraters;
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
       },
       error: (err) => {
         console.error('Error fetching Collaboraters:', err);
       }
     });
+  }
+
+  onPageChange(event: any) {
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
+    this.getCollaboraters(this.page, this.size);
   }
 
   ngAfterViewInit() {
@@ -83,7 +100,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   openCollaboraterDetails(collaborater: Collaborater) {
-    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id:collaborater.id } });
+    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id: collaborater.id } });
   }
 
   openAddCollaborater() {
@@ -91,11 +108,27 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   openEditCollaborater(id: number) {
-    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id:id , mode:"update" } });
+    this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id: id, mode: "update" } });
+  }
+
+  openArchivedCollaborateur() {
+    this.router.navigate(['/client/archiveCollaborateur']);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.collaboraterDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deleteCollaborater(id: number) {
+    this.collaboraterService.deleteCollaborater(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Collaborateur Supprimer !!!');
+        this.getCollaboraters(this.page, this.size);
+      },
+      error: (err) => {
+        console.error('Error Updating Collaborator:', err);
+      }
+    });
   }
 }

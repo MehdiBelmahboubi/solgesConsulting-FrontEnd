@@ -25,20 +25,46 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./perso-infos-collaborater.component.scss']
 })
 export class PersoInfosCollaboraterComponent implements OnInit {
-  @Input() collaborater!:Collaborater;
-  @Input() mode!:string;
+  @Input() collaborater!: Collaborater;
+  @Input() mode!: string;
   countries!: Country[];
   addMode!: boolean;
   editMode!: boolean;
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService, private countryService: CountryService) {}
+  constructor(
+    private fb: FormBuilder,
+    private collaboraterService: CollaboraterService,
+    private router: Router,
+    private snackBarService: SnackBarService,
+    private countryService: CountryService
+  ) {}
 
-  ngOnInit(){
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    {this.addMode=true;}
+  ngOnInit() {
+    this.setMode();
+    this.initializeForm();
+    this.loadCountries();
+
+    if (this.collaborater) {
+      this.populateForm();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater && this.formGroup) {
+      this.populateForm();
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       matricule: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       firstName: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -51,7 +77,9 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       initiales: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       nomJeuneFille: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
-    
+  }
+
+  loadCountries(): void {
     this.countryService.getAllNationalities().subscribe({
       next: (value) => {
         this.countries = value;
@@ -62,9 +90,16 @@ export class PersoInfosCollaboraterComponent implements OnInit {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
-      this.formGroup.patchValue(this.collaborater);
+  populateForm(): void {
+    this.formGroup.patchValue(this.collaborater);
+    if (this.collaborater.countries) {
+      const countries = this.collaborater.countries;
+      if (countries.length > 0) {
+        this.formGroup.patchValue({
+          countryCode1: countries[0].code,
+          countryCode2: countries.length > 1 ? countries[1].code : ''
+        });
+      }
     }
   }
 
@@ -103,7 +138,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
     this.collaboraterService.editCollaborateur(newCollaborater).subscribe({
       next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
-        this.collaborater=value;
+        this.collaborater = value;
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
