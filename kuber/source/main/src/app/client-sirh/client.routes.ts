@@ -8,6 +8,7 @@ import { ArchivedCollaboraterComponent } from './collaborateur/archived-collabor
 import { ParametrageComponent } from './conge/parametrage/parametrage.component';
 import { SyntheseComponent } from './conge/synthese/synthese.component';
 import { DetailsComponent } from './conge/details/details.component';
+import { ListcongeComponent } from './conge/listconge/listconge.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -17,6 +18,10 @@ export const CLIENT_ROUTE: Route[] = [
   {
     path: 'collaborateur',
     component: CollaborateurComponent,
+  },
+  {
+    path: 'conge/listconge',
+    component: ListcongeComponent,
   },
   {
     path: 'conge/parametrage',

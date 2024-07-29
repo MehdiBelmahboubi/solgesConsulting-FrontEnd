@@ -714,7 +714,7 @@ export const ROUTES: RouteInfo[] = [
     role: ['client'],
     submenu: [
       {
-        path: '/client/conge/parametrage',
+        path: '/client/conge/listconge',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.MY-PROJECTS',
         title : 'paramétrage',
         iconType: '',
