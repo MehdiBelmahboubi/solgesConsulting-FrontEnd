@@ -34,12 +34,25 @@ export class ImmatriculationCollaboraterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    {
-      this.addMode=true;
+    this.setMode();
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
     }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       cnie: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       cnieDelivreePar: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -61,12 +74,6 @@ export class ImmatriculationCollaboraterComponent implements OnInit {
       permisTravailDebVal: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       permisTravailFinVal: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
-      this.formGroup.patchValue(this.collaborater);
-    }
   }
 
   openEditMode() {

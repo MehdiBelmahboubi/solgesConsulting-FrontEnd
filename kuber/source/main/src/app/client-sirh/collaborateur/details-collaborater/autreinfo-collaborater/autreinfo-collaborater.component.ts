@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -32,10 +32,25 @@ export class AutreinfoCollaboraterComponent implements OnInit {
   constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    {this.addMode=true;}
+    this.setMode();
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       dateDeces: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       dateCertifDeces: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],

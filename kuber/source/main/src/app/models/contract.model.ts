@@ -1,3 +1,5 @@
+import { contractType } from "./contractType.model";
+
 export class Contract{
     public id!:number;
     public contractRef!:string;
@@ -8,8 +10,8 @@ export class Contract{
     public exonerationFiscale!:number;
     public motifDepart!:string;
     public dateFin!:Date;
+    public contractType!:number;
     public collaboraterId!:number;
-    public typeId!:number;
 
     constructor(){}
 }

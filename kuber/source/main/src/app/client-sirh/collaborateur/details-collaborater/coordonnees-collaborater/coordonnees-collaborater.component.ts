@@ -32,10 +32,25 @@ export class CoordonneesCollaboraterComponent implements OnInit{
   constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) {}
 
   ngOnInit(): void {
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    { this.addMode=true;}
+    this.setMode();
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       telephone: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       tel1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -48,12 +63,6 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       adresse2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       adresse3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
-      this.formGroup.patchValue(this.collaborater);
-    }
   }
 
   openEditMode() {
