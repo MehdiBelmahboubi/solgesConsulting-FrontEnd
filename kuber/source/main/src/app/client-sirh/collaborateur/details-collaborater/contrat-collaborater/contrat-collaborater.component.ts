@@ -80,6 +80,10 @@ export class ContratCollaboraterComponent implements OnInit{
     }
   }
 
+  editCollaborater(): void {
+    
+  }
+
   back() {
     this.router.navigate(['/client/collaborateur']);
   }

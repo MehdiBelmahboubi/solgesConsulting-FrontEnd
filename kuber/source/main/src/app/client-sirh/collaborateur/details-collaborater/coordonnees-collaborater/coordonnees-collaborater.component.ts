@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,6 +23,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class CoordonneesCollaboraterComponent implements OnInit{
   @Input() collaborater!:Collaborater;
   @Input() mode!:string;
+  @Output() collaboratorUpdated = new EventEmitter<any>();
   addMode!: Boolean;
   editMode: boolean = false;
   formGroup!: FormGroup;
@@ -31,10 +32,25 @@ export class CoordonneesCollaboraterComponent implements OnInit{
   constructor(private fb: FormBuilder, private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) {}
 
   ngOnInit(): void {
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    { this.addMode=true;}
+    this.setMode();
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
+      this.formGroup.patchValue(this.collaborater);
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       telephone: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       tel1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -47,12 +63,6 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       adresse2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       adresse3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['collaborater'] && this.collaborater&& this.formGroup) {
-      this.formGroup.patchValue(this.collaborater);
-    }
   }
 
   openEditMode() {
@@ -79,6 +89,7 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.collaborater=value;
+        this.collaboratorUpdated.emit(this.collaborater);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
