@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,6 +23,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class CoordonneesCollaboraterComponent implements OnInit{
   @Input() collaborater!:Collaborater;
   @Input() mode!:string;
+  @Output() collaboratorUpdated = new EventEmitter<any>();
   addMode!: Boolean;
   editMode: boolean = false;
   formGroup!: FormGroup;
@@ -79,6 +80,7 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.collaborater=value;
+        this.collaboratorUpdated.emit(this.collaborater);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);

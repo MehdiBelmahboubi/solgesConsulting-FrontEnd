@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class PersoInfosCollaboraterComponent implements OnInit {
   @Input() collaborater!: Collaborater;
   @Input() mode!: string;
+  @Output() collaboratorUpdated = new EventEmitter<any>();
   countries!: Country[];
   addMode!: boolean;
   editMode!: boolean;
@@ -124,8 +125,9 @@ export class PersoInfosCollaboraterComponent implements OnInit {
   addCollaborater(): void {
     const newCollaborater = { ...this.collaborater, ...this.formGroup.value };
     this.collaboraterService.addCollaborateur(newCollaborater).subscribe({
-      next: () => {
+      next: (value) => {
         this.snackBarService.showSuccess('Collaborator created successfully!');
+        this.collaboratorUpdated.emit(value);
       },
       error: (err) => {
         console.error('Error Adding Collaborator:', err);
@@ -139,6 +141,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.collaborater = value;
+        this.collaboratorUpdated.emit(this.collaborater);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);

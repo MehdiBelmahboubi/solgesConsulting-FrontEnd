@@ -58,10 +58,11 @@ export function compare(a: number | string, b: number | string, isAsc: boolean) 
   styleUrls: ['./details-collaborater.component.scss']
 })
 export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
-  collaborater: Collaborater = new Collaborater();  
+  collaborater: Collaborater = new Collaborater();
   contract: Contract = new Contract();
   classification: Classification = new Classification();
-  mode!:string;
+  mode!: string;
+
   persoInfosCollaboraterComponent: boolean = true;
   contratCollaboraterComponent: boolean = false;
   classificationCollaboraterComponent: boolean = false;
@@ -73,76 +74,47 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
 
   findComponentActive(componentActive: string) {
     this.componentActive = componentActive;
+    this.resetComponents();
     if (componentActive === 'persoInfosCollaboraterComponent') {
       this.persoInfosCollaboraterComponent = true;
-      this.contratCollaboraterComponent = false;
-      this.classificationCollaboraterComponent = false;
-      this.immatriculationCollaboraterComponent = false;
-      this.coordonneesCollaboraterComponent = false;
-      this.familleCollaboraterComponent = false;
-      this.autreinfoCollaboraterComponent = false;
     } else if (componentActive === 'contratCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
       this.contratCollaboraterComponent = true;
-      this.classificationCollaboraterComponent = false;
-      this.immatriculationCollaboraterComponent = false;
-      this.coordonneesCollaboraterComponent = false;
-      this.familleCollaboraterComponent = false;
-      this.autreinfoCollaboraterComponent = false;
     } else if (componentActive === 'classificationCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
-      this.contratCollaboraterComponent = false;
       this.classificationCollaboraterComponent = true;
-      this.immatriculationCollaboraterComponent = false;
-      this.coordonneesCollaboraterComponent = false;
-      this.familleCollaboraterComponent = false;
-      this.autreinfoCollaboraterComponent = false;
     } else if (componentActive === 'immatriculationCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
-      this.contratCollaboraterComponent = false;
-      this.classificationCollaboraterComponent = false;
       this.immatriculationCollaboraterComponent = true;
-      this.coordonneesCollaboraterComponent = false;
-      this.familleCollaboraterComponent = false;
-      this.autreinfoCollaboraterComponent = false;
     } else if (componentActive === 'coordonneesCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
-      this.contratCollaboraterComponent = false;
-      this.classificationCollaboraterComponent = false;
-      this.immatriculationCollaboraterComponent = false;
       this.coordonneesCollaboraterComponent = true;
-      this.familleCollaboraterComponent = false;
-      this.autreinfoCollaboraterComponent = false;
-    }else if (componentActive === 'familleCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
-      this.contratCollaboraterComponent = false;
-      this.classificationCollaboraterComponent = false;
-      this.immatriculationCollaboraterComponent = false;
-      this.coordonneesCollaboraterComponent = false;
+    } else if (componentActive === 'familleCollaboraterComponent') {
       this.familleCollaboraterComponent = true;
-      this.autreinfoCollaboraterComponent = false;
-    }else if (componentActive === 'autreinfoCollaboraterComponent') {
-      this.persoInfosCollaboraterComponent = false;
-      this.contratCollaboraterComponent = false;
-      this.classificationCollaboraterComponent = false;
-      this.immatriculationCollaboraterComponent = false;
-      this.coordonneesCollaboraterComponent = false;
-      this.familleCollaboraterComponent = false;
+    } else if (componentActive === 'autreinfoCollaboraterComponent') {
       this.autreinfoCollaboraterComponent = true;
-    }
-
-    else {
-      console.log("pas de route");
+    } else {
+      console.log("No route found");
     }
   }
 
-  constructor(private collaboraterService: CollaboraterService,private route: ActivatedRoute, private router: Router) {}
+  resetComponents() {
+    this.persoInfosCollaboraterComponent = false;
+    this.contratCollaboraterComponent = false;
+    this.classificationCollaboraterComponent = false;
+    this.immatriculationCollaboraterComponent = false;
+    this.coordonneesCollaboraterComponent = false;
+    this.familleCollaboraterComponent = false;
+    this.autreinfoCollaboraterComponent = false;
+  }
+
+  constructor(
+    private collaboraterService: CollaboraterService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
       this.mode = params['mode'] || 'view';
-      
+
       if (this.mode === 'update' && id) {
         this.mode = "editMode";
         this.collaboraterService.getById(id).subscribe({
@@ -166,7 +138,7 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
             console.error('Error fetching Collaborater:', err);
           }
         });
-      }else{
+      } else {
         this.mode = "addMode";
         this.collaborater = new Collaborater();
         this.contract = new Contract();
@@ -178,4 +150,8 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void { }
+
+  handleCollaboratorUpdate(updatedCollaborator: Collaborater) {
+    this.collaborater = updatedCollaborator;
+  }
 }

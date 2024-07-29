@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +26,7 @@ import { SnackBarService } from 'app/services/snackBar.service';
 export class ImmatriculationCollaboraterComponent implements OnInit {
   @Input() collaborater!:Collaborater;
   @Input() mode!:string;
+  @Output() collaboratorUpdated = new EventEmitter<any>();
   addMode!: Boolean;
   editMode: boolean = false;
   formGroup!: FormGroup;
@@ -92,6 +93,7 @@ export class ImmatriculationCollaboraterComponent implements OnInit {
       next: (value) => {
         this.snackBarService.showSuccess('Collaborator updated successfully!');
         this.collaborater=value;
+        this.collaboratorUpdated.emit(this.collaborater);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
