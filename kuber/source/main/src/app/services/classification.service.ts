@@ -21,6 +21,14 @@ export class ClassificationService extends UnsubscribeOnDestroyAdapter {
     super();
   }
 
+  addClassification(classification:Classification):Observable<any>{
+    return this.httpClient.post<Classification>(`${this.appConfig.apiUrl}/classification/add`,classification);
+  }
+
+  updateClassification(classification:Classification):Observable<any>{
+    return this.httpClient.put<Classification>(`${this.appConfig.apiUrl}/classification/update`,classification);
+  }
+
   getAllTypes() : Observable<classificationType[]>{
     return this.httpClient.get<classificationType[]>(`${this.appConfig.apiUrl}/classification/getTypes`)
   }

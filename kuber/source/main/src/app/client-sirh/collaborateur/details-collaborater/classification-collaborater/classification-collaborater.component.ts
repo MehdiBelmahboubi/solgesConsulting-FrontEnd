@@ -13,6 +13,7 @@ import { ClassificationService } from 'app/services/classification.service';
 import { classificationType } from 'app/models/classificationType.model';
 import { Classification } from 'app/models/classification.model';
 import { Router } from '@angular/router';
+import { SnackBarService } from 'app/services/snackBar.service';
 
 
 
@@ -25,13 +26,14 @@ import { Router } from '@angular/router';
 })
 export class ClassificationCollaboraterComponent implements OnInit{
   @Input() classification!:Classification;
+  @Input() collaborater!: Collaborater;
   @Input() mode!:string;
   classificationTypes!: classificationType[];
   addMode!: Boolean;
   editMode: boolean = false;
   formGroup!: FormGroup;
   
-  constructor(private fb: FormBuilder,private router: Router,private classificationService: ClassificationService) { }
+  constructor(private fb: FormBuilder,private router: Router,private classificationService: ClassificationService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     if(this.mode==="editMode"){
@@ -39,12 +41,12 @@ export class ClassificationCollaboraterComponent implements OnInit{
     }else if(this.mode==="addMode")
     {this.addMode=true;}
     this.formGroup = this.fb.group({
-      classificationType: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      refClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       dateClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      DateFinClf: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      numPasseport: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      passeportDelivreLe: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      refClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      categorieProf: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      dateCategorieProf: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      dateFin: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      classificationType: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
     this.classificationService.getAllTypes().subscribe({
       next: (value) => {
@@ -79,6 +81,39 @@ export class ClassificationCollaboraterComponent implements OnInit{
       this.formGroup.controls[control].disable();
     }
   }
+
+  addClassification():void{
+    this.classification.collaboraterId = this.collaborater.id;
+    const newClassification = { ...this.classification, ...this.formGroup.value };
+    this.classificationService.addClassification(newClassification).subscribe({
+      next: (value) => {
+        this.snackBarService.showSuccess('Contract Classification successfully!');
+        this.classification = value;
+      },
+      error: (err) => {
+        console.error('Error Add Classification to Collaborator:', err);
+      }
+    });
+  }
+
+  updateClassification(): void {
+    if (this.classification.id === undefined) {
+      this.addClassification();
+    } else {
+      this.classification.collaboraterId = this.collaborater.id;
+      const newClassification = { ...this.classification, ...this.formGroup.value };
+      this.classificationService.updateClassification(newClassification).subscribe({
+        next: (value) => {
+          this.snackBarService.showSuccess('Classification updated successfully!');
+          this.classification = value;
+        },
+        error: (err) => {
+          console.error('Error Updating Classification to Collaborator:', err);
+        }
+      });
+    }
+  }
+
 
   back() {
     this.router.navigate(['/client/collaborateur']);

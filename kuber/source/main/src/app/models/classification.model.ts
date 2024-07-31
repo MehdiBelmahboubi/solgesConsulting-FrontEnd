@@ -6,5 +6,7 @@ export class Classification{
     public dateCategorieProf!:Date;
     public dateFin!:Date;
     public collaboraterId!:number;
-    public typeId!:number;
+    public classificationType!:number;
+
+    constructor(){}
 }

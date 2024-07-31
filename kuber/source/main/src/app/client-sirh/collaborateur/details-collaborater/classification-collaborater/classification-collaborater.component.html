@@ -43,7 +43,7 @@
                             <div class="col-md-6 d-flex align-items-center mb-3">
                                 <label for="DateFinClf" class="form-label mr-2">Date fin :</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput [matDatepicker]="pickerDateFinClf" formControlName="DateFinClf">
+                                    <input matInput [matDatepicker]="pickerDateFinClf" formControlName="dateFin">
                                     <mat-datepicker-toggle matSuffix [for]="pickerDateFinClf"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerDateFinClf></mat-datepicker>
                                 </mat-form-field>
@@ -61,18 +61,18 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="numPasseport" class="form-label mr-2">Catégorie professionnelle :</label>
+                                <label for="categorieProf" class="form-label mr-2">Catégorie professionnelle :</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput formControlName="numPasseport">
+                                    <input matInput formControlName="categorieProf">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="passeportDelivreLe" class="form-label mr-2">Date de catégorie
+                                <label for="dateCategorieProf" class="form-label mr-2">Date de catégorie
                                     professionnelle
                                     :</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput [matDatepicker]="pickerDateCategorieProf"
-                                        formControlName="passeportDelivreLe">
+                                        formControlName="dateCategorieProf">
                                     <mat-datepicker-toggle matSuffix
                                         [for]="pickerDateCategorieProf"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerDateCategorieProf></mat-datepicker>
@@ -87,12 +87,12 @@
                         <div class="col-md-11 d-flex justify-content-end mb-3">
                             <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
                                 (click)="back()">Retour</button>
-                            <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+                            <button mat-flat-button color="primary" *ngIf="addMode" (click)="addClassification()">Ajouter</button>
                             <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
                                 (click)="openEditMode()">Modifier</button>
                             <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
                                 (click)="cancel()">Annuler</button>
-                            <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                            <button mat-flat-button color="primary" *ngIf="editMode" (click)="updateClassification()">Enregistrer</button>
                         </div>
                     </div>
                 </div>
