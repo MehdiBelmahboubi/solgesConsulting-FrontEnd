@@ -1,5 +1,3 @@
-import { contractType } from "./contractType.model";
-
 export class Contract{
     public id!:number;
     public contractRef!:string;

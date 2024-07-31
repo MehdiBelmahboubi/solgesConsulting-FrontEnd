@@ -86,12 +86,12 @@
                     <div class="col-md-11 d-flex justify-content-end mb-3">
                         <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
                             (click)="back()">Retour</button>
-                        <button mat-flat-button color="primary" *ngIf="addMode">Ajouter</button>
+                        <button mat-flat-button color="primary" *ngIf="addMode" (click)="addContract()">Ajouter</button>
                         <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
                             (click)="openEditMode()">Modifier</button>
                         <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
                             (click)="cancel()">Annuler</button>
-                        <button mat-flat-button color="primary" *ngIf="editMode">Enregistrer</button>
+                        <button mat-flat-button color="primary" *ngIf="editMode" (click)="updateContract()">Enregistrer</button>
                     </div>
                 </div>
             </div>
