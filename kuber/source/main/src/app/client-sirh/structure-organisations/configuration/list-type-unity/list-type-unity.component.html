@@ -74,6 +74,18 @@
             </button>
           </div>
         </li>
+        <input
+          accept=".xlsx"
+          id="fileInput"
+          (change)="uploadFile($event)"
+          style="visibility: hidden; width: 0px; height: 0px"
+          type="file"
+        />
+        <li>
+          <div onclick="document.getElementById('fileInput').click()" class="export-button m-l-10" matTooltip="XLSX">
+            <img src="../../../../../assets/images/icons/xlsx.png" alt=""  />
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -122,10 +134,10 @@
           </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="start-end-date" >
-          <mat-header-cell *matHeaderCellDef>Dernières mises à jour</mat-header-cell>
+        <ng-container matColumnDef="updateDate" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Dernières mises à jour</mat-header-cell>
           <mat-cell *matCellDef="let  typeUnity">
-            <p>{{typeUnity.updateDate ? (typeUnity.updateDate | date) : '------'}}</p>
+            <p>{{typeUnity.updateDate ? (typeUnity.updateDate | date: 'dd/MM/yyyy') : '------'}}</p>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">

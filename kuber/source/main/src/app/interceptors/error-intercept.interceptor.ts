@@ -7,46 +7,43 @@ import { catchError, throwError } from 'rxjs';
 export const errorInterceptInterceptor: HttpInterceptorFn =
   (request, next) => {
 
-  const authenticationService =inject(AuthService);
-  const localStorageService =inject(LocalStorageService);
-  const refreshToken=localStorageService.getRefreshToken();
-  const cptRefreshStr: string | null = localStorageService.getCptRefresh();
-  let cptRefresh: number = cptRefreshStr ? parseInt(cptRefreshStr, 10) : 0;
+    const authenticationService =inject(AuthService);
+    const localStorageService =inject(LocalStorageService);
+    const refreshToken=localStorageService.getRefreshToken();
+    const cptRefreshStr: string | null = localStorageService.getCptRefresh();
+    let cptRefresh: number = cptRefreshStr ? parseInt(cptRefreshStr, 10) : 0;
 
-  return next(request).pipe(
-    catchError((err) => {
-      console.log("Error Interceptor-----------------------");
-      if (err instanceof HttpErrorResponse) {
-        if (err.status === 401 && cptRefresh < 2 && !request.url.includes('/authenticate')) {
+    return next(request).pipe(
+      catchError((err) => {
+        console.log("Error Interceptor-----------------------",err.error.error);
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 403 && cptRefresh < 2 && !request.url.includes('/authenticate')) {
 
-          console.error('Unauthorized request--:', err);
-          authenticationService.getRefreshToken(refreshToken).subscribe({
-            next : (res:any) =>{
-              localStorageService.setAccessToken(res.accessToken);
-              console.log("Votre Refresh Token   est mis a jours",localStorageService.getAccessToken())
-              return next(request);
-            },
-            error : err => {
-              console.log("err dans refresh token !")
-              localStorageService.setIsUserLoggedIn(false);
-              localStorageService.removeToken();
-              return throwError(() => err);
-            }
-          });
-          console.log("Attempting to refrech token",cptRefresh)
-          cptRefresh=cptRefresh+1;
-          localStorageService.setCptRefresh(cptRefresh);
+            console.error('Unauthorized request Interceptor --*--- :', err);
+            authenticationService.getRefreshToken(refreshToken).subscribe({
+              next : (res:any) =>{
+                localStorageService.setAccessToken(res.accessToken);
+                console.log("Votre Refresh Token   est mis a jours",localStorageService.getAccessToken())
+                return next(request);
+              },
+              error : err => {
+                console.log("err dans refresh token !")
+                localStorageService.setIsUserLoggedIn(false);
+                localStorageService.removeToken();
+                return throwError(() => err);
+              }
+            });
+            console.log("Attempting to refrech token",cptRefresh)
+            cptRefresh=cptRefresh+1;
+            localStorageService.setCptRefresh(cptRefresh);
+          }
+          else {
+            return throwError(()=> new Error(err.error.error))
+          }
+        } else {
+          console.error('An error occurred:', err);
         }
-        else {
-          console.error('HTTP error--:', err);
-          console.log("contour : ",localStorageService.getCptRefresh())
-          return throwError(()=> new Error("Non Authentication erreur "))
-        }
-      } else {
-        console.error('An error occurred:', err);
-      }
-      return throwError(() => err);
-    })
-  );
-
-};
+        return throwError(() => err);
+      })
+    );
+  };
