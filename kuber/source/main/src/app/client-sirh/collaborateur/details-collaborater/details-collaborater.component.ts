@@ -120,8 +120,16 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
         this.collaboraterService.getById(id).subscribe({
           next: (value) => {
             this.collaborater = value;
-            this.contract = value.contract;
-            this.classification = value.classification;
+            if(value.contract===null){
+              this.contract = new Contract();
+            }else{
+              this.contract = value.contract;
+            }
+            if(value.classification===null){
+              this.classification = new Classification();
+            }else{
+              this.classification = value.classification;
+            }
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
@@ -131,8 +139,16 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
         this.collaboraterService.getById(id).subscribe({
           next: (value) => {
             this.collaborater = value;
-            this.contract = value.contract;
-            this.classification = value.classification;
+            if(value.contract===null){
+              this.contract = new Contract();
+            }else{
+              this.contract = value.contract;
+            }
+            if(value.classification===null){
+              this.classification = new Classification();
+            }else{
+              this.classification = value.classification;
+            }
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
