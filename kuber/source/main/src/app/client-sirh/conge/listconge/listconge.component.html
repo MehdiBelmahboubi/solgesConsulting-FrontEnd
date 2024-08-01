@@ -72,13 +72,6 @@
             <td mat-cell *matCellDef="let conge">{{ conge.code }}</td>
           </ng-container>
 
-          <ng-container matColumnDef="imputablePaix">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Imputable à la paix</th>
-            <td mat-cell *matCellDef="let conge">
-              <mat-checkbox [checked]="conge.imputablePaix" disabled></mat-checkbox>
-            </td>
-          </ng-container>
-
           <ng-container matColumnDef="dateValidite">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de validité</th>
             <td mat-cell *matCellDef="let conge">{{ conge.dateValidite  }}</td>
@@ -115,44 +108,14 @@
           </ng-container>
 
 
-          <ng-container matColumnDef="autoriserDefalcation">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Autoriser la défalcation</th>
-            <td mat-cell *matCellDef="let conge">
-              <mat-checkbox [checked]="conge.autoriserDefalcation" disabled></mat-checkbox>
-            </td>
-          </ng-container>
-
           <!-- Nombre de fois Column -->
-          <ng-container matColumnDef="nombreDeFois">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de fois</th>
-            <td mat-cell *matCellDef="let conge">{{ conge.nombreDeFois }}</td>
-          </ng-container>
+
 
           <!-- Autorisation rencondiction Column -->
-          <ng-container matColumnDef="autorisationRencondiction">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Autorisation rencondiction</th>
-            <td mat-cell *matCellDef="let conge">
-              <mat-checkbox [checked]="conge.autorisationRencondiction" disabled></mat-checkbox>
-            </td>
-          </ng-container>
+
 
           <!-- Délai Column -->
-          <ng-container matColumnDef="delai">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Délai</th>
-            <td mat-cell *matCellDef="let conge">{{ conge.delai }}</td>
-          </ng-container>
-
-          <!-- Min jours Column -->
-          <ng-container matColumnDef="minJours">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Min jours</th>
-            <td mat-cell *matCellDef="let conge">{{ conge.minJours }}</td>
-          </ng-container>
-
-          <!-- Max jours Column -->
-          <ng-container matColumnDef="maxJours">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Max jours</th>
-            <td mat-cell *matCellDef="let conge">{{ conge.maxJours }}</td>
-          </ng-container>
+          
 
           <!-- Reliquat a reconduire Column -->
           <ng-container matColumnDef="reliquat">

@@ -33,7 +33,7 @@ import { Page } from 'app/models/page.models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListcongeComponent {
-  displayedColumns: string[] = ['select','code','dateValidite','statut','unite','droitEntreprise','droitLegal','typeCalendrier','finValidite','imputablePaix', 'autoriserDefalcation', 'nombreDeFois', 'autorisationRencondiction', 'delai', 'minJours', 'maxJours', 'reliquat', 'nombreAnnee', 'action'];
+  displayedColumns: string[] = ['select','code','dateValidite','statut','unite','droitEntreprise','droitLegal','typeCalendrier','finValidite',  'reliquat', 'nombreAnnee', 'action'];
   page: number = 0;
   size: number = 4;
   totalElements: number = 0;
