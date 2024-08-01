@@ -31,6 +31,8 @@
                                 <label for="Statut" class="form-label mr-2">Statut:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="Statut" name="Statut">
+                                        <mat-option value="Homme">En-cours</mat-option>
+                                        <mat-option value="Femme">Suspendu</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -56,9 +58,11 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="unite" class="form-label mr-2">unité:</label>
+                                <label for="unite" class="form-label mr-2">Unité:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="unite" name="unite">
+                                        <mat-option value="Homme">Journée</mat-option>
+                                        <mat-option value="Femme">Demi-journée</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -71,6 +75,9 @@
                                 <label for="calendrierType" class="form-label mr-2">Type de calendrier:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="calendrierType" name="calendrierType">
+                                        <mat-option value="Homme">Calendaire</mat-option>
+                                        <mat-option value="Femme">Ouvré </mat-option>
+                                        <mat-option value="Femme">Ouvrable </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -108,14 +115,14 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="deviser" class="form-label mr-2">autoriser la défalcation:</label>
+                                <label for="deviser" class="form-label mr-2">Autoriser la défalcation:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin"
                                         formControlName="deviser"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="Combient" class="form-label mr-2">nombre de fois:</label>
+                                <label for="Combient" class="form-label mr-2">Nombre de fois:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Combient">
                                 </mat-form-field>

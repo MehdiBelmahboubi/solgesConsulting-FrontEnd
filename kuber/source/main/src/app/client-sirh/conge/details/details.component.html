@@ -1,1 +1,96 @@
-<p>details works!</p>
+<section class="content">
+    <div class="container">
+        <div class="body">
+            <form [formGroup]="formGroup">
+                <!-- Conteur Section -->
+                <mat-card class="styled-card">
+                    <mat-list>
+                        <mat-list-item>
+                            détails de congé
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+
+                        <div class="row form-inline">
+
+
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="conge" class="form-label mr-2">congé:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <mat-select formControlName="conge" name="conge">
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="collaborateur" class="form-label mr-2">Collaborateur:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <mat-select formControlName="collaborateur" name="collaborateur">
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="debut" class="form-label mr-2">Début:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput [matDatepicker]="pickerdebut" formControlName="debut">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerdebut"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerdebut></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                            
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="Fin" class="form-label mr-2">fin:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput [matDatepicker]="pickerFin" formControlName="Fin">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerFin></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="jrsconge" class="form-label mr-2">nombre de jours de congé:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="jrsconge">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="jrscld" class="form-label mr-2">nombre de jours calendaires:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="jrscld">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="jrsreel" class="form-label mr-2">nombre de jours réels:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="jrsreel">
+                                </mat-form-field>
+                            </div>
+                           
+                        </div>
+                        
+
+        
+
+                    </mat-card-content>
+                </mat-card>
+               
+               
+                
+                <!-- Action Buttons -->
+                <div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <div class="col-md-11 d-flex justify-content-end mb-3">
+                            <button mat-flat-button color="primary" class="mr-2" >Retour</button>
+                            <button mat-flat-button color="primary" >Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
