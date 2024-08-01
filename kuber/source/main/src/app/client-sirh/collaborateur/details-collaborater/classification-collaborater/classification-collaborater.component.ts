@@ -36,10 +36,28 @@ export class ClassificationCollaboraterComponent implements OnInit{
   constructor(private fb: FormBuilder,private router: Router,private classificationService: ClassificationService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
-    if(this.mode==="editMode"){
-      this.editMode=true;
-    }else if(this.mode==="addMode")
-    {this.addMode=true;}
+    this.setMode();
+    this.initializeForm();
+    this.loadClassificationTypes();
+    
+   
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['classification'] && this.classification&& this.formGroup) {
+      this.formGroup.patchValue(this.classification);
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
+      this.editMode = true;
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       dateClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       refClassification: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -48,20 +66,18 @@ export class ClassificationCollaboraterComponent implements OnInit{
       dateFin: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       classificationType: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
+  }
+
+  loadClassificationTypes(): void {
     this.classificationService.getAllTypes().subscribe({
       next: (value) => {
         this.classificationTypes = value;
       },
       error: (err) => {
         console.error('Error fetching Classifications :', err);
+        this.snackBarService.showError(err);
       }
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['classification'] && this.classification&& this.formGroup) {
-      this.formGroup.patchValue(this.classification);
-    }
   }
 
   openEditMode(): void {
@@ -92,6 +108,7 @@ export class ClassificationCollaboraterComponent implements OnInit{
       },
       error: (err) => {
         console.error('Error Add Classification to Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
@@ -109,6 +126,7 @@ export class ClassificationCollaboraterComponent implements OnInit{
         },
         error: (err) => {
           console.error('Error Updating Classification to Collaborator:', err);
+          this.snackBarService.showError(err);
         }
       });
     }

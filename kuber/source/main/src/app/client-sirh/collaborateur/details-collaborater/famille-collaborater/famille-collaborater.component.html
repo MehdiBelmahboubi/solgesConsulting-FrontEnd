@@ -13,8 +13,7 @@
                             <div class="col-md-6 d-flex align-items-center mb-4">
                                 <label for="nbEpousesSaisi" class="form-label mr-4">Nombre d'épouses saisi :</label>
                                 <section class="example-section">
-                                    <mat-checkbox class="example-margin"
-                                        [disabled]="!addMode && !editMode"></mat-checkbox>
+                                    <mat-checkbox class="example-margin" formControlName="nbEpousesSaisi"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-6 d-flex align-items-center mb-4">
@@ -38,8 +37,7 @@
                             <div class="col-md-6 d-flex align-items-center mb-3">
                                 <label for="nbEnfantsSaisi" class="form-label mr-2">Nombre d'enfants saisi :</label>
                                 <section class="example-section">
-                                    <mat-checkbox class="example-margin"
-                                        formControlName="nbEnfantsSaisi"></mat-checkbox>
+                                    <mat-checkbox class="example-margin" formControlName="nbEnfantsSaisi"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-2">
@@ -48,23 +46,18 @@
                                     <input matInput formControlName="nbEnfants">
                                 </mat-form-field>
                             </div>
-
-
                         </div>
                         <div class="row form-inline">
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants à charge
-                                    saisi
-                                    :</label>
+                                <label for="nbEnfantsChargeSaisi" class="form-label mr-2">Nombre d'enfants à charge saisi :</label>
                                 <section class="example-section">
-                                    <mat-checkbox class="example-margin"
-                                        formControlName="nbEnfantsChargeSaisi"></mat-checkbox>
+                                    <mat-checkbox class="example-margin" formControlName="nbEnfantsChargeSaisi"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-2">
-                                <label for="nbEnfantsCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
+                                <label for="nbEnfantCharge" class="form-label mr-2">Nombre d'enfants à charge :</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput formControlName="nbEnfantsCharge">
+                                    <input matInput formControlName="nbEnfantCharge">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-2">
@@ -81,16 +74,11 @@
                 <div class="row form-inline">
                     <div class="d-flex justify-content-end mt-4">
                         <div class="col-md-11 d-flex justify-content-end mb-3">
-                            <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode"
-                                (click)="back()">Retour</button>
-                            <button mat-flat-button color="primary" *ngIf="addMode"
-                                (click)="editCollaborater()">Ajouter</button>
-                            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode"
-                                (click)="openEditMode()">Modifier</button>
-                            <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode"
-                                (click)="cancel()">Annuler</button>
-                            <button mat-flat-button color="primary" *ngIf="editMode"
-                                (click)="editCollaborater()">Enregistrer</button>
+                            <button mat-flat-button color="primary" class="mr-2" *ngIf="addMode || !editMode" (click)="back()">Retour</button>
+                            <button mat-flat-button color="primary" *ngIf="addMode" (click)="editCollaborater()">Ajouter</button>
+                            <button mat-flat-button color="primary" *ngIf="!addMode && !editMode" (click)="openEditMode()">Modifier</button>
+                            <button mat-flat-button color="primary" class="mr-2" *ngIf="editMode" (click)="cancel()">Annuler</button>
+                            <button mat-flat-button color="primary" *ngIf="editMode" (click)="editCollaborater()">Enregistrer</button>
                         </div>
                     </div>
                 </div>

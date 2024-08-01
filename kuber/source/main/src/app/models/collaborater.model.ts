@@ -45,6 +45,9 @@ export class Collaborater {
   public email1!: string;
   public email2!: string;
   public email3!: string;
+  public adresse1!: string;
+  public adresse2!: string;
+  public adresse3!: string;
   // Famille - nv4
   public nbEnfantsSaisi!: boolean;
   public nbEnfants!: number;

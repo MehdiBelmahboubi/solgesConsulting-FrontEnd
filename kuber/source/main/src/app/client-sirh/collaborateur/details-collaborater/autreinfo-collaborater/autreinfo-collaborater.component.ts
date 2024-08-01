@@ -90,6 +90,7 @@ export class AutreinfoCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }

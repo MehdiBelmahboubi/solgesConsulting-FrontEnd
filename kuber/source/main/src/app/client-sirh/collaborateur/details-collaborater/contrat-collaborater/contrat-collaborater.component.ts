@@ -34,9 +34,26 @@ export class ContratCollaboraterComponent implements OnInit {
   constructor(private fb: FormBuilder, private contractService: ContractService, private router: Router, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
-    if (this.mode === "editMode") {
+    this.setMode();
+    this.initializeForm();
+    this.loadContractTypes();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['contract'] && this.contract && this.formGroup) {
+      this.formGroup.patchValue(this.contract);
+    }
+  }
+
+  setMode(): void {
+    if (this.mode === 'editMode') {
       this.editMode = true;
-    } else if (this.mode === "addMode") { this.addMode = true; }
+    } else if (this.mode === 'addMode') {
+      this.addMode = true;
+    }
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
       contractType: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       contractRef: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
@@ -48,20 +65,18 @@ export class ContratCollaboraterComponent implements OnInit {
       dateEntree: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       dateFin: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
+  }
+
+  loadContractTypes(): void {
     this.contractService.getAllTypes().subscribe({
       next: (value) => {
         this.contractTypes = value;
       },
       error: (err) => {
         console.error('Error fetching Countries :', err);
+        this.snackBarService.showError(err);
       }
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['contract'] && this.contract && this.formGroup) {
-      this.formGroup.patchValue(this.contract);
-    }
   }
 
   openEditMode(): void {
@@ -92,6 +107,7 @@ export class ContratCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error Add Contract to Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
@@ -109,6 +125,7 @@ export class ContratCollaboraterComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error Updating Contract to Collaborator:', err);
+          this.snackBarService.showError(err);
         }
       });
     }

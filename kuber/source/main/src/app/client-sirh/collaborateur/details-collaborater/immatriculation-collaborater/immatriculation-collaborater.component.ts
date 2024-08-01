@@ -104,6 +104,7 @@ export class ImmatriculationCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }

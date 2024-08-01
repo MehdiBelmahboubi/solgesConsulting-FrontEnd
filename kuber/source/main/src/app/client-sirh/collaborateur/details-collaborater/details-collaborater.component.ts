@@ -21,6 +21,7 @@ import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
 import { Contract } from 'app/models/contract.model';
 import { Classification } from 'app/models/classification.model';
+import { SnackBarService } from 'app/services/snackBar.service';
 
 export function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -107,7 +108,8 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
   constructor(
     private collaboraterService: CollaboraterService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBarService: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -133,6 +135,7 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
+            this.snackBarService.showError(err);
           }
         });
       } else if (id) {
@@ -152,6 +155,7 @@ export class DetailsCollaboraterComponent implements OnInit, AfterViewInit {
           },
           error: (err) => {
             console.error('Error fetching Collaborater:', err);
+            this.snackBarService.showError(err);
           }
         });
       } else {

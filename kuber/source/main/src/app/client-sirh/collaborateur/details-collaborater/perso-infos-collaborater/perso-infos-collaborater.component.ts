@@ -87,6 +87,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching Countries:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
@@ -131,6 +132,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error Adding Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
@@ -145,6 +147,7 @@ export class PersoInfosCollaboraterComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }

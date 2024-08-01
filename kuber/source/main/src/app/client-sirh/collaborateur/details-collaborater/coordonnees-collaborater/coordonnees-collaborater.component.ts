@@ -59,7 +59,7 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       email1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       email2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       email3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      adresse: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      adresse1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       adresse2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       adresse3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
     });
@@ -93,6 +93,7 @@ export class CoordonneesCollaboraterComponent implements OnInit{
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
