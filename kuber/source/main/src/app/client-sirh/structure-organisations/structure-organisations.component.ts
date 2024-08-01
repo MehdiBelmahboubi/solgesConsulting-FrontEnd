@@ -22,6 +22,26 @@ import {ListTypeUnityComponent} from "./configuration/list-type-unity/list-type-
 export function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+export function compareDates(a: Date | number | string, b: Date | number | string, isAsc: boolean): number {
+  let dateA: Date;
+  let dateB: Date;
+
+  if (typeof a === 'string' || typeof a === 'number') {
+    dateA = new Date(a);
+  } else {
+    dateA = a;
+  }
+
+  if (typeof b === 'string' || typeof b === 'number') {
+    dateB = new Date(b);
+  } else {
+    dateB = b;
+  }
+
+  const comparison = dateA < dateB ? -1 : (dateA > dateB ? 1 : 0);
+  return isAsc ? comparison : -comparison;
+}
+
 
 @Component({
   selector: 'app-structure-organisations',

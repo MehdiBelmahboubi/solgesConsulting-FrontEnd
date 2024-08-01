@@ -38,6 +38,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
+  selectedFile: File | null = null;
   page: number = 0;
   size: number = 4;
   totalElements: number = 0;
@@ -62,6 +63,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
       },
       error: (err) => {
         console.error('Error fetching Collaboraters:', err);
+        this.snackBarService.showError(err);
       }
     });
   }
@@ -120,6 +122,11 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.collaboraterDataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  refresh() {
+    this.getCollaboraters(this.page,this.size);
+
+  }
+
   deleteCollaborater(id: number) {
     this.collaboraterService.deleteCollaborater(id).subscribe({
       next: () => {
@@ -128,6 +135,41 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  uploadFile(event: any) {
+    console.log("upload file ")
+    this.selectedFile = event.target.files[0] as File;
+    event.target.value = null;
+    if (this.selectedFile) {
+      this.snackBarService.showSuccess('Fichier importer avec success ! ');
+      this.massRegisterCollaboraters(this.selectedFile);
+    }
+    else {
+      this.snackBarService.showError('Fichier n\'est pas importer  ! ')
+    }
+  }
+
+  massRegisterCollaboraters(event:any){
+    this.collaboraterService.uploadFile(event).subscribe({
+      next: value => {
+        if(value.message.includes('erreur')){
+          this.snackBarService.showError('Ajout des Collaborateurs Echoué   ! ')
+        }
+        else{
+          this.snackBarService.showSuccess(value.message +'! ');
+        }
+        console.log('resp :',value)
+      },
+      error: err => {
+        console.log("erreur response *:", err);
+        this.snackBarService.showError('Ajout des Collaborateurs Echoué  ! ')
+      },
+      complete:()=>{
+        this.refresh();
       }
     });
   }

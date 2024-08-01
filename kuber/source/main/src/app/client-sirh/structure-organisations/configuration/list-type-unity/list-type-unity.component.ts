@@ -16,7 +16,7 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, MatSortHeader, Sort} from "@angular/material/sort";
 import {TypeUnity} from "../../../../models/TypeUnity.model";
-import {compare} from "../../structure-organisations.component";
+import {compare, compareDates} from "../../structure-organisations.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe, NgForOf, NgIf, NgStyle} from "@angular/common";
 import {BreadcrumbComponent} from "@shared/components/breadcrumb/breadcrumb.component";
@@ -29,8 +29,6 @@ import {SnackBarService} from "../../../../services/snackBar.service";
 import {DialogNewTypeUnityComponent} from "../dialog-new-type-unity/dialog-new-type-unity.component";
 import {MatDialog} from "@angular/material/dialog";
 import {LocalStorageService} from "../../../../services/storage/local-storage.service";
-import _default from "chart.js/dist/plugins/plugin.tooltip";
-import type = _default.defaults.animations.numbers.type;
 import {DialogUpdateTypeUnityComponent} from "../dialog-update-type-unity/dialog-update-type-unity.component";
 import {HeaderSirhClientComponent} from "../../../header-sirh-client/header-sirh-client.component";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -89,10 +87,10 @@ export class ListTypeUnityComponent implements OnInit{
   @ViewChild(MatSort) sort!: MatSort;
   typesUnity : TypeUnity[]=[];
   typeUnityFiltered :TypeUnity[]=[];
-
+  selectedFile: File | null = null;
   backgroundColorBlue='';
   selection =new SelectionModel<TypeUnity>(true,[])
-  displayColumns =['name','active','level','color','start-end-date','action'];
+  displayColumns =['name','active','level','color','updateDate','action'];
   checkboxDisabled: boolean=true;
   archive: boolean=true;
   @Output() public refreshTypesUnityEmitter=new EventEmitter();
@@ -124,7 +122,7 @@ export class ListTypeUnityComponent implements OnInit{
           },
           error : err => {
             this.loading=true;
-            console.log("____error ",err);
+            this.snackBarService.showError(err)
           },
           complete : () => {
 
@@ -133,6 +131,7 @@ export class ListTypeUnityComponent implements OnInit{
       );
   }
   sortData(sort: Sort) {
+    console.log("sort event :",this.sort);
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
       this.typesUnity = data;
@@ -148,9 +147,9 @@ export class ListTypeUnityComponent implements OnInit{
         case 'id':
           return compare(a.id, b.id, isAsc);
         case 'level':
-          return compare(a.id, b.id, isAsc);
-        case 'active':
-          return compare(a.id, b.id, isAsc);
+          return compare(a.level, b.level, isAsc);
+        case 'updateDate':
+          return compareDates( b.updateDate,a.updateDate,isAsc);
         default:
           return 0;
       }
@@ -162,12 +161,10 @@ export class ListTypeUnityComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  setAddTypeUnitComponentOpen() {
-
-  }
-
   refresh() {
-   this.getAllTypesUnity();
+    this.archive=true;
+    this.getAllTypesUnity();
+
   }
   isAllSelected() {
     return this.selection.selected?.length == this.typesUnity.length;
@@ -182,8 +179,6 @@ export class ListTypeUnityComponent implements OnInit{
       console.log("list selected all :",this.selection.selected)
     }
   }
-
-
   duplicate(typeUnity :TypeUnity) {
     this.typeUnityService.duplicate(typeUnity).subscribe({
       next : (value :TypeUnity)=>{
@@ -196,7 +191,7 @@ export class ListTypeUnityComponent implements OnInit{
       },
       complete :()=>{
         this.getAllTypesUnity();
-    }
+      }
     });
 
   }
@@ -208,6 +203,11 @@ export class ListTypeUnityComponent implements OnInit{
     if(idUser==-1 || idCompany==-1) return ;
     this.openPopupUpdateTypeUnity(this.dialog, idCompany,idUser,typeUnity)
       .subscribe(item=>{
+        this.sort.active='updateDate';
+        this
+        this.sort.direction === 'desc'
+        this.sortData(this.sort)
+        this.refresh();
         if(item){
           /*this.commentService.save(item).subscribe({
             next :res =>{
@@ -235,9 +235,6 @@ export class ListTypeUnityComponent implements OnInit{
     console.log("list selected :",this.selection.selected)
   }
 
-  getColors(status:string):string {
-    return this.stylesService.statusColors(status);
-  }
   getColorsTrueOrFalse(status:boolean):string {
     return this.stylesService.getColorsTrueOrFalse(status);
   }
@@ -297,15 +294,7 @@ export class ListTypeUnityComponent implements OnInit{
       .subscribe(item=>{
         if(item){
           this.refreshTypesUnityEmitter.emit();
-          /*this.commentService.save(item).subscribe({
-            next :res =>{
-              this.toastService.showSuccess("Votre commentaire est ajouter avec succes ");
-              this.getCommentByTicket(this.ticket.id);
-            },
-            error :err => {
-              this.toastService.showError(err);
-            }
-          })*/
+          this.refresh();
         }
       });
   }
@@ -324,5 +313,38 @@ export class ListTypeUnityComponent implements OnInit{
 
   advancedSearch() {
 
+  }
+
+  uploadFile(event: any) {
+    console.log("upload file ")
+    this.selectedFile = event.target.files[0] as File;
+    event.target.value = null;
+    if (this.selectedFile) {
+      this.snackBarService.showSuccess('Fichier importer avec success ! ');
+      this.massRegisterTypes(this.selectedFile);
+    }
+    else {
+      this.snackBarService.showError('Fichier n\'est pas importer  ! ')
+    }
+  }
+  massRegisterTypes(event:any){
+    this.typeUnityService.uploadFile(event).subscribe({
+      next: value => {
+        if(value.message.includes('erreur')){
+          this.snackBarService.showError('Création des types Echoué  ! ')
+        }
+        else{
+          this.snackBarService.showSuccess(value.message +'! ');
+        }
+        console.log('resp :',value)
+      },
+      error: err => {
+        console.log("erreur response *:", err);
+        this.snackBarService.showError('Création des types Echoué  ! ')
+      },
+      complete:()=>{
+        this.refresh();
+      }
+    });
   }
 }

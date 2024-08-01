@@ -48,9 +48,16 @@
             (click)="openAddCollaborater()">
             <mat-icon>add</mat-icon>
           </button>
-          <button mat-mini-fab style="background-color: #09a509;" class="small-icon-button">
-            <mat-icon>file_copy</mat-icon>
-          </button>
+          <input
+          accept=".xlsx"
+          id="fileInput"
+          (change)="uploadFile($event)"
+          style="visibility: hidden; width: 0px; height: 0px"
+          type="file"
+           />
+           <div onclick="document.getElementById('fileInput').click()" class="export-button m-l-10" matTooltip="XLSX">
+            <img src="../../../../../assets/images/icons/xlsx.png" alt=""  />
+          </div>
         </div>
       </div>
       <div class="mat-elevation-z0">
