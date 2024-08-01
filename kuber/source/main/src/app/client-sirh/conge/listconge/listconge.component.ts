@@ -1,4 +1,3 @@
-
 import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,7 +19,6 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { Page } from 'app/models/page.models';
 
-
 @Component({
   selector: 'app-listconge',
   standalone: true,
@@ -31,40 +29,58 @@ import { Page } from 'app/models/page.models';
     MatButtonModule, MatMenuModule, MatIconModule
   ],
   templateUrl: './listconge.component.html',
-  styleUrl: './listconge.component.scss'
+  styleUrls: ['./listconge.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListcongeComponent {
-  size: unknown;
+  displayedColumns: string[] = ['select','code','dateValidite','statut','unite','droitEntreprise','droitLegal','typeCalendrier','finValidite','imputablePaix', 'autoriserDefalcation', 'nombreDeFois', 'autorisationRencondiction', 'delai', 'minJours', 'maxJours', 'reliquat', 'nombreAnnee', 'action'];
+  page: number = 0;
+  size: number = 4;
+  totalElements: number = 0;
+  totalPages: number = 0;
 
-  constructor(private router: Router){}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  listcongeDataSource: any;
+
+  constructor(private router: Router) { }
 
   onPageChange($event: PageEvent) {
-    throw new Error('Method not implemented.');
+    // Implémentez la logique de changement de page ici
   }
   conge: any;
-  displayedColumns: any;
-  totalElements: unknown;
   checkboxLabel(): string {
-    throw new Error('Method not implemented.');
+    // Implémentez la logique d'étiquette de la case à cocher ici
+    return '';
   }
-  selection: any;
-  isAllSelected(): unknown {
-    throw new Error('Method not implemented.');
+  selection: SelectionModel<any> = new SelectionModel<any>(true, []);
+  
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.listcongeDataSource.data.length;
+    return numSelected === numRows;
   }
+  
   toggleAllRows() {
-    throw new Error('Method not implemented.');
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+    this.selection.select(...this.listcongeDataSource.data);
   }
+
   openAddconge() {
     this.router.navigate(['/client/conge/parametrage']);
   }
+
   openArchivedlistconge() {
-    throw new Error('Method not implemented.');
+    // Implémentez la logique pour ouvrir la liste des congés archivés ici
   }
-  listcongeDataSource: any;
+
+ 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.listcongeDataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

@@ -64,7 +64,57 @@
             </td>
           </ng-container>
 
+   
+
           <!-- Autoriser la défalcation Column -->
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.code }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="imputablePaix">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Imputable à la paix</th>
+            <td mat-cell *matCellDef="let conge">
+              <mat-checkbox [checked]="conge.imputablePaix" disabled></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dateValidite">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de validité</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.dateValidite  }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="finValidite">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Fin de validité</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.finValidite  }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="typeCalendrier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Type de calendrier</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.typeCalendrier }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="droitLegal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Droit légal</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.droitLegal }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.statut }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="unite">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.unite }}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="droitEntreprise">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Droit d'entreprise</th>
+            <td mat-cell *matCellDef="let conge">{{ conge.droitEntreprise }}</td>
+          </ng-container>
+
+
           <ng-container matColumnDef="autoriserDefalcation">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Autoriser la défalcation</th>
             <td mat-cell *matCellDef="let conge">
