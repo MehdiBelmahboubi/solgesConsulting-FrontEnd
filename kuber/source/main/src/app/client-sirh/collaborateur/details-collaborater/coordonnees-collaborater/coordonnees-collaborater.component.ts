@@ -52,10 +52,10 @@ export class CoordonneesCollaboraterComponent implements OnInit{
 
   initializeForm(): void {
     this.formGroup = this.fb.group({
-      telephone: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      tel1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      tel2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
-      tel3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
+      telephone: [{ value: '', disabled: !this.addMode && !this.editMode }, [Validators.required, Validators.pattern(/^(?:\+212|0)[5-7]\d{8}$/)]],
+      tel1: [{ value: '', disabled: !this.addMode && !this.editMode }, [Validators.required, Validators.pattern(/^(?:\+212|0)[5-7]\d{8}$/)]],
+      tel2: [{ value: '', disabled: !this.addMode && !this.editMode }, [Validators.required, Validators.pattern(/^(?:\+212|0)[5-7]\d{8}$/)]],
+      tel3: [{ value: '', disabled: !this.addMode && !this.editMode }, [Validators.required, Validators.pattern(/^(?:\+212|0)[5-7]\d{8}$/)]],
       email1: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       email2: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],
       email3: [{ value: '', disabled: !this.addMode && !this.editMode }, Validators.required],

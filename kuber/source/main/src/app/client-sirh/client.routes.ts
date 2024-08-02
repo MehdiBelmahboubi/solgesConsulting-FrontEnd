@@ -5,10 +5,10 @@ import {StructureOrganisationsComponent} from "./structure-organisations/structu
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
 import { DetailsCollaboraterComponent } from './collaborateur/details-collaborater/details-collaborater.component';
 import { ArchivedCollaboraterComponent } from './collaborateur/archived-collaborater/archived-collaborater/archived-collaborater.component';
-import { ParametrageComponent } from './conge/parametrage/parametrage.component';
 import { SyntheseComponent } from './conge/synthese/synthese.component';
 import { DetailsComponent } from './conge/details/details.component';
 import { ListcongeComponent } from './conge/listconge/listconge.component';
+import { ParametrageComponent } from './conge/parametrage/parametrage.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {

@@ -54,21 +54,26 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   getCollaboraters(page: number, size: number) {
+    console.log('Fetching collaboraters', { page, size });
     this.collaboraterService.getByComany(page, size).subscribe({
       next: (data: Page<Collaborater>) => {
+        console.log('Collaboraters fetched', data);
         this.collaboraters = data.content;
         this.collaboraterDataSource.data = this.collaboraters;
         this.totalElements = data.totalElements;
-        this.totalPages = data.totalPages;
+        console.log('Total elements:', this.totalElements);
+        this.collaboraterDataSource.paginator = this.paginator;
+        this.collaboraterDataSource.sort = this.sort;
       },
       error: (err) => {
-        console.error('Error fetching Collaboraters:', err);
+        console.error('Error fetching collaboraters:', err);
         this.snackBarService.showError(err);
       }
     });
   }
 
-  onPageChange(event: any) {
+  onPageChange(event: PageEvent) {
+    console.log('Page change event', event);
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.getCollaboraters(this.page, this.size);

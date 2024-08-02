@@ -716,7 +716,7 @@ export const ROUTES: RouteInfo[] = [
       {
         path: '/client/conge/listconge',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.MY-PROJECTS',
-        title : 'paramétrage',
+        title : 'Paramétrage',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -729,7 +729,7 @@ export const ROUTES: RouteInfo[] = [
       {
         path: '/client/conge/synthese',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.GESTIONNAIRES-1 ',
-        title : 'synthese',
+        title : 'Synthèse',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -742,7 +742,7 @@ export const ROUTES: RouteInfo[] = [
       {
         path: '/client/conge/details',
         //title: 'MENUITEMS.CLIENT.PROJECTS.LIST.GESTIONNAIRES-1 ',
-        title : 'détails',
+        title : 'Détails',
         iconType: '',
         icon: '',
         class: 'ml-menu',
