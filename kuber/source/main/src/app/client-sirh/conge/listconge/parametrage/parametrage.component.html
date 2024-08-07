@@ -85,16 +85,20 @@
                             <div class="col-md-4 d-flex align-items-center mb-3">
                                 <label for="Droitlegal" class="form-label mr-2">Droit légal:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="Droitlegal" name="Droitlegal">
-                                    </mat-select>
+                                    <input matInput formControlName="Droitlegal">
+                                    <button mat-icon-button matSuffix (click)="openDroitLegal()">
+                                        <mat-icon>add_circle_outline</mat-icon>
+                                      </button>
                                 </mat-form-field>
                             </div>
 
                             <div class="col-md-4 d-flex align-items-center mb-3">
                                 <label for="Droitentreprise" class="form-label mr-2">Droit d'entreprise:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="Droitentreprise" name="Droitentreprise">
-                                    </mat-select>
+                                    <input matInput formControlName="Droitentreprise">
+                                    <button mat-icon-button matSuffix>
+                                        <mat-icon>add_circle_outline</mat-icon>
+                                      </button>
                                 </mat-form-field>
                             </div>
 

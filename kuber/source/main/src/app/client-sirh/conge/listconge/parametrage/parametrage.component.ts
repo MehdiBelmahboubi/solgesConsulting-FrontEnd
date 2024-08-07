@@ -5,27 +5,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { Collaborater } from 'app/models/collaborater.model';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { ClassificationService } from 'app/services/classification.service';
-import { classificationType } from 'app/models/classificationType.model';
-import { Classification } from 'app/models/classification.model';
 import { Router } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { DroitLegalComponent } from './droit-legal/droit-legal.component';
+import { HeaderSirhClientComponent } from "../../../header-sirh-client/header-sirh-client.component";
 
 @Component({
   selector: 'app-parametrage',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule,MatCheckboxModule,ReactiveFormsModule,MatSelectModule, MatNativeDateModule, MatInputModule,NgFor, NgIf,MatListModule,MatCardModule, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule, MatCheckboxModule, MatIconModule, ReactiveFormsModule, MatSelectModule, MatNativeDateModule, MatInputModule, NgFor, NgIf, MatListModule, MatCardModule, MatButtonModule, HeaderSirhClientComponent],
   templateUrl: './parametrage.component.html',
   styleUrl: './parametrage.component.scss'
 })
-export class ParametrageComponent implements OnInit{
+export class ParametrageComponent implements OnInit {
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder,private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -49,5 +49,9 @@ export class ParametrageComponent implements OnInit{
     });
   }
 
-  
+  openDroitLegal() {
+    this.dialog.open(DroitLegalComponent,{width:'1000px'});
+  }
+
+
 }

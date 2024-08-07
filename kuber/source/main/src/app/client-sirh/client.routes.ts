@@ -8,7 +8,7 @@ import { ArchivedCollaboraterComponent } from './collaborateur/archived-collabor
 import { SyntheseComponent } from './conge/synthese/synthese.component';
 import { DetailsComponent } from './conge/details/details.component';
 import { ListcongeComponent } from './conge/listconge/listconge.component';
-import { ParametrageComponent } from './conge/parametrage/parametrage.component';
+import { ParametrageComponent } from './conge/listconge/parametrage/parametrage.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
