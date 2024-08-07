@@ -35,7 +35,7 @@ import { Page } from 'app/models/page.models';
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
+  displayedColumns: string[] = ['civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
   selectedFile: File | null = null;
@@ -51,6 +51,24 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.getCollaboraters(this.page, this.size);
+  }
+
+  loadCollaboraters() {
+    this.collaboraterService.getCollaboraters(this.page, this.size).subscribe((response: Page<Collaborater>) => {
+      this.collaboraters = response.content.map(collaborater => ({
+        ...collaborater,
+        civNomPrenom: collaborater.civNomPrenom === null ? '---------' : collaborater.civNomPrenom,
+        matricule: collaborater.matricule === null ? '---------' : collaborater.matricule,
+        cnie: collaborater.cnie === null ? '---------' : collaborater.cnie,
+        initiales: collaborater.initiales === null ? '---------' : collaborater.initiales,
+        email: collaborater.email1 === null ? '---------' : collaborater.email1,
+        lieuNaissance: collaborater.lieuNaissance === null ? '---------' : collaborater.lieuNaissance,
+        sexe: collaborater.sexe === null ? '---------' : collaborater.sexe,
+      }));
+      this.collaboraterDataSource.data = this.collaboraters;
+      this.totalElements = response.totalElements;
+      this.totalPages = response.totalPages;
+    });
   }
 
   getCollaboraters(page: number, size: number) {

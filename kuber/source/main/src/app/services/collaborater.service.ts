@@ -19,6 +19,7 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
   );
 
   dialogData!: Collaborater;
+  getCollaboraters: any;
   constructor(private http: HttpClient,
     @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
     private localStorageService: LocalStorageService) {
