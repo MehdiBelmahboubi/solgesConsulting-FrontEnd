@@ -22,7 +22,7 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
   constructor(private http: HttpClient,
     @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
     private localStorageService: LocalStorageService) {
-    super(http, `${appConfig.apiUrl}`, "Classification",//Classification//Contract
+    super(http, `${appConfig.apiUrl}`, "Contract",//Classification//Contract
       localStorageService.getCurrentCompany()?.id || -1, localStorageService.getUser()?.id || -1);
   }
   get data(): Collaborater[] {
@@ -40,13 +40,11 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     if (id) {
       param = param.set('id', id);
     }
-    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborater/getAll`, { params: param });
+    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborators`, { params: param });
   }
 
   getById(id: number): Observable<Collaborater> {
-    let param = new HttpParams();
-    param = param.set('id', id);
-    return this.httpClient.get<Collaborater>(`${this.appConfig.apiUrl}/collaborater/get`, { params: param });
+    return this.httpClient.get<Collaborater>(`${this.appConfig.apiUrl}/collaborators/${id}`);
   }
 
   getArchived(page: number, size: number): Observable<Page<Collaborater>> {
@@ -57,7 +55,7 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     if (id) {
       param = param.set('id', id);
     }
-    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborater/getArchived`, { params: param });
+    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborators/archive`, { params: param });
   }
   /** CRUD METHODS */
 
@@ -65,19 +63,19 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     const companyId = this.localStorageService.getCurrentCompany()?.id;
     if (companyId !== undefined) {
       collaborater.company_id = companyId;
-      return this.httpClient.post(`${this.appConfig.apiUrl}/collaborater/add`, collaborater);
+      return this.httpClient.post(`${this.appConfig.apiUrl}/collaborators`, collaborater);
     } else {
       throw new Error('Current company ID is undefined');
     }
   }
 
   editCollaborateur(collaborater: Collaborater): Observable<any> {
-    return this.httpClient.put(`${this.appConfig.apiUrl}/collaborater/update`, collaborater);
+    return this.httpClient.put(`${this.appConfig.apiUrl}/collaborators`, collaborater);
   }
 
   deleteCollaborater(id: number) {
     let param = new HttpParams();
     param = param.set('id', id);
-    return this.httpClient.delete(`${this.appConfig.apiUrl}/collaborater/delete`, { params: param });
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/collaborators`, { params: param });
   }
 }

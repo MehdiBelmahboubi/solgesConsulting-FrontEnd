@@ -22,14 +22,14 @@ export class ClassificationService extends UnsubscribeOnDestroyAdapter {
   }
 
   addClassification(classification:Classification):Observable<any>{
-    return this.httpClient.post<Classification>(`${this.appConfig.apiUrl}/classification/add`,classification);
+    return this.httpClient.post<Classification>(`${this.appConfig.apiUrl}/classifications`,classification);
   }
 
   updateClassification(classification:Classification):Observable<any>{
-    return this.httpClient.put<Classification>(`${this.appConfig.apiUrl}/classification/update`,classification);
+    return this.httpClient.put<Classification>(`${this.appConfig.apiUrl}/classifications`,classification);
   }
 
   getAllTypes() : Observable<classificationType[]>{
-    return this.httpClient.get<classificationType[]>(`${this.appConfig.apiUrl}/classification/getTypes`)
+    return this.httpClient.get<classificationType[]>(`${this.appConfig.apiUrl}/classifications/types`)
   }
 }

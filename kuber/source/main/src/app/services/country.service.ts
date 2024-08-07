@@ -22,6 +22,6 @@ export class CountryService extends UnsubscribeOnDestroyAdapter {
   }
   
   getAllNationalities() :Observable<Country[]>{
-    return this.http.get<Country[]>(`${this.appConfig.apiUrl}/country/getAllNationalities`)
+    return this.http.get<Country[]>(`${this.appConfig.apiUrl}/country`)
   }
 }
