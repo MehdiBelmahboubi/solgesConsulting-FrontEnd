@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { DroitLegalComponent } from './droit-legal/droit-legal.component';
 import { HeaderSirhClientComponent } from "../../../header-sirh-client/header-sirh-client.component";
+import { contractType } from 'app/models/contractType.model';
+import { ContractService } from 'app/services/contract.service';
+import { SnackBarService } from 'app/services/snackBar.service';
+import { ClassificationService } from 'app/services/classification.service';
+import { classificationType } from 'app/models/classificationType.model';
 
 @Component({
   selector: 'app-parametrage',
@@ -24,34 +28,87 @@ import { HeaderSirhClientComponent } from "../../../header-sirh-client/header-si
 })
 export class ParametrageComponent implements OnInit {
   formGroup!: FormGroup;
+  contractTypes!: contractType[];
+  classificationTypes!: classificationType[];
 
-  constructor(private fb: FormBuilder,private dialog:MatDialog) { }
+
+  constructor(private fb: FormBuilder,private dialog:MatDialog,private contractService:ContractService,private classificationService:ClassificationService,private snackBarService:SnackBarService) { }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.loadContractTypes();
+    this.loadClassificationTypes();
+    this.addCheckboxListeners();
+  }
+
+  initializeForm(): void {
     this.formGroup = this.fb.group({
-      Conteur: ['', Validators.required],
-      bulletinpaie: ['', Validators.required],
+      conteur: ['', Validators.required],
+      bulletinpaie: [false, Validators.required], 
       datevalidite: ['', Validators.required],
-      Finvalidite: ['', Validators.required],
+      finValidite: ['', Validators.required],
       unite: ['', Validators.required],
       calendrierType: ['', Validators.required],
       Statut: ['', Validators.required],
-      Droitlegal: ['', Validators.required],
-      Droitentreprise: ['', Validators.required],
-      deviser: ['', Validators.required],
-      Combient: ['', Validators.required],
-      Autorisationrencondiction: ['', Validators.required],
-      Delai: ['', Validators.required],
+      Droitlegal: [false, Validators.required], 
+      Droitentreprise: [false, Validators.required], 
+      autoriseDefalcation: [false, Validators.required], 
+      nbrDefalcation: [{ value: '', disabled: true }, Validators.required],
+      autorisationRencondiction: [false, Validators.required], 
+      Delai: [{ value: '', disabled: true }, Validators.required],
       Minjours: ['', Validators.required],
       Maxjours: ['', Validators.required],
-      Reliquat: ['', Validators.required],
-      Nombreannee: ['', Validators.required],
+      Reliquat: [false, Validators.required], 
+      nbrAnnee: [{ value: '', disabled: true }, Validators.required],
+      sexe: ['', Validators.required],
+      nbrJour: ['', Validators.required],
+      contractType: ['', Validators.required],
+      classificationType: ['', Validators.required],
     });
   }
 
-  openDroitLegal() {
-    this.dialog.open(DroitLegalComponent,{width:'1000px'});
+  loadContractTypes(): void {
+    this.contractService.getAllTypes().subscribe({
+      next: (value) => {
+        this.contractTypes = value;
+      },
+      error: (err) => {
+        console.error('Error fetching Countries :', err);
+        this.snackBarService.showError(err);
+      }
+    })
   }
 
+  loadClassificationTypes(): void {
+    this.classificationService.getAllTypes().subscribe({
+      next: (value) => {
+        this.classificationTypes = value;
+      },
+      error: (err) => {
+        console.error('Error fetching Classifications :', err);
+        this.snackBarService.showError(err);
+      }
+    })
+  }
+
+  addCheckboxListeners(): void {
+    this.formGroup.get('autoriseDefalcation')?.valueChanges.subscribe(value => {
+      this.toggleControl('nbrDefalcation', value);
+    });
+    this.formGroup.get('autorisationRencondiction')?.valueChanges.subscribe(value => {
+      this.toggleControl('Delai', value);
+    });
+    this.formGroup.get('reliquat')?.valueChanges.subscribe(value => {
+      this.toggleControl('nbrAnnee', value);
+    });
+  }
+
+  toggleControl(controlName: string, enable: boolean): void {
+    if (enable) {
+      this.formGroup.get(controlName)?.enable();
+    } else {
+      this.formGroup.get(controlName)?.disable();
+    }
+  }
 
 }
