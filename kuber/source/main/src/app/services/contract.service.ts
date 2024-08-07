@@ -23,14 +23,14 @@ export class ContractService extends UnsubscribeOnDestroyAdapter {
   }
 
   addContract(contract:Contract):Observable<any>{
-    return this.httpClient.post<Contract>(`${this.appConfig.apiUrl}/contract/add`,contract);
+    return this.httpClient.post<Contract>(`${this.appConfig.apiUrl}/contracts`,contract);
   }
 
   updateContract(contract:Contract):Observable<any>{
-    return this.httpClient.put<Contract>(`${this.appConfig.apiUrl}/contract/update`,contract);
+    return this.httpClient.put<Contract>(`${this.appConfig.apiUrl}/contracts`,contract);
   }
 
   getAllTypes() : Observable<contractType[]>{
-    return this.httpClient.get<contractType[]>(`${this.appConfig.apiUrl}/contract/getTypes`)
+    return this.httpClient.get<contractType[]>(`${this.appConfig.apiUrl}/contracts/types`)
   }
 }

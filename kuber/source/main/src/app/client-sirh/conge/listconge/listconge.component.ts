@@ -18,6 +18,7 @@ import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { Page } from 'app/models/page.models';
+import { HeaderSirhClientComponent } from "../../header-sirh-client/header-sirh-client.component";
 
 @Component({
   selector: 'app-listconge',
@@ -26,8 +27,9 @@ import { Page } from 'app/models/page.models';
     BreadcrumbComponent, RouterLink, MatTableModule,
     MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
-    MatButtonModule, MatMenuModule, MatIconModule
-  ],
+    MatButtonModule, MatMenuModule, MatIconModule,
+    HeaderSirhClientComponent
+],
   templateUrl: './listconge.component.html',
   styleUrls: ['./listconge.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
