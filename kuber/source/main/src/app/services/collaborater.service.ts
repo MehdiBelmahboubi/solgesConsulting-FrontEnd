@@ -23,7 +23,7 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
   constructor(private http: HttpClient,
     @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
     private localStorageService: LocalStorageService) {
-    super(http, `${appConfig.apiUrl}`, "Contract",//Classification//Contract
+    super(http, `${appConfig.apiUrl}`, "Collaborater",//Classification//Contract
       localStorageService.getCurrentCompany()?.id || -1, localStorageService.getUser()?.id || -1);
   }
   get data(): Collaborater[] {
