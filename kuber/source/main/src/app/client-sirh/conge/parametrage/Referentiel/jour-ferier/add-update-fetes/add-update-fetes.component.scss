@@ -1,0 +1,40 @@
+.close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
+  .type-unit-edit-title{
+    margin : 25px 0 0 16px;
+    height: 25px;
+  }
+  .container-auth-form-btn{
+    border-radius: 30px;
+    margin-bottom: 40px;
+  
+    .auth-form-btn-stp-one {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 40px !important;
+      border-radius: 10px;
+      cursor: pointer;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  .add-type-unit{
+    margin-left: 7px;
+  }
+  .text-error {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #FF3528;
+    border-radius: 7px;
+    align-content: center;
+    background-color: #F2ECEC;
+    height: 20px;
+  }
+  

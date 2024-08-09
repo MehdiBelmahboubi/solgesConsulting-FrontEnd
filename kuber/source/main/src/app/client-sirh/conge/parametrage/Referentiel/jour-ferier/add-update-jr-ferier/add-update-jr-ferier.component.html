@@ -1,0 +1,116 @@
+<section class="content">
+    <div class="container">
+        <div class="body">
+            <form [formGroup]="FormGroup">
+                <!-- Jour férié -->
+                <mat-card class="styled-card">
+                    <mat-list>
+                        <mat-list-item>
+                            Jour férié
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="datefete" class="form-label mr-2">Date de Fête:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput [matDatepicker]="pickerdatefete" formControlName="datefete">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerdatefete"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerdatefete></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="fete" class="form-label mr-2">Fête:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <mat-select name="fete" formControlName="fete" multiple (selectionChange)="onFeteSelectionChange($event)">
+                                        <mat-option *ngFor="let fete of fetes" [value]="fete.id">
+                                            {{ fete.code }}
+                                        </mat-option>
+                                        <mat-option value="new-fete">Nouveau</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="nbrJour" class="form-label mr-2">Nombre Jour:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="nbrJour">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <!-- Fête Section -->
+                <mat-card class="styled-card" *ngIf="addFete">
+                    <mat-list>
+                        <mat-list-item>
+                            Fête
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="code" class="form-label mr-2">Code:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="code">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="typefete" class="form-label mr-2">Type Fête:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <mat-select name="typefete" formControlName="typefete" multiple (selectionChange)="onTypeFeteSelectionChange($event)">
+                                        <mat-option *ngFor="let typefete of typefetes" [value]="typefete.id">
+                                            {{ typefete.code }}
+                                        </mat-option>
+                                        <mat-option value="new-type-fete">Nouveau</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center mb-3">
+                                <label for="libelle" class="form-label mr-2">Libelle:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="libelle">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <!-- Type Fête Section -->
+                <mat-card class="styled-card" *ngIf="addTypeFete">
+                    <mat-list>
+                        <mat-list-item>
+                            Type Fête
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                    <mat-card-content>
+                        <div class="row form-inline">
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="libelleTypeFete" class="form-label mr-2">Libelle:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="code">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label for="reduction" class="form-label mr-2">Reduction:</label>
+                                <section class="example-section">
+                                    <mat-checkbox class="example-margin" formControlName="reduction"></mat-checkbox>
+                                </section>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <!-- Action Buttons -->
+                <div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <div class="col-md-11 d-flex justify-content-end mb-3">
+                            <button mat-flat-button color="primary" class="mr-2">Retour</button>
+                            <button mat-flat-button color="primary">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,49 @@
+<mat-card class = "type-unit-edit-card">
+    <mat-card-title class="type-unit-edit-title">
+      <p>Créer un nouveau Fête:</p>
+      <button class="close-btn" mat-icon-button matTooltip="Close" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-title>
+    <hr>
+    <form class="type-unit-form" [formGroup]="FormGroup">
+      <mat-card-content>
+        <div class="type-unit-content">
+          <div class="row">
+            <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+              <p *ngIf="newTypeError" class="mt-3" ><strong>{{newTypeError}}</strong> </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Code:</mat-label>
+                    <input matInput formControlName="code" required>
+                </mat-form-field>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+                <mat-form-field class="example-full-width">
+                    <mat-select name="feteType" formControlName="feteType" multiple>
+                        <mat-option *ngFor="let feteType of feteTypes"
+                                [value]="feteType.id">{{
+                                    feteType.code}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Libelle:</mat-label>
+                    <input matInput formControlName="libelle" required>
+                </mat-form-field>
+            </div>
+          </div>
+        </div>
+  
+      </mat-card-content>
+      <mat-card-actions class="card-actions justify-content-end">
+        <button mat-raised-button class="add-type-unit"
+                (click)="addFete()"
+        >Ajouter</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
