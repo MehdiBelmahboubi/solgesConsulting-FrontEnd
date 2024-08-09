@@ -41,7 +41,7 @@
           <button mat-mini-fab color="warn" class="small-icon-button">
             <mat-icon>delete</mat-icon>
           </button>
-          <button mat-mini-fab style="background-color: #d7f321;" class="small-icon-button">
+          <button mat-mini-fab style="background-color: #d7f321;" class="small-icon-button" (click)="refresh()">
             <mat-icon>replay</mat-icon>
           </button>
           <button mat-mini-fab style="background-color: #2196f3;" class="small-icon-button"
@@ -130,7 +130,7 @@
     <button mat-icon-button class="small-icon-button1" color="primary" (click)="openCollaboraterDetails(collaborater)">
       <mat-icon>info</mat-icon>
     </button>
-    <button mat-icon-button class="small-icon-button1">
+    <button mat-icon-button class="small-icon-button1" >
       <mat-icon>control_point_duplicate</mat-icon>
     </button>
   </td>
@@ -141,9 +141,9 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
 
-        <mat-paginator [length]="totalElements" [pageSize]="size" [pageSizeOptions]="[4,8,12]"
-          (page)="onPageChange($event)">
+        <mat-paginator [length]="totalElements" [pageSize]="size" [pageSizeOptions]="[4, 8, 12]" (page)="onPageChange($event)">
         </mat-paginator>
+        
       </div>
     </div>
   </div>

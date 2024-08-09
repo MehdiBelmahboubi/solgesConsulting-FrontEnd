@@ -19,6 +19,7 @@ import { CollaboraterService } from 'app/services/collaborater.service';
 import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { Page } from 'app/models/page.models';
+import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
 
 @Component({
   selector: 'app-collaborateur',
@@ -35,7 +36,7 @@ import { Page } from 'app/models/page.models';
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
+  displayedColumns: string[] = ['civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
   selectedFile: File | null = null;
@@ -165,7 +166,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
           this.snackBarService.showError('Ajout des Collaborateurs Echoué   ! ')
         }
         else{
-          this.snackBarService.showSuccess(value.message +'! ');
+          this.snackBarService.showSuccess(value.message +'!');
         }
         console.log('resp :',value)
       },
