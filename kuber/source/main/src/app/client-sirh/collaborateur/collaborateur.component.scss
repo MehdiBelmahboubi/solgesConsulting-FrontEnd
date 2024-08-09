@@ -25,24 +25,24 @@ section.content {
     width: 100%;
   }
 
-  
-  
+
+
   .form-fields {
     display: flex;
     align-items: center;
   }
-  
+
   .icon-container {
     display: flex;
     align-items: center;
     margin-right: 20px;
   }
-  
+
   .icon-container button {
-    margin-left: 8px; 
- 
+    margin-left: 8px;
+
   }
-  
+
 .search-input {
   margin-left: auto;
   margin-right: 10px; /* Adjust as needed for spacing */
@@ -66,7 +66,7 @@ section.content {
   position: relative;
   width: 250px; /* Largeur souhaitée */
   margin: 10px;
-  
+
 }
 
 .small-icon-button{
@@ -75,6 +75,7 @@ section.content {
   min-width: 2em;
   min-height: 2em;
 }
+
 
 /* Adjust the size of the icon */
 .small-icon-button .mat-icon{
@@ -101,7 +102,7 @@ section.content {
   padding: 5px 10px; /* Add padding for better appearance */
   border: 1px solid #ccc; /* Border for the input */
   border-radius: 4px; /* Rounded corners */
- 
+
 }
 
 /* Flèche à droite */
@@ -129,4 +130,19 @@ section.content {
 
   color: #545455;
 
+}
+/* Ensure this class is applied to all buttons in the action column */
+.small-icon-button1 {
+  width: 3.1em;
+  height: 3.1em;
+  min-width: 3.1em;
+  min-height: 3.1em;
+
+
+}
+
+/* Adjust the size of the icons within the buttons */
+.small-icon-button1 .mat-icon {
+  font-size: 1.3em;
+  line-height: 1em;
 }
