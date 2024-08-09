@@ -7,33 +7,21 @@ import { DetailsCollaboraterComponent } from './collaborateur/details-collaborat
 import { ArchivedCollaboraterComponent } from './collaborateur/archived-collaborater/archived-collaborater/archived-collaborater.component';
 import { SyntheseComponent } from './conge/synthese/synthese.component';
 import { DetailsComponent } from './conge/details/details.component';
-import { ListcongeComponent } from './conge/listconge/listconge.component';
-import { ParametrageComponent } from './conge/listconge/parametrage/parametrage.component';
+import { CompteurCongeComponent } from './conge/parametrage/compteur-conge/compteur-conge.component';
+import { ConfigCongeComponent } from './conge/parametrage/compteur-conge/config-conge/config-conge.component';
+import { CalendrierComponent } from './conge/parametrage/Referentiel/calendrier/calendrier.component';
+import { JourFerierComponent } from './conge/parametrage/Referentiel/jour-ferier/jour-ferier.component';
+import { AddUpdateJrFerierComponent } from './conge/parametrage/Referentiel/jour-ferier/add-update-jr-ferier/add-update-jr-ferier.component';
 
 export const CLIENT_ROUTE: Route[] = [
   {
     path: 'dashboard',
     component: DashboardComponent,
   },
+  //collaborateur
   {
     path: 'collaborateur',
     component: CollaborateurComponent,
-  },
-  {
-    path: 'conge/listconge',
-    component: ListcongeComponent,
-  },
-  {
-    path: 'conge/parametrage',
-    component: ParametrageComponent,
-  },
-  {
-    path: 'conge/synthese',
-    component: SyntheseComponent,
-  },
-  {
-    path: 'conge/details',
-    component: DetailsComponent,
   },
   {
     path:'detailsCollaborateur',
@@ -42,6 +30,35 @@ export const CLIENT_ROUTE: Route[] = [
   {
     path:'archiveCollaborateur',
     component:ArchivedCollaboraterComponent
+  },
+  //conges
+  {
+    path: 'conge/listconge',
+    component: CompteurCongeComponent,
+  },
+  {
+    path: 'conge/parametrage',
+    component: ConfigCongeComponent,
+  },
+  {
+    path: 'conge/referentiel/calendrier',
+    component: CalendrierComponent,
+  },
+  {
+    path: 'conge/referentiel/jourferier',
+    component: JourFerierComponent,
+  },
+  {
+    path: 'conge/referentiel/jourferier/parametrage',
+    component: AddUpdateJrFerierComponent,
+  },
+  {
+    path: 'conge/synthese',
+    component: SyntheseComponent,
+  },
+  {
+    path: 'conge/details',
+    component: DetailsComponent,
   },
   {
     path: 'organisations',
