@@ -67,7 +67,7 @@ export class AddUpdateJrFerierComponent implements OnInit {
       typefete: ['', Validators.required],
       libelle: ['', Validators.required],
       libelleTypeFete: ['', Validators.required],
-      reduction: ['', Validators.required],
+      reconduction: ['', Validators.required],
     });
   }
 

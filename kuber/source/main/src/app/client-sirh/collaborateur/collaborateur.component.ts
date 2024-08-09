@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -35,7 +35,7 @@ import { Page } from 'app/models/page.models';
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
+  displayedColumns: string[] = ['civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
   selectedFile: File | null = null;
