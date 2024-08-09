@@ -35,7 +35,7 @@ import { Page } from 'app/models/page.models';
 })
 export class CollaborateurComponent implements AfterViewInit, OnInit {
   collaboraters: Collaborater[] = [];
-  displayedColumns: string[] = ['civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
+  displayedColumns: string[] = ['select', 'civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
   selectedFile: File | null = null;
@@ -52,8 +52,6 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.getCollaboraters(this.page, this.size);
   }
-
-
 
   getCollaboraters(page: number, size: number) {
     console.log('Fetching collaboraters', { page, size });

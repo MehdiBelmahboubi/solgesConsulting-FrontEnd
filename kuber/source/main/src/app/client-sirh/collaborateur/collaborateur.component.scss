@@ -76,7 +76,6 @@ section.content {
   min-height: 2em;
 }
 
-
 /* Adjust the size of the icon */
 .small-icon-button .mat-icon{
   font-size: 1.5em;
@@ -130,19 +129,4 @@ section.content {
 
   color: #545455;
 
-}
-/* Ensure this class is applied to all buttons in the action column */
-.small-icon-button1 {
-  width: 3.1em;
-  height: 3.1em;
-  min-width: 3.1em;
-  min-height: 3.1em;
-
-
-}
-
-/* Adjust the size of the icons within the buttons */
-.small-icon-button1 .mat-icon {
-  font-size: 1.3em;
-  line-height: 1em;
 }
