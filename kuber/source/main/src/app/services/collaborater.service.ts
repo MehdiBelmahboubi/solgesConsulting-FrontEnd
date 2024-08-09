@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UnsubscribeOnDestroyAdapter } from '@shared';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Collaborater } from 'app/models/collaborater.model';
 import { AppConfig, CONFIG_TOKEN } from "@config/config";
 import { LocalStorageService } from './storage/local-storage.service';
