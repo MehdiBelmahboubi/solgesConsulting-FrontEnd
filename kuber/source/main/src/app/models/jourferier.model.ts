@@ -6,6 +6,7 @@ export class JourFerier{
     public nbrJour!:number;
     public feteId!:number;
     public fete!:Fete;
+    public companyId!:number;
 
     constructor(){}
 }

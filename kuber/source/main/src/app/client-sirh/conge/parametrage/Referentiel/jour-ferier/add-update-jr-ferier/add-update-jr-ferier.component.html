@@ -23,11 +23,11 @@
                             <div class="col-md-4 d-flex align-items-center mb-3">
                                 <label for="fete" class="form-label mr-2">Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="fete" formControlName="fete" multiple (selectionChange)="onFeteSelectionChange($event)">
+                                    <mat-select name="fete" formControlName="fete" (selectionChange)="onFeteSelectionChange($event)">
+                                        <mat-option value="new-type-fete">Nouveau</mat-option>
                                         <mat-option *ngFor="let fete of fetes" [value]="fete.id">
-                                            {{ fete.code }}
+                                            {{ fete.libelle }}
                                         </mat-option>
-                                        <mat-option value="new-fete">Nouveau</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -60,10 +60,10 @@
                                 <label for="typefete" class="form-label mr-2">Type Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select name="typefete" formControlName="typefete" multiple (selectionChange)="onTypeFeteSelectionChange($event)">
-                                        <mat-option *ngFor="let typefete of typefetes" [value]="typefete.id">
-                                            {{ typefete.code }}
-                                        </mat-option>
                                         <mat-option value="new-type-fete">Nouveau</mat-option>
+                                        <mat-option *ngFor="let typefete of typeFetes" [value]="typefete.id">
+                                            {{ typefete.libelle }}
+                                        </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>

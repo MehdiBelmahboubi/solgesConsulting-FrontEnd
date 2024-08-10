@@ -1,5 +1,5 @@
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
-import { NgIf } from "@angular/common";
+import { NgFor, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatIconButton, MatButton } from "@angular/material/button";
@@ -13,6 +13,10 @@ import { MatInput } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSelect, MatSelectChange } from "@angular/material/select";
 import { MatTooltip } from "@angular/material/tooltip";
+import { Fete } from "app/models/fete.model";
+import { TypeFete } from "app/models/typefete.model";
+import { JourferierService } from "app/services/jourferier.service";
+import { SnackBarService } from "app/services/snackBar.service";
 
 
 @Component({
@@ -40,7 +44,8 @@ import { MatTooltip } from "@angular/material/tooltip";
     MatError,
     MatIcon,
     MatSuffix,
-    NgIf],
+    NgIf,
+    NgFor],
   templateUrl: './add-update-jr-ferier.component.html',
   styleUrl: './add-update-jr-ferier.component.scss'
 })
@@ -49,13 +54,15 @@ export class AddUpdateJrFerierComponent implements OnInit {
   addFete: Boolean = false;
   addTypeFete: Boolean = false;
   FormGroup!: FormGroup;
-  feteTypes: any;
-  fetes: any;
+  typeFetes!: TypeFete[];
+  fetes!: Fete[];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private jrferieService:JourferierService,private snackBarService:SnackBarService) { }
 
   ngOnInit() {
     this.initializeForm();
+    this.loadFetes();
+    this.loadTypesFetes();
   }
 
   initializeForm(): void {
@@ -71,8 +78,28 @@ export class AddUpdateJrFerierComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    throw new Error('Method not implemented.');
+  loadFetes() {
+    this.jrferieService.getFetes().subscribe({
+      next: (data) => {
+        this.fetes=data;
+      },
+      error: (err) => {
+        console.error('Error fetching jour feries:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  loadTypesFetes() {
+    this.jrferieService.getTypesFetes().subscribe({
+      next: (data) => {
+        this.typeFetes=data;
+      },
+      error: (err) => {
+        console.error('Error fetching jour feries:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 
   addJrFerier() {
@@ -83,11 +110,11 @@ export class AddUpdateJrFerierComponent implements OnInit {
     this.addFete = event.value.includes('new-fete');
     this.addTypeFete = event.value.includes('new-type-fete');
     this.FormGroup.get('typefete')?.setValue([]);
-    }
+  }
 
 
-    onTypeFeteSelectionChange(event: any) {
-      this.addTypeFete = event.value.includes('new-type-fete');
+  onTypeFeteSelectionChange(event: any) {
+    this.addTypeFete = event.value.includes('new-type-fete');
   }
 
   close() {
