@@ -11,11 +11,6 @@ import { AbstractRestService } from 'app/client-sirh/shared/service/AbstractRest
   providedIn: 'root'
 })
 export class CollaboraterService extends AbstractRestService<Collaborater> {
-  getAll() :Observable<Collaborater[]> {
-    let params = new HttpParams();
-    params=params.set('companyId',this.localStorageService.getCurrentCompany()?.id.toString() || '');
-    return this.http.get<Collaborater[]>(this.appConfig.apiUrl+'/unities/type',{params :params})
-  }
   private readonly API_URL = 'assets/data/my-projects-client.json';
   isTblLoading = true;
   dataChange: BehaviorSubject<Collaborater[]> = new BehaviorSubject<Collaborater[]>(

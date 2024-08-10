@@ -10,6 +10,8 @@ export class Contract{
     public dateFin!:Date;
     public contractType!:number;
     public collaboraterId!:number;
+    public companyId!:number;
+
 
     constructor(){}
 }

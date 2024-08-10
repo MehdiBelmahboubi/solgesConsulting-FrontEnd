@@ -7,6 +7,8 @@ export class Classification{
     public dateFin!:Date;
     public collaboraterId!:number;
     public classificationType!:number;
+    public companyId!:number;
+
 
     constructor(){}
 }
