@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -12,11 +12,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router, RouterLink } from '@angular/router';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/header-sirh-client.component';
 import { AddUpdateJrFerierComponent } from './add-update-jr-ferier/add-update-jr-ferier.component';
+import { JourferierService } from 'app/services/jourferier.service';
+import { SnackBarService } from 'app/services/snackBar.service';
+import { JourFerier } from 'app/models/jourferier.model';
 
 @Component({
   selector: 'app-jour-ferier',
@@ -29,20 +32,42 @@ import { AddUpdateJrFerierComponent } from './add-update-jr-ferier/add-update-jr
   templateUrl: './jour-ferier.component.html',
   styleUrl: './jour-ferier.component.scss'
 })
-export class JourFerierComponent {
+export class JourFerierComponent implements AfterViewInit, OnInit {
+  jourferies: JourFerier[] = [];
   displayedColumns: string[] = ['select','dateFete','fete','nbrJour', 'action'];
-
+  jourferierDataSource = new MatTableDataSource<JourFerier>(this.jourferies);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  jourferierDataSource: any;
-
-  constructor(private router: Router,private dialog:MatDialog) { }
-  conge: any;
-  checkboxLabel(): string {
-    // Implémentez la logique d'étiquette de la case à cocher ici
-    return '';
-  }
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
+
+
+  constructor(private router: Router,private dialog:MatDialog,
+    private jrferierService:JourferierService,private snackBarService:SnackBarService) { }
+
+  ngOnInit() {
+    this.getJrFeries();
+  }
+
+  getJrFeries() {
+    this.jrferierService.getAllJourFeries().subscribe({
+      next: (data) => {
+        this.jourferies = data;
+        this.jourferierDataSource.data = this.jourferies;
+        this.jourferierDataSource.paginator = this.paginator;
+        this.jourferierDataSource.sort = this.sort;
+      },
+      error: (err) => {
+        console.error('Error fetching jour feries:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+  
+
+  ngAfterViewInit() {
+    
+  }
+  
   
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -56,6 +81,11 @@ export class JourFerierComponent {
       return;
     }
     this.selection.select(...this.jourferierDataSource.data);
+  }
+
+  checkboxLabel(): string {
+    // Implémentez la logique d'étiquette de la case à cocher ici
+    return '';
   }
 
   openAddJF() {
