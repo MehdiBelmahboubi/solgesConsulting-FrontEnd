@@ -73,16 +73,24 @@
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
                                 <label for="Droitlegal" class="form-label mr-2">Droit légal:</label>
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin" formControlName="Droitlegal"></mat-checkbox>
-                                </section>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="Droitlegal">
+                                    <button mat-icon-button matSuffix (click)="openDroitLegal()">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-form-field>
                             </div>
+
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="Droitentreprise" class="form-label mr-2">Droit d'entreprise:</label>
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin" formControlName="Droitentreprise"></mat-checkbox>
-                                </section>
+                                <label for="Droitlegal" class="form-label mr-2">Droit légal:</label>
+                                <mat-form-field class="field-width" appearance="outline">
+                                    <input matInput formControlName="Droitlegal">
+                                    <button mat-icon-button matSuffix (click)="openDroitEntreprise()">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-form-field>
                             </div>
+
                         </div>
 
                     </mat-card-content>
@@ -90,7 +98,7 @@
 
                 <!-- Droit Légal Section -->
 
-                <mat-card class="styled-card" *ngIf="formGroup.get('Droitlegal')?.value">
+                <!-- <mat-card class="styled-card" *ngIf="formGroup.get('Droitlegal')?.value">
                     <mat-list>
                         <mat-list-item>Droit Légal</mat-list-item>
                         <mat-divider></mat-divider>
@@ -158,11 +166,11 @@
                         </div>
 
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
                 <!-- Droit d'entreprise Section -->
 
-                <mat-card class="styled-card" *ngIf="formGroup.get('Droitentreprise')?.value">
+                <!-- <mat-card class="styled-card" *ngIf="formGroup.get('Droitentreprise')?.value">
                     <mat-list>
                         <mat-list-item>Droit d'entreprise</mat-list-item>
                         <mat-divider></mat-divider>
@@ -230,7 +238,7 @@
                         </div>
 
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
                 <!-- Réstruction Section -->
                 <mat-card class="styled-card">
@@ -242,9 +250,11 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="autoriseDefalcation" class="form-label mr-2">Autoriser la défalcation:</label>
+                                <label for="autoriseDefalcation" class="form-label mr-2">Autoriser la
+                                    défalcation:</label>
                                 <section class="example-section">
-                                    <mat-checkbox class="example-margin" formControlName="autoriseDefalcation"></mat-checkbox>
+                                    <mat-checkbox class="example-margin"
+                                        formControlName="autoriseDefalcation"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">

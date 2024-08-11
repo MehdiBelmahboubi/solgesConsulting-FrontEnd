@@ -26,6 +26,12 @@ import { SnackBarService } from 'app/services/snackBar.service';
   styleUrl: './config-conge.component.scss'
 })
 export class ConfigCongeComponent implements OnInit {
+openDroitLegal() {
+throw new Error('Method not implemented.');
+}
+openDroitEntreprise() {
+throw new Error('Method not implemented.');
+}
   formGroup!: FormGroup;
   contractTypes!: contractType[];
   classificationTypes!: classificationType[];
@@ -49,8 +55,8 @@ export class ConfigCongeComponent implements OnInit {
       unite: ['', Validators.required],
       calendrierType: ['', Validators.required],
       Statut: ['', Validators.required],
-      Droitlegal: [false, Validators.required], 
-      Droitentreprise: [false, Validators.required], 
+      Droitlegal: ['', Validators.required], 
+      Droitentreprise: ['', Validators.required], 
       autoriseDefalcation: [false, Validators.required], 
       nbrDefalcation: [{ value: '', disabled: true }, Validators.required],
       autorisationRencondiction: [false, Validators.required], 
