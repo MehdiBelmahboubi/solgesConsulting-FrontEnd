@@ -1,6 +1,7 @@
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { NgFor, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { fakeAsync } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatIconButton, MatButton } from "@angular/material/button";
 import { MatCard, MatCardTitle, MatCardContent, MatCardActions } from "@angular/material/card";
@@ -13,7 +14,9 @@ import { MatInput } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSelect, MatSelectChange } from "@angular/material/select";
 import { MatTooltip } from "@angular/material/tooltip";
+import { Router } from "@angular/router";
 import { Fete } from "app/models/fete.model";
+import { JourFerier } from "app/models/jourferier.model";
 import { TypeFete } from "app/models/typefete.model";
 import { JourferierService } from "app/services/jourferier.service";
 import { SnackBarService } from "app/services/snackBar.service";
@@ -53,11 +56,16 @@ export class AddUpdateJrFerierComponent implements OnInit {
   newTypeError = '';
   addFete: Boolean = false;
   addTypeFete: Boolean = false;
-  FormGroup!: FormGroup;
+  FormGroup1!: FormGroup;
+  FormGroup2!: FormGroup;
+  FormGroup3!: FormGroup;
   typeFetes!: TypeFete[];
   fetes!: Fete[];
+  jourFerie!: JourFerier;
+  fete!: Fete;
+  typeFete!: TypeFete;
 
-  constructor(private fb: FormBuilder,private jrferieService:JourferierService,private snackBarService:SnackBarService) { }
+  constructor(private router: Router, private fb: FormBuilder, private jrferieService: JourferierService, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -66,22 +74,27 @@ export class AddUpdateJrFerierComponent implements OnInit {
   }
 
   initializeForm(): void {
-    this.FormGroup = this.fb.group({
-      datefete: ['', Validators.required],
-      fete: ['', Validators.required],
+    this.FormGroup1 = this.fb.group({
+      dateFete: ['', Validators.required],
+      feteId: ['', Validators.required],
       nbrJour: ['', Validators.required],
-      code: ['', Validators.required],
-      typefete: ['', Validators.required],
-      libelle: ['', Validators.required],
-      libelleTypeFete: ['', Validators.required],
-      reconduction: ['', Validators.required],
     });
+
+    this.FormGroup2 = this.fb.group({
+      code: ['', Validators.required],
+      typeId: ['', Validators.required],
+      libelle: ['', Validators.required],
+    })
+    this.FormGroup3 = this.fb.group({
+      libelle: ['', Validators.required],
+      reconduction: ['', Validators.required],
+    })
   }
 
   loadFetes() {
     this.jrferieService.getFetes().subscribe({
       next: (data) => {
-        this.fetes=data;
+        this.fetes = data;
       },
       error: (err) => {
         console.error('Error fetching jour feries:', err);
@@ -93,7 +106,7 @@ export class AddUpdateJrFerierComponent implements OnInit {
   loadTypesFetes() {
     this.jrferieService.getTypesFetes().subscribe({
       next: (data) => {
-        this.typeFetes=data;
+        this.typeFetes = data;
       },
       error: (err) => {
         console.error('Error fetching jour feries:', err);
@@ -102,23 +115,66 @@ export class AddUpdateJrFerierComponent implements OnInit {
     });
   }
 
-  addJrFerier() {
-    throw new Error('Method not implemented.');
+  addJrFerier(): void {
+    const newJourFerie = { ...this.jourFerie, ...this.FormGroup1.value };
+    this.jrferieService.addJrFeries(newJourFerie).subscribe({
+      next: (value) => {
+        this.snackBarService.showSuccess('Jour férié created successfully!');
+      },
+      error: (err) => {
+        console.error('Error Adding Jour férié:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  addFetes(): void {
+    const newFete = { ...this.fete, ...this.FormGroup2.value };
+    this.jrferieService.addFete(newFete).subscribe({
+      next: (value) => {
+        this.snackBarService.showSuccess('Fete created successfully!');
+        this.loadFetes();
+      },
+      error: (err) => {
+        console.error('Error Adding Fete:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  addTypeFetes(): void {
+    const newTypeFete = { ...this.typeFete, ...this.FormGroup3.value };
+    this.jrferieService.addTypeFete(newTypeFete).subscribe({
+      next: (value) => {
+        this.snackBarService.showSuccess('TypeFete created successfully!');
+        this.loadTypesFetes();
+      },
+      error: (err) => {
+        console.error('Error Adding TypeFete:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 
   onFeteSelectionChange(event: any) {
-    this.addFete = event.value.includes('new-fete');
-    this.addTypeFete = event.value.includes('new-type-fete');
-    this.FormGroup.get('typefete')?.setValue([]);
+    const selectedValue = event.value;
+    this.addFete = selectedValue === 'new-fete';
+    this.addTypeFete = selectedValue === 'new-type-fete';
+
+
+    if (this.addFete) {
+      this.FormGroup1.get('typefete')?.setValue(null);
+    }
   }
+
 
 
   onTypeFeteSelectionChange(event: any) {
-    this.addTypeFete = event.value.includes('new-type-fete');
+    const selectedValue = event.value;
+    this.addTypeFete = selectedValue === 'new-type-fete';
   }
 
-  close() {
-    throw new Error('Method not implemented.');
+  back() {
+    this.router.navigate(['/client/conge/referentiel/jourferier']);
   }
-
 }

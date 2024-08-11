@@ -44,6 +44,26 @@ export class JourferierService extends UnsubscribeOnDestroyAdapter{
     }
   }
 
+  addFete(fete:Fete):Observable<any>{
+    const companyId = this.localStorageService.getCurrentCompany()?.id;
+    if (companyId !== undefined) {
+      fete.companyId = companyId;
+      return this.httpClient.post(`${this.appConfig.apiUrl}/jourferies/fetes`, fete);
+    } else {
+      throw new Error('Current company ID is undefined');
+    }
+  }
+
+  addTypeFete(typeFete:TypeFete):Observable<any>{
+    const companyId = this.localStorageService.getCurrentCompany()?.id;
+    if (companyId !== undefined) {
+      typeFete.companyId = companyId;
+      return this.httpClient.post(`${this.appConfig.apiUrl}/jourferies/typesFetes`, typeFete);
+    } else {
+      throw new Error('Current company ID is undefined');
+    }
+  }
+
   getFetes(): Observable<Fete[]>{
     let id = this.localStorageService.getCurrentCompany()?.id.toString();
     let param = new HttpParams();

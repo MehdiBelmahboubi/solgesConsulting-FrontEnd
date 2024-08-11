@@ -1,30 +1,28 @@
 <section class="content">
     <div class="container">
         <div class="body">
-            <form [formGroup]="FormGroup">
-                <!-- Jour férié -->
+            <!-- Jour Férié Card -->
+            <form [formGroup]="FormGroup1">
                 <mat-card class="styled-card">
                     <mat-list>
-                        <mat-list-item>
-                            Jour férié
-                        </mat-list-item>
+                        <mat-list-item>Jour férié</mat-list-item>
                         <mat-divider></mat-divider>
                     </mat-list>
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="datefete" class="form-label mr-2">Date de Fête:</label>
+                                <label for="dateFete" class="form-label mr-2">Date de Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput [matDatepicker]="pickerdatefete" formControlName="datefete">
+                                    <input matInput [matDatepicker]="pickerdatefete" formControlName="dateFete">
                                     <mat-datepicker-toggle matSuffix [for]="pickerdatefete"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerdatefete></mat-datepicker>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="fete" class="form-label mr-2">Fête:</label>
+                                <label for="feteId" class="form-label mr-2">Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="fete" formControlName="fete" (selectionChange)="onFeteSelectionChange($event)">
-                                        <mat-option value="new-type-fete">Nouveau</mat-option>
+                                    <mat-select name="feteId" formControlName="feteId" (selectionChange)="onFeteSelectionChange($event)">
+                                        <mat-option value="new-fete">Nouveau</mat-option>
                                         <mat-option *ngFor="let fete of fetes" [value]="fete.id">
                                             {{ fete.libelle }}
                                         </mat-option>
@@ -38,14 +36,21 @@
                                 </mat-form-field>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <div class="col-md-11 d-flex justify-content-end mb-3">
+                                <button mat-flat-button color="primary" class="mr-2" (click)="back()">Retour</button>
+                                <button mat-flat-button color="primary" (click)="addJrFerier()">Enregistrer</button>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
-                <!-- Fête Section -->
-                <mat-card class="styled-card" *ngIf="addFete">
+            </form>
+            
+            <!-- Fête Card -->
+            <form [formGroup]="FormGroup2" *ngIf="addFete">
+                <mat-card class="styled-card">
                     <mat-list>
-                        <mat-list-item>
-                            Fête
-                        </mat-list-item>
+                        <mat-list-item>Fête</mat-list-item>
                         <mat-divider></mat-divider>
                     </mat-list>
                     <mat-card-content>
@@ -57,9 +62,9 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="typefete" class="form-label mr-2">Type Fête:</label>
+                                <label for="typeId" class="form-label mr-2">Type Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="typefete" formControlName="typefete" multiple (selectionChange)="onTypeFeteSelectionChange($event)">
+                                    <mat-select name="typeId" formControlName="typeId" (selectionChange)="onTypeFeteSelectionChange($event)">
                                         <mat-option value="new-type-fete">Nouveau</mat-option>
                                         <mat-option *ngFor="let typefete of typeFetes" [value]="typefete.id">
                                             {{ typefete.libelle }}
@@ -74,22 +79,28 @@
                                 </mat-form-field>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <div class="col-md-11 d-flex justify-content-end mb-3">
+                                <button mat-flat-button color="primary" (click)="addFetes()">Enregistrer</button>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
-                <!-- Type Fête Section -->
-                <mat-card class="styled-card" *ngIf="addTypeFete">
+            </form>
+
+            <!-- Type Fête Card -->
+            <form [formGroup]="FormGroup3" *ngIf="addTypeFete">
+                <mat-card class="styled-card">
                     <mat-list>
-                        <mat-list-item>
-                            Type Fête
-                        </mat-list-item>
+                        <mat-list-item>Type Fête</mat-list-item>
                         <mat-divider></mat-divider>
                     </mat-list>
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="libelleTypeFete" class="form-label mr-2">Libelle:</label>
+                                <label for="libelle" class="form-label mr-2">Libelle:</label>
                                 <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput formControlName="code">
+                                    <input matInput formControlName="libelle">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6 d-flex align-items-center mb-3">
@@ -99,17 +110,13 @@
                                 </section>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <div class="col-md-11 d-flex justify-content-end mb-3">
+                                <button mat-flat-button color="primary" (click)="addTypeFetes()">Enregistrer</button>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
-                <!-- Action Buttons -->
-                <div>
-                    <div class="d-flex justify-content-end mt-4">
-                        <div class="col-md-11 d-flex justify-content-end mb-3">
-                            <button mat-flat-button color="primary" class="mr-2">Retour</button>
-                            <button mat-flat-button color="primary">Enregistrer</button>
-                        </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
