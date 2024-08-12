@@ -44,24 +44,27 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   size: number = 4;
   totalElements: number = 0;
   totalPages: number = 0;
+  active!:boolean;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
+  constructor(private cdr: ChangeDetectorRef,private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
-    this.getCollaboraters(this.page, this.size);
+    this.active=true;
+    this.getCollaboraters(this.page, this.size,this.active);
   }
 
-  getCollaboraters(page: number, size: number) {
+  getCollaboraters(page: number, size: number,active:boolean) {
     console.log('Fetching collaboraters', { page, size });
-    this.collaboraterService.getByComany(page, size).subscribe({
+    this.collaboraterService.getByComany(page, size,active).subscribe({
       next: (data: Page<Collaborater>) => {
         console.log('Collaboraters fetched', data);
         this.collaboraters = data.content;
         this.collaboraterDataSource.data = this.collaboraters;
         this.totalElements = data.totalElements;
+        this.totalPages = Math.ceil(this.totalElements / this.size);
         console.log('Total elements:', this.totalElements);
         this.collaboraterDataSource.paginator = this.paginator;
         this.collaboraterDataSource.sort = this.sort;
@@ -77,7 +80,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     console.log('Page change event', event);
     this.page = event.pageIndex;
     this.size = event.pageSize;
-    this.getCollaboraters(this.page, this.size);
+    this.getCollaboraters(this.page, this.size,this.active);
   }
 
   ngAfterViewInit() {
@@ -120,7 +123,8 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   openArchivedCollaborateur() {
-    this.router.navigate(['/client/archiveCollaborateur']);
+    this.active=false;
+    this.getCollaboraters(this.page,this.size,this.active);
   }
 
   applyFilter(event: Event) {
@@ -129,15 +133,14 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   refresh() {
-    this.getCollaboraters(this.page,this.size);
-
+    this.getCollaboraters(this.page,this.size,this.active);
   }
 
   deleteCollaborater(id: number) {
     this.collaboraterService.deleteCollaborater(id).subscribe({
       next: () => {
         this.snackBarService.showSuccess('Collaborateur Supprimer !!!');
-        this.getCollaboraters(this.page, this.size);
+        this.getCollaboraters(this.page, this.size,this.active);
       },
       error: (err) => {
         console.error('Error Updating Collaborator:', err);

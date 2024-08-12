@@ -32,11 +32,12 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     return this.dialogData;
   }
 
-  getByComany(page: number, size: number): Observable<Page<Collaborater>> {
+  getByComany(page: number, size: number,active:boolean): Observable<Page<Collaborater>> {
     let id = this.localStorageService.getCurrentCompany()?.id.toString();
     let param = new HttpParams()
       .set('page', page.toString())
-      .set('size', size.toString());
+      .set('size', size.toString())
+      .set('active',active.valueOf());
     if (id) {
       param = param.set('id', id);
     }

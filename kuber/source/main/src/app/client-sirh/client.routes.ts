@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {StructureOrganisationsComponent} from "./structure-organisations/structure-organisations.component";
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
 import { DetailsCollaboraterComponent } from './collaborateur/details-collaborater/details-collaborater.component';
-import { ArchivedCollaboraterComponent } from './collaborateur/archived-collaborater/archived-collaborater/archived-collaborater.component';
 import { SyntheseComponent } from './conge/synthese/synthese.component';
 import { DetailsComponent } from './conge/details/details.component';
 import { CompteurCongeComponent } from './conge/parametrage/compteur-conge/compteur-conge.component';
@@ -26,10 +25,6 @@ export const CLIENT_ROUTE: Route[] = [
   {
     path:'detailsCollaborateur',
     component:DetailsCollaboraterComponent
-  },
-  {
-    path:'archiveCollaborateur',
-    component:ArchivedCollaboraterComponent
   },
   //conges
   {
