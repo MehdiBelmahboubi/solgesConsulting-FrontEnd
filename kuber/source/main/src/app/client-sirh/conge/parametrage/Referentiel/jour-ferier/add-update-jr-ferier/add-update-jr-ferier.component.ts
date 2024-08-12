@@ -1,7 +1,6 @@
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { NgFor, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { fakeAsync } from "@angular/core/testing";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatIconButton, MatButton } from "@angular/material/button";
 import { MatCard, MatCardTitle, MatCardContent, MatCardActions } from "@angular/material/card";
@@ -87,7 +86,7 @@ export class AddUpdateJrFerierComponent implements OnInit {
     })
     this.FormGroup3 = this.fb.group({
       libelle: ['', Validators.required],
-      reconduction: ['', Validators.required],
+      reconduction: [false, Validators.required],
     })
   }
 
@@ -134,6 +133,8 @@ export class AddUpdateJrFerierComponent implements OnInit {
       next: (value) => {
         this.snackBarService.showSuccess('Fete created successfully!');
         this.loadFetes();
+        this.FormGroup1.get('feteId')?.setValue(value.id);
+        this.addFete=false;
       },
       error: (err) => {
         console.error('Error Adding Fete:', err);
@@ -148,6 +149,8 @@ export class AddUpdateJrFerierComponent implements OnInit {
       next: (value) => {
         this.snackBarService.showSuccess('TypeFete created successfully!');
         this.loadTypesFetes();
+        this.FormGroup2.get('typeId')?.setValue(value.id);
+        this.addTypeFete=false;
       },
       error: (err) => {
         console.error('Error Adding TypeFete:', err);

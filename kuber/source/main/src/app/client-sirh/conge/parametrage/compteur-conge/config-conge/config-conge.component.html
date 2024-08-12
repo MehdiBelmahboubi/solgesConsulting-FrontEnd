@@ -13,19 +13,19 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="conteur" class="form-label mr-2">Code:</label>
+                                <label class="form-label mr-2">Code:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="conteur">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="bulletinpaie" class="form-label mr-2">Imputable à la paix:</label>
+                                <label class="form-label mr-2">Imputable à la paix:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin" formControlName="bulletinpaie"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="Statut" class="form-label mr-2">Statut:</label>
+                                <label class="form-label mr-2">Statut:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="Statut" name="Statut">
                                         <mat-option value="Homme">En-cours</mat-option>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="row form-inline"></div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="datevalidite" class="form-label mr-2">Date de validité:</label>
+                                <label class="form-label mr-2">Date de validité:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput [matDatepicker]="pickerdatevalidite" formControlName="datevalidite">
                                     <mat-datepicker-toggle matSuffix [for]="pickerdatevalidite"></mat-datepicker-toggle>
@@ -43,7 +43,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="finValidite" class="form-label mr-2">fin de validité:</label>
+                                <label class="form-label mr-2">fin de validité:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput [matDatepicker]="pickerfinValidite" formControlName="finValidite">
                                     <mat-datepicker-toggle matSuffix [for]="pickerfinValidite"></mat-datepicker-toggle>
@@ -51,7 +51,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="unite" class="form-label mr-2">Type Unité:</label>
+                                <label class="form-label mr-2">Type Unité:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="unite" name="unite">
                                         <mat-option value="Homme">Journée</mat-option>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="row form-inline">
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="calendrierType" class="form-label mr-2">Type de calendrier:</label>
+                                <label class="form-label mr-2">Type de calendrier:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="calendrierType" name="calendrierType">
                                         <mat-option value="Homme">Calendaire</mat-option>
@@ -72,7 +72,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="Droitlegal" class="form-label mr-2">Droit légal:</label>
+                                <label class="form-label mr-2">Droit légal:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Droitlegal">
                                     <button mat-icon-button matSuffix (click)="openDroitLegal()">
@@ -80,9 +80,8 @@
                                     </button>
                                 </mat-form-field>
                             </div>
-
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="Droitlegal" class="form-label mr-2">Droit légal:</label>
+                                <label class="form-label mr-2">Droit légal:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Droitlegal">
                                     <button mat-icon-button matSuffix (click)="openDroitEntreprise()">
@@ -250,7 +249,7 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="autoriseDefalcation" class="form-label mr-2">Autoriser la
+                                <label class="form-label mr-2">Autoriser la
                                     défalcation:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin"
@@ -258,13 +257,13 @@
                                 </section>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="nbrDefalcation" class="form-label mr-2">Nombre de fois:</label>
+                                <label class="form-label mr-2">Nombre de fois:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="nbrDefalcation">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="autorisationRencondiction" class="form-label mr-2">Autorisation
+                                <label class="form-label mr-2">Autorisation
                                     rencondiction:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin"
@@ -272,7 +271,7 @@
                                 </section>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="Delai" class="form-label mr-2">Délai :</label>
+                                <label class="form-label mr-2">Délai :</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Delai">
                                 </mat-form-field>
@@ -281,25 +280,25 @@
 
                         <div class="row form-inline">
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="Minjours" class="form-label mr-2">Min jours:</label>
+                                <label class="form-label mr-2">Min jours:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Minjours">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="Maxjours" class="form-label mr-2">Max jours:</label>
+                                <label class="form-label mr-2">Max jours:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="Maxjours">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for="reliquat" class="form-label mr-2">Reliquat a reconduire:</label>
+                                <label class="form-label mr-2">Reliquat a reconduire:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin" formControlName="reliquat"></mat-checkbox>
                                 </section>
                             </div>
                             <div class="col-md-3 d-flex align-items-center mb-3">
-                                <label for=">nbrAnnee" class="form-label mr-2">Nombre d'année:</label>
+                                <label class="form-label mr-2">Nombre d'année:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="nbrAnnee">
                                 </mat-form-field>

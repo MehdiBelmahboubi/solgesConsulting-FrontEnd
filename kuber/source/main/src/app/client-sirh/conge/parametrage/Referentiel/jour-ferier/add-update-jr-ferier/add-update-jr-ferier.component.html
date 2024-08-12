@@ -11,7 +11,7 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="dateFete" class="form-label mr-2">Date de Fête:</label>
+                                <label  class="form-label mr-2">Date de Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput [matDatepicker]="pickerdatefete" formControlName="dateFete">
                                     <mat-datepicker-toggle matSuffix [for]="pickerdatefete"></mat-datepicker-toggle>
@@ -19,7 +19,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="feteId" class="form-label mr-2">Fête:</label>
+                                <label  class="form-label mr-2">Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select name="feteId" formControlName="feteId" (selectionChange)="onFeteSelectionChange($event)">
                                         <mat-option value="new-fete">Nouveau</mat-option>
@@ -30,7 +30,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="nbrJour" class="form-label mr-2">Nombre Jour:</label>
+                                <label  class="form-label mr-2">Nombre Jour:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="nbrJour">
                                 </mat-form-field>
@@ -45,7 +45,7 @@
                     </mat-card-content>
                 </mat-card>
             </form>
-            
+
             <!-- Fête Card -->
             <form [formGroup]="FormGroup2" *ngIf="addFete">
                 <mat-card class="styled-card">
@@ -56,13 +56,13 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="code" class="form-label mr-2">Code:</label>
+                                <label class="form-label mr-2">Code:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="code">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="typeId" class="form-label mr-2">Type Fête:</label>
+                                <label class="form-label mr-2">Type Fête:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select name="typeId" formControlName="typeId" (selectionChange)="onTypeFeteSelectionChange($event)">
                                         <mat-option value="new-type-fete">Nouveau</mat-option>
@@ -73,7 +73,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="libelle" class="form-label mr-2">Libelle:</label>
+                                <label class="form-label mr-2">Libelle:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="libelle">
                                 </mat-form-field>
@@ -98,13 +98,13 @@
                     <mat-card-content>
                         <div class="row form-inline">
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="libelle" class="form-label mr-2">Libelle:</label>
+                                <label class="form-label mr-2">Libelle:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <input matInput formControlName="libelle">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label for="reconduction" class="form-label mr-2">Reconduction:</label>
+                                <label class="form-label mr-2">Reconduction:</label>
                                 <section class="example-section">
                                     <mat-checkbox class="example-margin" formControlName="reconduction"></mat-checkbox>
                                 </section>

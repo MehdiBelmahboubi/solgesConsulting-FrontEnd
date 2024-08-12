@@ -17,6 +17,8 @@ import { contractType } from 'app/models/contractType.model';
 import { ClassificationService } from 'app/services/classification.service';
 import { ContractService } from 'app/services/contract.service';
 import { SnackBarService } from 'app/services/snackBar.service';
+import {AddEditDroitlegalComponent} from "../add-edit-droitlegal/add-edit-droitlegal.component";
+import {AddEditDroitentrepriseComponent} from "../add-edit-droitentreprise/add-edit-droitentreprise.component";
 
 @Component({
   selector: 'app-config-conge',
@@ -26,12 +28,6 @@ import { SnackBarService } from 'app/services/snackBar.service';
   styleUrl: './config-conge.component.scss'
 })
 export class ConfigCongeComponent implements OnInit {
-openDroitLegal() {
-throw new Error('Method not implemented.');
-}
-openDroitEntreprise() {
-throw new Error('Method not implemented.');
-}
   formGroup!: FormGroup;
   contractTypes!: contractType[];
   classificationTypes!: classificationType[];
@@ -49,21 +45,21 @@ throw new Error('Method not implemented.');
   initializeForm(): void {
     this.formGroup = this.fb.group({
       conteur: ['', Validators.required],
-      bulletinpaie: [false, Validators.required], 
+      bulletinpaie: [false, Validators.required],
       datevalidite: ['', Validators.required],
       finValidite: ['', Validators.required],
       unite: ['', Validators.required],
       calendrierType: ['', Validators.required],
       Statut: ['', Validators.required],
-      Droitlegal: ['', Validators.required], 
-      Droitentreprise: ['', Validators.required], 
-      autoriseDefalcation: [false, Validators.required], 
+      Droitlegal: [{ value: '', disabled: true }, Validators.required],
+      Droitentreprise: [{ value: '', disabled: true }, Validators.required],
+      autoriseDefalcation: [false, Validators.required],
       nbrDefalcation: [{ value: '', disabled: true }, Validators.required],
-      autorisationRencondiction: [false, Validators.required], 
+      autorisationRencondiction: [false, Validators.required],
       Delai: [{ value: '', disabled: true }, Validators.required],
       Minjours: ['', Validators.required],
       Maxjours: ['', Validators.required],
-      Reliquat: [false, Validators.required], 
+      Reliquat: [false, Validators.required],
       nbrAnnee: [{ value: '', disabled: true }, Validators.required],
       sexe: ['', Validators.required],
       nbrJour: ['', Validators.required],
@@ -108,6 +104,14 @@ throw new Error('Method not implemented.');
     });
   }
 
+  openDroitLegal() {
+    this.dialog.open(AddEditDroitlegalComponent,{width: '1000px'});
+  }
+
+  openDroitEntreprise() {
+    this.dialog.open(AddEditDroitentrepriseComponent,{width: '1000px'});
+  }
+
   toggleControl(controlName: string, enable: boolean): void {
     if (enable) {
       this.formGroup.get(controlName)?.enable();
@@ -115,5 +119,4 @@ throw new Error('Method not implemented.');
       this.formGroup.get(controlName)?.disable();
     }
   }
-
 }
