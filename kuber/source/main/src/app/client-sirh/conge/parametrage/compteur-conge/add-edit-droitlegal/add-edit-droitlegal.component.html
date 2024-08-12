@@ -15,19 +15,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-            <mat-form-field class="example-full-width">
-              <mat-label>Code:</mat-label>
-              <input matInput formControlName="code" required>
-            </mat-form-field>
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+          <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-3">
             <mat-form-field class="example-full-width">
               <mat-label>Nombre de Jours:</mat-label>
               <input matInput formControlName="nbrJour" type="number" required>
             </mat-form-field>
           </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-3">
             <mat-form-field class="example-full-width">
               <mat-label>Champ de Contrainte:</mat-label>
               <mat-select formControlName="champContrainte">
@@ -35,7 +31,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-3">
             <mat-form-field class="example-full-width">
               <mat-label>Valeur de Contrainte:</mat-label>
               <input matInput formControlName="valeurContrainte" required>
@@ -45,12 +41,12 @@
             <button mat-raised-button color="primary" (click)="addContrainte()">Ajouter Contrainte</button>
           </div>
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-              <mat-chip *ngFor="let contrainte of contraintes" removable (removed)="removeContrainte(contrainte)">
-                {{ contrainte.champ }}: {{ contrainte.valeur }}
-                <button matChipRemove>
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip>
+            <mat-chip *ngFor="let contrainte of contraintes" removable (removed)="removeContrainte(contrainte)">
+              {{ contrainte.champ }}: {{ contrainte.valeur }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
           </div>
         </div>
       </div>
