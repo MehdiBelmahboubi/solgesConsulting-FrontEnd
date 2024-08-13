@@ -11,13 +11,20 @@
           <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
           <div class="custom-select">
             <span class="select-label"></span>
-            <select>
-              <option value="contrat"></option>
-              <option value="type">Par type</option>
-              <option value="contrat">Par contrat</option>
+            <select [(ngModel)]="selectedColumn">
+              <option ></option>
+              <option value="civNomPrenom">Par collaborateur</option>
+              <option value="matricule">Par matricule</option>
+              <option value="cnie">Par CNIE</option>
+              <option value="initiales">Par initiales</option>
+              <option value="email">Par email</option>
+              <option value="lieuNaissance">Par lieu de naissance</option>
+              <option value="sexe">Par sexe</option>
             </select>
             <div class="select-arrow"></div>
-          </div>
+        
+        </div>
+        
           <button mat-mini-fab [matMenuTriggerFor]="menu" style="background-color:cadetblue;" class="icon-container"
             class="small-icon-button">
             <mat-icon>more_vert</mat-icon>
@@ -139,9 +146,9 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
         <mat-paginator [length]="totalElements"
-                       [pageSize]="size"
+                       [pageSize]="4"
                        [pageSizeOptions]="[4, 8, 12]"
-                       (page)="onPageChange($event)">
+                       >
         </mat-paginator>
       </div>
     </div>

@@ -24,12 +24,17 @@ section.content {
   table {
     width: 100%;
   }
-
+.custom-select{
+  display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
 
 
   .form-fields {
     display: flex;
     align-items: center;
+    
   }
 
   .icon-container {

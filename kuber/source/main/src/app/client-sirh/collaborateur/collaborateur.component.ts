@@ -20,12 +20,14 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { Page } from 'app/models/page.models';
 import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
+import { FormsModule } from '@angular/forms';  // <-- Ajoutez ceci
+
 
 @Component({
   selector: 'app-collaborateur',
   standalone: true,
   imports: [
-    BreadcrumbComponent, RouterLink, HeaderSirhClientComponent, MatTableModule,
+    BreadcrumbComponent, RouterLink,FormsModule, HeaderSirhClientComponent, MatTableModule,
     MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
     MatButtonModule, MatMenuModule, MatIconModule
@@ -39,9 +41,10 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['civNomPrenom', 'matricule', 'cnie', 'initiales', 'email', 'lieuNaissance', 'sexe', 'action'];
   collaboraterDataSource = new MatTableDataSource<Collaborater>(this.collaboraters);
   selection = new SelectionModel<Collaborater>(true, []);
+  selectedColumn: string = '';
   selectedFile: File | null = null;
   page: number = 0;
-  size: number = 4;
+  size: number = 900000;
   totalElements: number = 0;
   totalPages: number = 0;
   active!:boolean;
@@ -128,8 +131,14 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.collaboraterDataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    if (this.selectedColumn) {
+      this.collaboraterDataSource.filterPredicate = (data: Collaborater, filter: string) => {
+        const columnValue = data[this.selectedColumn as keyof Collaborater] as string || '';
+        return columnValue.toLowerCase().includes(filter);
+      };
+    }
+    this.collaboraterDataSource.filter = filterValue;
   }
 
   refresh() {
