@@ -14,10 +14,11 @@ import { classificationType } from 'app/models/classificationType.model';
 import { Classification } from 'app/models/classification.model';
 import { Router } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HeaderSirhClientComponent } from "../../header-sirh-client/header-sirh-client.component";
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [FormsModule, MatDatepickerModule,MatCheckboxModule,ReactiveFormsModule,MatSelectModule, MatNativeDateModule, MatInputModule,NgFor, NgIf,MatListModule,MatCardModule, MatButtonModule],
+  imports: [FormsModule, MatDatepickerModule, MatCheckboxModule, ReactiveFormsModule, MatSelectModule, MatNativeDateModule, MatInputModule, NgFor, NgIf, MatListModule, MatCardModule, MatButtonModule, HeaderSirhClientComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
