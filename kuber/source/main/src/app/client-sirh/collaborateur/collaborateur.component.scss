@@ -34,7 +34,7 @@ section.content {
   .form-fields {
     display: flex;
     align-items: center;
-    
+
   }
 
   .icon-container {
@@ -146,4 +146,70 @@ section.content {
 .small-icon-button1 .mat-icon {
   font-size: 1.2em;
   line-height: 1em;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+  background-color: white;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  flex: 1;
+  font-size: 16px;
+  border-radius: 20px 0 0 20px;
+}
+
+.search-button {
+  margin: 0;
+  width: 36px;  /* Adjust width */
+  height: 36px; /* Adjust height */
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 0 20px 20px 0; /* Rounded corners for the right side */
+  background-color: transparent;
+  border-left: none; /* Remove any border that might create a gap */
+  box-shadow: none; /* Remove shadow if there’s any */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button mat-icon {
+  font-size: 20px; /* Adjust icon size */
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.combined-select {
+  display: flex;
+  align-items: center;
+  background-color: #fff; /* Adjust if needed */
+  border: 1px solid #ccc; /* Adjust if needed */
+  border-radius: 4px; /* Adjust if needed */
+}
+
+.select-container {
+  flex: 1;
+  position: relative;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  outline: none;
+  border-radius: 4px; /* Adjust if needed */
+}
+
+.divider {
+  width: 1px;
+  background-color: #ccc; /* Adjust divider color */
+  height: 100%;
 }

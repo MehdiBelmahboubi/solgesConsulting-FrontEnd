@@ -44,6 +44,33 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborators`, { params: param });
   }
 
+  getByComanyAndSearch(page: number, size: number,active:boolean,search:string): Observable<Page<Collaborater>> {
+    let id = this.localStorageService.getCurrentCompany()?.id.toString();
+    let param = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('search',search)
+      .set('active',active.valueOf());
+    if (id) {
+      param = param.set('id', id);
+    }
+    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborators`, { params: param });
+  }
+
+  getByComanyAndGroup(page: number, size: number,active:boolean,selectedType:string,selectedOption:string): Observable<Page<Collaborater>> {
+    let id = this.localStorageService.getCurrentCompany()?.id.toString();
+    let param = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('selectedType',selectedType)
+      .set('selectedOption',selectedOption)
+      .set('active',active.valueOf());
+    if (id) {
+      param = param.set('id', id);
+    }
+    return this.httpClient.get<Page<Collaborater>>(`${this.appConfig.apiUrl}/collaborators`, { params: param });
+  }
+
   getById(id: number): Observable<Collaborater> {
     return this.httpClient.get<Collaborater>(`${this.appConfig.apiUrl}/collaborators/${id}`);
   }

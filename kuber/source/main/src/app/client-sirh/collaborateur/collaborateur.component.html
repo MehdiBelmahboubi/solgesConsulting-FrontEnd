@@ -8,23 +8,31 @@
     <div class="body">
       <div class="example-container">
         <div class="form-fields">
-          <input matInput placeholder="Rechercher" class="search-input" (keyup)="applyFilter($event)">
-          <div class="custom-select">
-            <span class="select-label"></span>
-            <select [(ngModel)]="selectedColumn">
-              <option ></option>
-              <option value="civNomPrenom">Par collaborateur</option>
-              <option value="matricule">Par matricule</option>
-              <option value="cnie">Par CNIE</option>
-              <option value="initiales">Par initiales</option>
-              <option value="email">Par email</option>
-              <option value="lieuNaissance">Par lieu de naissance</option>
-              <option value="sexe">Par sexe</option>
-            </select>
-            <div class="select-arrow"></div>
-        
-        </div>
-        
+          <div class="search-container">
+            <input matInput placeholder="Rechercher" [(ngModel)]="searchControl" class="search-input">
+            <button mat-mini-fab class="search-button" (click)="getCollaboratersBySearch()">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <div class="combined-select">
+            <div class="select-container">
+              <select [(ngModel)]="selectedType" (change)="onTypeChange($event)">
+                <option value="">Select Type</option>
+                <option value="contract">Par Contrat</option>
+                <option value="classification">Par Classification</option>
+                <option value="both">Par Contrat et Classification</option>
+              </select>
+            </div>
+            <div class="divider"></div>
+            <div class="select-container">
+              <select [(ngModel)]="selectedOption" (change)="getCollaboratersByGroup()">
+                <option *ngFor="let option of filteredOptions" [value]="option.id">
+                  {{ option.label }} <!-- Displays code or nom based on the selected type -->
+                </option>
+              </select>
+            </div>
+          </div>
+
           <button mat-mini-fab [matMenuTriggerFor]="menu" style="background-color:cadetblue;" class="icon-container"
             class="small-icon-button">
             <mat-icon>more_vert</mat-icon>

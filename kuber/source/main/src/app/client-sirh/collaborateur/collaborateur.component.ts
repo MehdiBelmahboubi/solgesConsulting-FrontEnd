@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { HeaderSirhClientComponent } from '../header-sirh-client/header-sirh-client.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -20,7 +20,11 @@ import { Collaborater } from 'app/models/collaborater.model';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { Page } from 'app/models/page.models';
 import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
-import { FormsModule } from '@angular/forms';  // <-- Ajoutez ceci
+import { FormsModule } from '@angular/forms';
+import {debounceTime} from "rxjs";
+import {ContractService} from "../../services/contract.service";
+import {NgFor, NgIf} from "@angular/common";
+import {ClassificationService} from "../../services/classification.service";
 
 
 @Component({
@@ -30,7 +34,7 @@ import { FormsModule } from '@angular/forms';  // <-- Ajoutez ceci
     BreadcrumbComponent, RouterLink,FormsModule, HeaderSirhClientComponent, MatTableModule,
     MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
-    MatButtonModule, MatMenuModule, MatIconModule
+    MatButtonModule, MatMenuModule, MatIconModule,NgFor,NgIf
   ],
   templateUrl: './collaborateur.component.html',
   styleUrls: ['./collaborateur.component.scss'],
@@ -48,11 +52,24 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   totalElements: number = 0;
   totalPages: number = 0;
   active!:boolean;
+  searchControl: string = '';
+  search = '';
+  selectedType: string = '';
+  selectedOption: string = '';
+  filteredOptions: any[] = [];
+  contractOptions: any[] = [];
+  classificationOptions: any[] = [];
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private collaboraterService: CollaboraterService, private router: Router, private snackBarService: SnackBarService) { }
+  constructor(private cdr: ChangeDetectorRef,
+              private collaboraterService: CollaboraterService,
+              private router: Router,
+              private snackBarService: SnackBarService,
+              private contractService:ContractService,
+              private classificationService:ClassificationService) { }
 
   ngOnInit() {
     this.active=true;
@@ -130,16 +147,16 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.getCollaboraters(this.page,this.size,this.active);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if (this.selectedColumn) {
-      this.collaboraterDataSource.filterPredicate = (data: Collaborater, filter: string) => {
-        const columnValue = data[this.selectedColumn as keyof Collaborater] as string || '';
-        return columnValue.toLowerCase().includes(filter);
-      };
-    }
-    this.collaboraterDataSource.filter = filterValue;
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  //   if (this.selectedColumn) {
+  //     this.collaboraterDataSource.filterPredicate = (data: Collaborater, filter: string) => {
+  //       const columnValue = data[this.selectedColumn as keyof Collaborater] as string || '';
+  //       return columnValue.toLowerCase().includes(filter);
+  //     };
+  //   }
+  //   this.collaboraterDataSource.filter = filterValue;
+  // }
 
   refresh() {
     this.getCollaboraters(this.page,this.size,this.active);
@@ -190,5 +207,99 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
         this.refresh();
       }
     });
+  }
+
+  getCollaboratersBySearch() {
+    if (this.searchControl){
+      this.collaboraterService.getByComanyAndSearch(this.page, this.size, this.active, this.searchControl).subscribe({
+        next: (data) => {
+          console.log('Collaboraters fetched', data);
+          this.collaboraters = data.content;
+          this.collaboraterDataSource.data = this.collaboraters;
+          this.totalElements = data.totalElements;
+          this.totalPages = Math.ceil(this.totalElements / this.size);
+          this.collaboraterDataSource.paginator = this.paginator;
+          this.collaboraterDataSource.sort = this.sort;
+        },
+        error: (err) => {
+          console.error('Error fetching collaboraters:', err);
+          this.snackBarService.showError('Failed to fetch collaborators');
+        }
+      });
+    }
+  }
+
+  loadClassificationTypes(): void {
+    this.classificationService.getAllTypes().subscribe({
+      next: (value) => {
+        this.classificationOptions = value; // Store separately
+        this.updateFilteredOptions();
+      },
+      error: (err) => {
+        console.error('Error fetching Classifications:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+// Load contract types
+  loadContracts(): void {
+    this.contractService.getAllTypes().subscribe({
+      next: (value) => {
+        this.contractOptions = value; // Store separately
+        this.updateFilteredOptions();
+      },
+      error: (err) => {
+        console.error('Error fetching Contracts:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  updateFilteredOptions(): void {
+    if (this.selectedType === 'contract') {
+      this.filteredOptions = this.contractOptions.map(option => ({
+        id: option.id,
+        label: option.code,
+        type: 'contract'
+      }));
+    } else if (this.selectedType === 'classification') {
+      this.filteredOptions = this.classificationOptions.map(option => ({
+        id: option.id,
+        label: option.nom,
+        type: 'classification'
+      }));
+    } else {
+      this.filteredOptions = [];
+    }
+  }
+
+// Handle type changes
+  onTypeChange(event: Event) {
+    this.selectedType = (event.target as HTMLSelectElement).value.trim().toLowerCase();
+    if (this.selectedType === 'contract') {
+      this.loadContracts();
+    } else if (this.selectedType === 'classification') {
+      this.loadClassificationTypes();
+    } else {
+      this.filteredOptions = [];
+    }
+  }
+
+  getCollaboratersByGroup() {
+    if (this.selectedType && this.selectedOption) {
+      this.collaboraterService.getByComanyAndGroup(this.page, this.size, this.active,this.selectedType, this.selectedOption).subscribe({
+        next: (response) => {
+          console.log('Selection sent to backend:', response);
+          this.snackBarService.showSuccess('Selection sent successfully!');
+        },
+        error: (err) => {
+          console.error('Error sending selection:', err);
+          this.snackBarService.showError('Failed to send selection');
+        }
+      });
+    } else {
+      this.snackBarService.showError('Please select both type and option');
+    }
   }
 }
