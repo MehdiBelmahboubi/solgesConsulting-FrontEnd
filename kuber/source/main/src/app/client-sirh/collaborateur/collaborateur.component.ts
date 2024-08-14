@@ -289,13 +289,19 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   getCollaboratersByGroup() {
     if (this.selectedType && this.selectedOption) {
       this.collaboraterService.getByComanyAndGroup(this.page, this.size, this.active,this.selectedType, this.selectedOption).subscribe({
-        next: (response) => {
-          console.log('Selection sent to backend:', response);
-          this.snackBarService.showSuccess('Selection sent successfully!');
+        next: (data: Page<Collaborater>) => {
+          console.log('Collaboraters fetched', data);
+          this.collaboraters = data.content;
+          this.collaboraterDataSource.data = this.collaboraters;
+          this.totalElements = data.totalElements;
+          this.totalPages = Math.ceil(this.totalElements / this.size);
+          console.log('Total elements:', this.totalElements);
+          this.collaboraterDataSource.paginator = this.paginator;
+          this.collaboraterDataSource.sort = this.sort;
         },
         error: (err) => {
-          console.error('Error sending selection:', err);
-          this.snackBarService.showError('Failed to send selection');
+          console.error('Error fetching collaboraters:', err);
+          this.snackBarService.showError(err);
         }
       });
     } else {
