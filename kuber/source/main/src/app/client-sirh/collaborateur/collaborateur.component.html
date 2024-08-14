@@ -14,17 +14,20 @@
               <mat-icon>search</mat-icon>
             </button>
           </div>
-          <div class="combined-select">
-            <div class="select-container">
+
+        
+
+          <div class="custom-select">
+            <div class="select-container2">
               <select [(ngModel)]="selectedType" (change)="onTypeChange($event)">
-                <option value="">Select Type</option>
+                <option value="">Sélectionner ..</option>
                 <option value="contract">Par Contrat</option>
                 <option value="classification">Par Classification</option>
                 <option value="both">Par Contrat et Classification</option>
               </select>
             </div>
             <div class="divider"></div>
-            <div class="select-container">
+            <div class="custom-select2">
               <select [(ngModel)]="selectedOption" (change)="getCollaboratersByGroup()">
                 <option *ngFor="let option of filteredOptions" [value]="option.id">
                   {{ option.label }} <!-- Displays code or nom based on the selected type -->

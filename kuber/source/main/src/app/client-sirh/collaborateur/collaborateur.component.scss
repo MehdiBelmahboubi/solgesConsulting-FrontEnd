@@ -31,6 +31,8 @@ section.content {
 }
 
 
+
+
   .form-fields {
     display: flex;
     align-items: center;
@@ -71,6 +73,7 @@ section.content {
   position: relative;
   width: 250px; /* Largeur souhaitée */
   margin: 10px;
+ 
 
 }
 
@@ -79,6 +82,7 @@ section.content {
   height: 2em;
   min-width: 2em;
   min-height: 2em;
+  margin-left: 160px;
 }
 
 /* Adjust the size of the icon */
@@ -96,15 +100,16 @@ section.content {
   left: 10px;
   font-size: 14px;
   color: #555;
+  
 }
 
 /* Styles pour la sélection elle-même */
 .custom-select select {
   margin-left: auto;
   margin-right: 10px; /* Adjust as needed for spacing */
-  width: 250px; /* Adjust width as needed */
+  width: 210px; /* Adjust width as needed */
   padding: 5px 10px; /* Add padding for better appearance */
-  border: 1px solid #ccc; /* Border for the input */
+  border: 1px solid #ffffff; /* Border for the input */
   border-radius: 4px; /* Rounded corners */
 
 }
@@ -113,15 +118,12 @@ section.content {
 
 
 /* Style sur hover */
-.custom-select select:hover {
-  border-color: #3f51b5; /* Couleur de la bordure lorsqu'il est survolé */
-}
+
 
 /* Style sur focus */
 .custom-select select:focus {
   outline: none; /* Remove default outline */
-  border-color: #3f51b5; /* Couleur de la bordure lorsqu'il est en focus */
-  box-shadow: 0 0 5px rgba(63, 81, 181, 0.5); /* Ombre portée lorsqu'il est en focus */
+/* Ombre portée lorsqu'il est en focus */
 }
 
 .bttn-menu {
@@ -152,20 +154,20 @@ section.content {
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.23);
-  overflow: hidden;
-  background-color: white;
+  
+ 
+ 
 }
 
 .search-input {
-  border: none;
-  outline: none;
-  padding: 8px 12px;
-  flex: 1;
-  font-size: 16px;
-  border-radius: 20px 0 0 20px;
+  margin-left: auto;
+  margin-right: 10px; /* Adjust as needed for spacing */
+  width: 250px; /* Adjust width as needed */
+  padding: 5px 10px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Border for the input */
+  border-radius: 4px; /* Rounded corners */
 }
+
 
 .search-button {
   margin: 0;
@@ -180,6 +182,7 @@ section.content {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: -50px;
 }
 
 .search-button mat-icon {
@@ -191,13 +194,15 @@ section.content {
   display: flex;
   align-items: center;
   background-color: #fff; /* Adjust if needed */
-  border: 1px solid #ccc; /* Adjust if needed */
+  border: 1px solid #ffffff; /* Adjust if needed */
   border-radius: 4px; /* Adjust if needed */
+  
 }
 
 .select-container {
   flex: 1;
   position: relative;
+  
 }
 
 .select-container select {
@@ -206,10 +211,52 @@ section.content {
   border: none;
   outline: none;
   border-radius: 4px; /* Adjust if needed */
+  
 }
 
 .divider {
-  width: 1px;
+  width: -5px;
   background-color: #ccc; /* Adjust divider color */
   height: 100%;
+  
+}
+
+
+
+
+
+
+
+
+.custom-select2 select {
+  margin-left: auto;
+  margin-right: 10px; /* Adjust as needed for spacing */
+  width: 210px; /* Adjust width as needed */
+  padding: 5px 10px; /* Add padding for better appearance */
+  border: 1px solid #ffffff; /* Border for the input */
+  border-radius: 4px; /* Rounded corners */
+
+}
+
+/* Flèche à droite */
+
+
+/* Style sur hover */
+
+
+/* Style sur focus */
+
+
+.custom-select2{
+  display: flex;
+    align-items: center;
+    margin-top: 50px;
+    
+}
+
+.custom-select2 {
+  position: relative;
+  width: 250px; /* Largeur souhaitée */
+  margin: 10px;
+  margin-left: -17px;
 }
