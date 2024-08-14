@@ -1,3 +1,4 @@
+
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -20,8 +21,8 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
   dialogData!: Collaborater;
   getCollaboraters: any;
   constructor(private http: HttpClient,
-    @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
-    private localStorageService: LocalStorageService) {
+              @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
+              private localStorageService: LocalStorageService) {
     super(http, `${appConfig.apiUrl}`, "Collaborater",//Classification//Contract
       localStorageService.getCurrentCompany()?.id || -1, localStorageService.getUser()?.id || -1);
   }
@@ -106,6 +107,6 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     param = param.set('id', id);
     return this.httpClient.delete(`${this.appConfig.apiUrl}/collaborators`, { params: param });
   }
- // collaborater.service.ts
+  // collaborater.service.ts
 
 }
