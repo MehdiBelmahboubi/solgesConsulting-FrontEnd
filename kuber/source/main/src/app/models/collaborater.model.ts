@@ -75,7 +75,7 @@ export class Collaborater {
   public majPar!: string;
   public countryCode1!:number;
   public countryCode2!:number;
-  public company_id!:number;
+  public companyId!:number;
 
   public contract!: Contract;
   public classification!: Classification;

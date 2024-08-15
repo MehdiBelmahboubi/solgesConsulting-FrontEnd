@@ -91,7 +91,7 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
   addCollaborateur(collaborater: Collaborater): Observable<any> {
     const companyId = this.localStorageService.getCurrentCompany()?.id;
     if (companyId !== undefined) {
-      collaborater.company_id = companyId;
+      collaborater.companyId = companyId;
       return this.httpClient.post(`${this.appConfig.apiUrl}/collaborators`, collaborater);
     } else {
       throw new Error('Current company ID is undefined');
