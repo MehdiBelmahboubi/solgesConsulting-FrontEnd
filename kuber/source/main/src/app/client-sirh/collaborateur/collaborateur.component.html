@@ -2,8 +2,8 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-header-sirh-client [title]="'Collaborateur'" [items]="['Home']"
-        [active_item]="'Collaborateur '"></app-header-sirh-client>
+      <app-header-sirh-client [title]="'Collaborateurs'" [items]="['Home']"
+        [active_item]="'Collaborateurs'"></app-header-sirh-client>
     </div>
     <div class="body">
       <div class="example-container">
@@ -15,20 +15,21 @@
             </button>
           </div>
 
-        
+
 
           <div class="custom-select">
             <div class="select-container2">
               <select [(ngModel)]="selectedType" (change)="onTypeChange($event)">
                 <option value="">Sélectionner ..</option>
-                <option value="contract">Par Contrat</option>
-                <option value="classification">Par Classification</option>
-                <option value="both">Par Contrat et Classification</option>
+                <option value="contract">Contrat</option>
+                <option value="classification">Classification</option>
+                <option value="sexe">Sexe</option>
               </select>
             </div>
             <div class="divider"></div>
             <div class="custom-select2">
               <select [(ngModel)]="selectedOption" (change)="getCollaboratersByGroup()">
+                <option value=""></option>
                 <option *ngFor="let option of filteredOptions" [value]="option.id">
                   {{ option.label }} <!-- Displays code or nom based on the selected type -->
                 </option>

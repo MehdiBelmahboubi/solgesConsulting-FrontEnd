@@ -1,7 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import {MatSelect, MatSelectModule} from '@angular/material/select';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
@@ -59,10 +66,12 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   filteredOptions: any[] = [];
   contractOptions: any[] = [];
   classificationOptions: any[] = [];
+  sexeOptions:any[]=[];
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
 
   constructor(private cdr: ChangeDetectorRef,
               private collaboraterService: CollaboraterService,
@@ -74,6 +83,10 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.active=true;
     this.getCollaboraters(this.page, this.size,this.active);
+    this.sexeOptions = [
+      { id: 'Homme', label: 'Homme' },
+      { id: 'Femme', label: 'Femme' }
+    ];
   }
 
   getCollaboraters(page: number, size: number,active:boolean) {
@@ -159,6 +172,10 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   // }
 
   refresh() {
+    this.searchControl='';
+    this.selectedType = '';
+    this.filteredOptions = [];
+    this.active=true;
     this.getCollaboraters(this.page,this.size,this.active);
   }
 
@@ -269,22 +286,31 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
         label: option.nom,
         type: 'classification'
       }));
-    } else {
+    } else if (this.selectedType === 'sexe') {
+      this.filteredOptions = this.sexeOptions;
+    }else {
       this.filteredOptions = [];
     }
   }
 
-// Handle type changes
   onTypeChange(event: Event) {
     this.selectedType = (event.target as HTMLSelectElement).value.trim().toLowerCase();
+    this.selectedOption = ''; // Reset the selected option in the second select
+
     if (this.selectedType === 'contract') {
       this.loadContracts();
     } else if (this.selectedType === 'classification') {
       this.loadClassificationTypes();
+    } else if (this.selectedType === 'sexe') {
+      this.filteredOptions = this.sexeOptions;
     } else {
       this.filteredOptions = [];
+      this.getCollaboraters(this.page, this.size,this.active);
     }
   }
+
+
+
 
   getCollaboratersByGroup() {
     if (this.selectedType && this.selectedOption) {
@@ -304,8 +330,6 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
           this.snackBarService.showError(err);
         }
       });
-    } else {
-      this.snackBarService.showError('Please select both type and option');
     }
   }
 }
