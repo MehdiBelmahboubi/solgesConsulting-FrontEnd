@@ -32,6 +32,7 @@ import {debounceTime} from "rxjs";
 import {ContractService} from "../../services/contract.service";
 import {NgFor, NgIf} from "@angular/common";
 import {ClassificationService} from "../../services/classification.service";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -41,7 +42,7 @@ import {ClassificationService} from "../../services/classification.service";
     BreadcrumbComponent, RouterLink,FormsModule, HeaderSirhClientComponent, MatTableModule,
     MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
-    MatButtonModule, MatMenuModule, MatIconModule,NgFor,NgIf
+    MatButtonModule,MatProgressSpinnerModule, MatMenuModule, MatIconModule,NgFor,NgIf
   ],
   templateUrl: './collaborateur.component.html',
   styleUrls: ['./collaborateur.component.scss'],
@@ -67,10 +68,14 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
   contractOptions: any[] = [];
   classificationOptions: any[] = [];
   sexeOptions:any[]=[];
+  archive: boolean=true;
+  buttonText: string = 'Archive'; // Texte du bouton actuel
+  buttonIcon: string = 'archive';
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  loading! :boolean ;
 
 
   constructor(private cdr: ChangeDetectorRef,
@@ -109,6 +114,8 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     });
   }
 
+  
+
   onPageChange(event: PageEvent) {
     console.log('Page change event', event);
     this.page = event.pageIndex;
@@ -127,6 +134,10 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     return numSelected === numRows;
   }
 
+  toggleArchivedStatus() {
+    this.active = !this.active;
+    this.getCollaboraters(this.page, this.size, this.active);
+  }
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -155,10 +166,13 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.router.navigate(['/client/detailsCollaborateur'], { queryParams: { id: id, mode: "update" } });
   }
 
-  openArchivedCollaborateur() {
-    this.active=false;
-    this.getCollaboraters(this.page,this.size,this.active);
+  openArchivedCollaborateur(isArchived: boolean) {
+    this.active = isArchived;
+    this.buttonText = isArchived ? 'Désarchiver' : 'Archive';
+    this.buttonIcon = isArchived ? 'unarchive' : 'archive';
+    this.getCollaboraters(this.page, this.size, this.active);
   }
+  
 
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();

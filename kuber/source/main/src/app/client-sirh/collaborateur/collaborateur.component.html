@@ -42,15 +42,20 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
+          
             <button mat-menu-item>
               <mat-icon>search</mat-icon>
               <span>Filtrage</span>
             </button>
-            <button mat-menu-item (click)="openArchivedCollaborateur()">
-              <mat-icon>archive</mat-icon>
-              <span>Archive</span>
+          
+          
+            <button mat-menu-item (click)="toggleArchivedStatus()">
+              <mat-icon>{{ active ? 'unarchive' : 'archive' }}</mat-icon>
+              <span>{{ active ? 'Désarchivé' : 'Archive' }}</span>
             </button>
           </mat-menu>
+          
+          
           <button mat-mini-fab class="icon-container" class="small-icon-button"
             style="margin-left: 5px;background-color:darkslategray;">
             <mat-icon>indeterminate_check_box</mat-icon>
@@ -157,6 +162,9 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
+        <div class="spinner-container" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
         <mat-paginator [length]="totalElements"
                        [pageSize]="4"
                        [pageSizeOptions]="[4, 8, 12]"
