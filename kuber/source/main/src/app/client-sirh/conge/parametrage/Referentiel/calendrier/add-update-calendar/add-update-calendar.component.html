@@ -1,0 +1,50 @@
+<mat-card class="calendar-card">
+  <mat-card-title class="calendar-edit-title">
+    <p>Ajouter Droit Légal:</p>
+    <button class="close-btn" mat-icon-button matTooltip="Close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title>
+  <hr>
+  <form class="type-unit-form" [formGroup]="formGroup">
+    <mat-card-content>
+      <div class="calendar-content">
+        <div class="row form-inline">
+          <div class="col-md-4 align-items-center mb-3">
+            <label class="form-label mr-2">Code:</label>
+            <mat-form-field class="field-width" appearance="outline">
+              <input matInput formControlName="code">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4 align-items-center mb-3">
+            <label class="form-label mr-2">Libelle:</label>
+            <mat-form-field class="field-width" appearance="outline">
+              <input matInput formControlName="libelle">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4 d-flex align-items-center mb-3">
+            <label class="form-label mr-2">Jour Féries:</label>
+            <mat-checkbox formControlName="jrFerier"></mat-checkbox>
+          </div>
+        </div>
+        <div class="row form-inline">
+          <div class="col-md-12 mb-3">
+            <div class="days-container">
+              <label class="form-label days-label">Jours de la semaine:</label>
+              <div class="days-frame p-3">
+                <div class="d-flex justify-content-between">
+                  <div *ngFor="let day of daysOfWeekOptions" class="day-checkbox">
+                    <mat-checkbox [formControlName]="day">{{ day }}</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="card-actions justify-content-end">
+      <button mat-raised-button class="add-type-unit">Ajouter</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

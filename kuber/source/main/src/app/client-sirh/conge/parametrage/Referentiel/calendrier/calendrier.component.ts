@@ -14,12 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
-import { CollaboraterService } from 'app/services/collaborater.service';
-import { Collaborater } from 'app/models/collaborater.model';
-import { SnackBarService } from 'app/services/snackBar.service';
-import { Page } from 'app/models/page.models';
-import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
 import { HeaderSirhClientComponent } from "../../../../header-sirh-client/header-sirh-client.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AddUpdateCalendarComponent} from "./add-update-calendar/add-update-calendar.component";
 
 @Component({
   selector: 'app-calendrier',
@@ -35,25 +32,6 @@ import { HeaderSirhClientComponent } from "../../../../header-sirh-client/header
   styleUrl: './calendrier.component.scss'
 })
 export class CalendrierComponent  {
-deleteCalendrier(arg0: any) {
-throw new Error('Method not implemented.');
-}
-openCalendrierDetails(_t162: any) {
-throw new Error('Method not implemented.');
-}
-Calendrier: any;
-uploadFile($event: Event) {
-throw new Error('Method not implemented.');
-}
-openAddCalendrier() {
-throw new Error('Method not implemented.');
-}
-refresh() {
-throw new Error('Method not implemented.');
-}
-openArchivedCalendrier() {
-throw new Error('Method not implemented.');
-}
   displayedColumns: string[] = ['code', 'typeCalendrier', 'jourFerie'];
   selectedFile: File | null = null;
   page: number = 0;
@@ -61,12 +39,12 @@ throw new Error('Method not implemented.');
   totalElements: number = 0;
   totalPages: number = 0;
 
-  
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   CalendrierDataSource: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private dialog:MatDialog) { }
 
   onPageChange($event: PageEvent) {
     // Implémentez la logique de changement de page ici
@@ -77,13 +55,13 @@ throw new Error('Method not implemented.');
     return '';
   }
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
-  
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.CalendrierDataSource.data.length;
     return numSelected === numRows;
   }
-  
+
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -91,16 +69,18 @@ throw new Error('Method not implemented.');
     }
     this.selection.select(...this.CalendrierDataSource.data);
   }
-
-  openAddconge() {
-    this.router.navigate(['/client/conge/parametrage']);
+  uploadFile($event: Event) {
+    throw new Error('Method not implemented.');
   }
-
-  openArchivedlistconge() {
-    // Implémentez la logique pour ouvrir la liste des congés archivés ici
+  openAddCalendrier() {
+    this.dialog.open(AddUpdateCalendarComponent,{width:"1200px"})
   }
-
- 
+  refresh() {
+    throw new Error('Method not implemented.');
+  }
+  openArchivedCalendrier() {
+    throw new Error('Method not implemented.');
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
