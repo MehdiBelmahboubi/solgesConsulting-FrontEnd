@@ -33,7 +33,36 @@ import { JourFerier } from 'app/models/jourferier.model';
   styleUrl: './jour-ferier.component.scss'
 })
 export class JourFerierComponent implements AfterViewInit, OnInit {
+  uploadFile(event: any) {
+    console.log("upload file ")
+    this.selectedFile = event.target.files[0] as File;
+    event.target.value = null;
+    if (this.selectedFile) {
+      this.snackBarService.showSuccess('Fichier importer avec success ! ');
+      this.massRegisterjrsferie(this.selectedFile);
+    }
+    else {
+      this.snackBarService.showError('Fichier n\'est pas importer  ! ')
+    }
+  }
+  massRegisterjrsferie(event:any) {
+    
+  }
+refresh() {
+  this.searchControl='';
+  this.selectedType = '';
+  this.filteredOptions = [];
+  this.active=true;
+  this.getJrFeries(this.active);
+}
   jourferies: JourFerier[] = [];
+  active!:boolean;
+  selectedFile: File | null = null;
+  searchControl: string = '';
+  search = '';
+  selectedType: string = '';
+  selectedOption: string = '';
+  filteredOptions: any[] = [];
   displayedColumns: string[] = ['select','dateFete','fete','nbrJour', 'action'];
   jourferierDataSource = new MatTableDataSource<JourFerier>(this.jourferies);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -45,10 +74,11 @@ export class JourFerierComponent implements AfterViewInit, OnInit {
     private jrferierService:JourferierService,private snackBarService:SnackBarService) { }
 
   ngOnInit() {
-    this.getJrFeries();
+    this.active=true;
+    this.getJrFeries(this.active);
   }
 
-  getJrFeries() {
+  getJrFeries(active: boolean) {
     this.jrferierService.getAllJourFeries().subscribe({
       next: (data) => {
         this.jourferies = data;
@@ -81,6 +111,11 @@ export class JourFerierComponent implements AfterViewInit, OnInit {
       return;
     }
     this.selection.select(...this.jourferierDataSource.data);
+  }
+
+  toggleArchivedStatus() {
+    this.active = !this.active;
+    this.getJrFeries(this.active);
   }
 
   checkboxLabel(): string {
