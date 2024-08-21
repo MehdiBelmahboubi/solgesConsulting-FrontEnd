@@ -11,6 +11,8 @@ import { ConfigCongeComponent } from './conge/parametrage/compteur-conge/config-
 import { CalendrierComponent } from './conge/parametrage/Referentiel/calendrier/calendrier.component';
 import { JourFerierComponent } from './conge/parametrage/Referentiel/jour-ferier/jour-ferier.component';
 import { AddUpdateJrFerierComponent } from './conge/parametrage/Referentiel/jour-ferier/add-update-jr-ferier/add-update-jr-ferier.component';
+import { ContratComponent } from './contrat/contrat.component';
+
 
 export const CLIENT_ROUTE: Route[] = [
   {
@@ -55,6 +57,12 @@ export const CLIENT_ROUTE: Route[] = [
     path: 'conge/details',
     component: DetailsComponent,
   },
+
+  {
+    path: 'contrat',
+    component: ContratComponent,
+    },
+
   {
     path: 'organisations',
     component: StructureOrganisationsComponent,

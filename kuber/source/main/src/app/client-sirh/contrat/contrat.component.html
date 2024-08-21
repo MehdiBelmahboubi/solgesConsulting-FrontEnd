@@ -1,0 +1,170 @@
+<section class="content">
+  <app-header-sirh-client [title]="'Contrat'" [items]="['Home']" [active_item]="'GPEC'"></app-header-sirh-client>
+  <div class="container">
+    <div class="body">
+      <form [formGroup]="formGroup">
+        <!-- User Image Section -->
+        <div class="col-12 text-center">
+          <div class="image">
+            <img src="././assets/images/flags/user_image2.jpeg" alt="Photo" class="avatar mat-elevation-z4">
+          </div>
+          
+        </div>
+
+        <!-- Contract Information Section -->
+        <mat-card class="styled-card">
+          <mat-list>
+            <mat-list-item>Information Contrat</mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-card-content>
+            <div class="row form-inline">
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <label for="refcontrat" class="form-label mr-2">Référence du Contrat:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="refcontrat">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6 d-flex align-items-center mb-3">
+                <label for="contractType" class="form-label mr-2">Type de Contrat:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <mat-select formControlName="contractType">
+                    <!-- Options here -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6 d-flex align-items-center mb-3">
+                <label for="dateentree" class="form-label mr-2">Date d'entrée:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput [matDatepicker]="picker2" formControlName="dateentree">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Departure Section -->
+<mat-card class="styled-card">
+  <mat-list>
+   
+  </mat-list>
+  <mat-card-content>
+    <div class="row form-inline">
+      <div class="col-md-6 d-flex align-items-center mb-3">
+        <label for="Motifdepart" class="form-label mr-2">Motif de départ:</label>
+        <mat-form-field class="field-width" appearance="outline">
+          <mat-select formControlName="Motifdepart">
+            <!-- Options here -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 d-flex align-items-center mb-3">
+        <label for="datesortie" class="form-label mr-2">Date de sortie :</label>
+        <mat-form-field class="field-width" appearance="outline">
+          <input matInput [matDatepicker]="picker3" formControlName="datesortie">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <mat-radio-group class="col-md-10 mb-2" formControlName="Motifdepart">
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="depdifinitif">Départ définitif</mat-radio-button>
+        </div>
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="depnego">Départ négocié</mat-radio-button>
+        </div>
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="depretrete">Départ pour retraite</mat-radio-button>
+        </div>
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="depinvalid">Départ pour invalidité</mat-radio-button>
+        </div>
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="deplicence">Départ pour licenciement</mat-radio-button>
+        </div>
+        <div class="col-md-10 d-flex align-items-center mb-2">
+          <mat-radio-button value="deceagent">Décès agent</mat-radio-button>
+        </div>
+      </mat-radio-group>
+      
+
+      
+      <div *ngIf="formGroup.get('Motifdepart')?.value === 'deceagent'">
+        <div class="row form-inline">
+        <div class="col-md-6 d-flex align-items-center mb-2">
+          <label for="datedecetagent" class="form-label mr-2">Date de décès :</label>
+          <mat-form-field class="field-width" appearance="outline">
+            <input matInput [matDatepicker]="picker4" formControlName="datedecetagent">
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+            <mat-datepicker #picker4></mat-datepicker>
+          </mat-form-field>
+        </div>
+        
+         
+          <div class="col-md-6 d-flex align-items-center mb-2">
+            <label for="datecertifdece" class="form-label mr-2">Date de certificat de décès:</label>
+            <mat-form-field class="field-width" appearance="outline">
+              <input matInput [matDatepicker]="picker6" formControlName="datecertifdece">
+              <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+              <mat-datepicker #picker6></mat-datepicker>
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+  </div>
+  </mat-card-content>
+</mat-card>
+
+
+        
+        <mat-card class="styled-card">
+          <mat-list>
+            <mat-list-item>Solde de tous compte</mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-card-content>
+            <div class="row form-inline">
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <label for="stctraite" class="form-label mr-2">STC traité Par:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="stctraite">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <label for="civnonpren" class="form-label mr-2"></label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="civnonpren">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <label for="stc" class="form-label mr-2">STC Remis:</label>
+                <mat-checkbox formControlName="stc"></mat-checkbox>
+              </div>
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <label for="datestc" class="form-label mr-2">Date de remise STC:</label>
+                <mat-form-field class="field-width" appearance="outline">
+                  <input matInput formControlName="datestc">
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Action Buttons -->
+        <div class="row form-inline">
+          <div class="d-flex justify-content-end mt-4">
+            <div class="col-md-11 d-flex justify-content-end mb-3">
+              <button mat-flat-button color="primary" class="mr-3">Retour</button>
+              <button mat-flat-button color="primary">Enregistrer</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

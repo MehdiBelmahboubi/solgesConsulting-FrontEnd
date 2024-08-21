@@ -801,6 +801,20 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
+
+  {
+    path: '/client/contrat',
+    title: 'GPEC',
+    iconType: 'feather',
+    icon: 'list',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['client'],
+    submenu: [],
+  },
+
   {
     path: '/client/projects',
     title: 'Projets',
