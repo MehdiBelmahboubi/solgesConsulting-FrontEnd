@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-4 d-flex align-items-center mb-3">
             <label class="form-label mr-2">Jour Féries:</label>
-            <mat-checkbox formControlName="jrFerier"></mat-checkbox>
+            <mat-checkbox formControlName="jourFerier"></mat-checkbox>
           </div>
         </div>
         <div class="row form-inline">
@@ -44,7 +44,9 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="card-actions justify-content-end">
-      <button mat-raised-button class="add-type-unit">Ajouter</button>
+      <button mat-raised-button [style.background-color]="backgroundColorBlue" class="add-type-unit" (click)="addCalendar()">
+        Ajouter
+      </button>
     </mat-card-actions>
   </form>
 </mat-card>

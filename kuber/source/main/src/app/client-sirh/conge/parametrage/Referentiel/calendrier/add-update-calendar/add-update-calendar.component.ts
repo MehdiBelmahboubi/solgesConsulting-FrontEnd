@@ -8,11 +8,17 @@ import {MatInput} from "@angular/material/input";
 import {MatOptgroup, MatSelect} from "@angular/material/select";
 import {MatTooltip} from "@angular/material/tooltip";
 import {NgForOf, NgIf} from "@angular/common";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatOptionModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 import {MatCheckbox} from "@angular/material/checkbox";
+import {StylesService} from "../../../../../../services/stylesService";
+import {DayOfWeek} from "../../../../../../models/dayOfWeek.model";
+import {Calendar} from "../../../../../../models/calendar.model";
+import {CalendarService} from "../../../../../../services/calendar.service";
+import {SnackBarService} from "../../../../../../services/snackBar.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-update-calendar',
@@ -44,31 +50,66 @@ import {MatCheckbox} from "@angular/material/checkbox";
 })
 export class AddUpdateCalendarComponent {
   newTypeError = '';
+  backgroundColorBlue='';
   formGroup!: FormGroup;
   jrFeries: any;
-  daysOfWeekOptions: string[] = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+  calendar!:Calendar;
+  daysOfWeekOptions = Object.values(DayOfWeek);
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private stylesService:StylesService,
+              private dialogRef:MatDialogRef<AddUpdateCalendarComponent>,
+              private calendarService:CalendarService,
+              private snackBarService:SnackBarService) { }
 
   ngOnInit() {
     this.initializeForm();
+    this.backgroundColorBlue=this.stylesService.getBlueColor();
   }
 
   initializeForm(): void {
     this.formGroup = this.fb.group({
       code: ['', Validators.required],
-      feteType: ['', Validators.required],
-      jrFerier: ['', Validators.required],
-      Lundi: ['', Validators.required],
-      Mardi: ['', Validators.required],
-      Mercredi: ['', Validators.required],
-      Jeudi: ['', Validators.required],
-      Vendredi: ['', Validators.required],
-      Samedi: ['', Validators.required],
-      Dimanche: ['', Validators.required],
+      libelle: ['', Validators.required],
+      jourFerier: [false, Validators.required],
+      Lundi: [false],
+      Mardi: [false],
+      Mercredi: [false],
+      Jeudi: [false],
+      Vendredi: [false],
+      Samedi: [false],
+      Dimanche: [false]
     });
   }
   close() {
-    throw new Error('Method not implemented.');
+    this.dialogRef.close();
+  }
+
+  addCalendar() {
+    const formValues = this.formGroup.value;
+
+    // Collect selected days of the week
+    const selectedDaysOfWeek = this.daysOfWeekOptions.filter(day => formValues[day]);
+
+    const newCalendar = {
+      companyId: formValues.companyId,
+      code: formValues.code,
+      libelle: formValues.libelle,
+      jourFerier: formValues.jourFerier,
+      daysOfWeek: selectedDaysOfWeek
+    };
+
+    console.log(newCalendar);
+
+    // this.calendarService.addCalendar(newCalendar).subscribe({
+    //   next: () => {
+    //     this.snackBarService.showSuccess('Calendar created successfully!');
+    //     this.close();
+    //   },
+    //   error: (err) => {
+    //     console.error('Error Adding Calendar:', err);
+    //     this.snackBarService.showError(err);
+    //   }
+    // });
   }
 }
