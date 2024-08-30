@@ -25,9 +25,10 @@ export class JourferierService extends UnsubscribeOnDestroyAdapter{
     super();
   }
 
-  getAllJourFeries(): Observable<JourFerier[]>{
-    let id = this.localStorageService.getCurrentCompany()?.id.toString();
-    let param = new HttpParams();
+  getAllJourFeries(statut:boolean): Observable<JourFerier[]>{
+    const id = this.localStorageService.getCurrentCompany()?.id.toString();
+    let param = new HttpParams()
+      .set('statut',statut);
     if (id) {
       param = param.set('id', id);
     }

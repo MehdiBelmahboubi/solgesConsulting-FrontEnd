@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,14 +9,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Router, RouterLink } from '@angular/router';
+import {Event, Router, RouterLink} from '@angular/router';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/header-sirh-client.component';
-import { AddUpdateJrFerierComponent } from './add-update-jr-ferier/add-update-jr-ferier.component';
 import { JourferierService } from 'app/services/jourferier.service';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { JourFerier } from 'app/models/jourferier.model';
@@ -32,29 +31,7 @@ import { JourFerier } from 'app/models/jourferier.model';
   templateUrl: './jour-ferier.component.html',
   styleUrl: './jour-ferier.component.scss'
 })
-export class JourFerierComponent implements AfterViewInit, OnInit {
-  uploadFile(event: any) {
-    console.log("upload file ")
-    this.selectedFile = event.target.files[0] as File;
-    event.target.value = null;
-    if (this.selectedFile) {
-      this.snackBarService.showSuccess('Fichier importer avec success ! ');
-      this.massRegisterjrsferie(this.selectedFile);
-    }
-    else {
-      this.snackBarService.showError('Fichier n\'est pas importer  ! ')
-    }
-  }
-  massRegisterjrsferie(event:any) {
-    
-  }
-refresh() {
-  this.searchControl='';
-  this.selectedType = '';
-  this.filteredOptions = [];
-  this.active=true;
-  this.getJrFeries(this.active);
-}
+export class JourFerierComponent implements OnInit {
   jourferies: JourFerier[] = [];
   active!:boolean;
   selectedFile: File | null = null;
@@ -69,7 +46,6 @@ refresh() {
   @ViewChild(MatSort) sort!: MatSort;
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
 
-
   constructor(private router: Router,private dialog:MatDialog,
     private jrferierService:JourferierService,private snackBarService:SnackBarService) { }
 
@@ -78,8 +54,8 @@ refresh() {
     this.getJrFeries(this.active);
   }
 
-  getJrFeries(active: boolean) {
-    this.jrferierService.getAllJourFeries().subscribe({
+  getJrFeries(statut: boolean) {
+    this.jrferierService.getAllJourFeries(statut).subscribe({
       next: (data) => {
         this.jourferies = data;
         this.jourferierDataSource.data = this.jourferies;
@@ -92,19 +68,38 @@ refresh() {
       }
     });
   }
-  
 
-  ngAfterViewInit() {
-    
+
+  // uploadFile(event: any) {
+  //   console.log("upload file ")
+  //   this.selectedFile = event.target.files[0] as File;
+  //   event.target.value = null;
+  //   if (this.selectedFile) {
+  //     this.snackBarService.showSuccess('Fichier importer avec success ! ');
+  //     this.massRegisterjrsferie(this.selectedFile);
+  //   }
+  //   else {
+  //     this.snackBarService.showError('Fichier n\'est pas importer  ! ')
+  //   }
+  // }
+  // massRegisterjrsferie(event:any) {
+  // }
+
+  refresh() {
+    this.searchControl='';
+    this.selectedType = '';
+    this.filteredOptions = [];
+    this.active=true;
+    this.getJrFeries(this.active);
   }
-  
-  
+
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.jourferierDataSource.data.length;
     return numSelected === numRows;
   }
-  
+
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -127,7 +122,7 @@ refresh() {
     this.router.navigate(['/client/conge/referentiel/jourferier/parametrage']);
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.jourferierDataSource.filter = filterValue.trim().toLowerCase();
   }
