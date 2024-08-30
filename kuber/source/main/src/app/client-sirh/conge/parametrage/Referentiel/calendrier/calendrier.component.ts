@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,6 +17,9 @@ import { Router, RouterLink } from '@angular/router';
 import { HeaderSirhClientComponent } from "../../../../header-sirh-client/header-sirh-client.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddUpdateCalendarComponent} from "./add-update-calendar/add-update-calendar.component";
+import {CalendarService} from "../../../../../services/calendar.service";
+import {SnackBarService} from "../../../../../services/snackBar.service";
+import {Calendar} from "../../../../../models/calendar.model";
 
 @Component({
   selector: 'app-calendrier',
@@ -31,30 +34,44 @@ import {AddUpdateCalendarComponent} from "./add-update-calendar/add-update-calen
   templateUrl: './calendrier.component.html',
   styleUrl: './calendrier.component.scss'
 })
-export class CalendrierComponent  {
-  displayedColumns: string[] = ['code', 'typeCalendrier', 'jourFerie'];
-  selectedFile: File | null = null;
+
+export class CalendrierComponent  implements OnInit{
+  calenders: Calendar[] = [];
+  displayedColumns: string[] = ['select','code', 'libelle', 'jourFerier','action'];
+  CalendrierDataSource=new MatTableDataSource<Calendar>(this.calenders);
   page: number = 0;
   size: number = 4;
   totalElements: number = 0;
-  totalPages: number = 0;
-
+  active!:boolean;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  CalendrierDataSource: any;
-
-  constructor(private router: Router,private dialog:MatDialog) { }
-
-  onPageChange($event: PageEvent) {
-    // Implémentez la logique de changement de page ici
-  }
-  conge: any;
-  checkboxLabel(): string {
-    // Implémentez la logique d'étiquette de la case à cocher ici
-    return '';
-  }
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
+
+  constructor(private router: Router,
+              private dialog:MatDialog,
+              private calendarService:CalendarService,
+              private snackBarService:SnackBarService) { }
+
+  ngOnInit() {
+    this.active=true;
+    this.getCalenders(this.active);
+  }
+
+  getCalenders(statut: boolean) {
+    this.calendarService.getAllCalendar(statut).subscribe({
+      next: (data) => {
+        this.calenders = data;
+        this.CalendrierDataSource.data = this.calenders;
+        this.CalendrierDataSource.paginator = this.paginator;
+        this.CalendrierDataSource.sort = this.sort;
+      },
+      error: (err) => {
+        console.error('Error fetching calendriers:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -85,5 +102,14 @@ export class CalendrierComponent  {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.CalendrierDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onPageChange($event: PageEvent) {
+    // Implémentez la logique de changement de page ici
+  }
+
+  checkboxLabel(): string {
+    // Implémentez la logique d'étiquette de la case à cocher ici
+    return '';
   }
 }

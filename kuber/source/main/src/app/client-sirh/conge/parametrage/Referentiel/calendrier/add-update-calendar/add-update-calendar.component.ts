@@ -8,7 +8,7 @@ import {MatInput} from "@angular/material/input";
 import {MatOptgroup, MatSelect} from "@angular/material/select";
 import {MatTooltip} from "@angular/material/tooltip";
 import {NgForOf, NgIf} from "@angular/common";
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatOptionModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {CdkTextareaAutosize} from "@angular/cdk/text-field";
@@ -52,7 +52,6 @@ export class AddUpdateCalendarComponent {
   newTypeError = '';
   backgroundColorBlue='';
   formGroup!: FormGroup;
-  jrFeries: any;
   calendar!:Calendar;
   daysOfWeekOptions = Object.values(DayOfWeek);
 
@@ -99,17 +98,17 @@ export class AddUpdateCalendarComponent {
       daysOfWeek: selectedDaysOfWeek
     };
 
-    console.log(newCalendar);
+    const newcalendar2 = { ...this.calendar, ...newCalendar };
 
-    // this.calendarService.addCalendar(newCalendar).subscribe({
-    //   next: () => {
-    //     this.snackBarService.showSuccess('Calendar created successfully!');
-    //     this.close();
-    //   },
-    //   error: (err) => {
-    //     console.error('Error Adding Calendar:', err);
-    //     this.snackBarService.showError(err);
-    //   }
-    // });
+    this.calendarService.addCalendar(newcalendar2).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Calendar created successfully!');
+        this.close();
+      },
+      error: (err) => {
+        console.error('Error Adding Calendar:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 }

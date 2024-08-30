@@ -24,9 +24,10 @@ export class CalendarService extends UnsubscribeOnDestroyAdapter{
     super();
   }
 
-  getAllCalendar():Observable<Calendar[]>{
-    let id = this.localStorageService.getCurrentCompany()?.id.toString();
-    let param = new HttpParams();
+  getAllCalendar(statut:boolean):Observable<Calendar[]>{
+    const id = this.localStorageService.getCurrentCompany()?.id.toString();
+    let param = new HttpParams()
+      .set('statut',statut);
     if (id) {
       param = param.set('id', id);
     }
