@@ -114,7 +114,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     });
   }
 
-  
+
 
   onPageChange(event: PageEvent) {
     console.log('Page change event', event);
@@ -172,7 +172,7 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
     this.buttonIcon = isArchived ? 'unarchive' : 'archive';
     this.getCollaboraters(this.page, this.size, this.active);
   }
-  
+
 
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
@@ -345,5 +345,18 @@ export class CollaborateurComponent implements AfterViewInit, OnInit {
         }
       });
     }
+  }
+
+  restoreCollaborater(id:number) {
+    this.collaboraterService.restoreCollaborater(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Collaborateur Restorer !!!');
+        this.getCollaboraters(this.page, this.size,this.active);
+      },
+      error: (err) => {
+        console.error('Error Restoring Collaborator:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 }

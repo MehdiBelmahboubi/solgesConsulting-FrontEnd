@@ -107,6 +107,10 @@ export class CollaboraterService extends AbstractRestService<Collaborater> {
     param = param.set('id', id);
     return this.httpClient.delete(`${this.appConfig.apiUrl}/collaborators`, { params: param });
   }
-  // collaborater.service.ts
+  restoreCollaborater(id: number) {
+    let param = new HttpParams();
+    param = param.set('id', id);
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/collaborators/restore`, { params: param });
+  }
 
 }

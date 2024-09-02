@@ -42,20 +42,20 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-          
+
             <button mat-menu-item>
               <mat-icon>search</mat-icon>
               <span>Filtrage</span>
             </button>
-          
-          
+
+
             <button mat-menu-item (click)="toggleArchivedStatus()">
-              <mat-icon>{{ active ? 'unarchive' : 'archive' }}</mat-icon>
-              <span>{{ active ? 'Désarchivé' : 'Archive' }}</span>
+              <mat-icon>{{ active ? 'archive' : 'unarchive' }}</mat-icon>
+              <span>{{ active ? 'Archivé' : 'Désarchivé' }}</span>
             </button>
           </mat-menu>
-          
-          
+
+
           <button mat-mini-fab class="icon-container" class="small-icon-button"
             style="margin-left: 5px;background-color:darkslategray;">
             <mat-icon>indeterminate_check_box</mat-icon>
@@ -148,35 +148,38 @@
                 <button mat-mini-fab class="custom-mini-fab1"
                 (click)="openCollaboraterDetails(collaborater)"
                 matTooltip="Detail" color="accent" matTooltipPosition="above"  >
-          <mat-icon>remove_red_eye</mat-icon>
-        </button>
+                <mat-icon>remove_red_eye</mat-icon>
+                </button>
 
-        <button mat-mini-fab class="custom-mini-fab m-lg-2"
-        (click)="openEditCollaborater(collaborater.id)"
-        matTooltip="modifier" color="primary" matTooltipPosition="above"  >
-  <mat-icon>edit</mat-icon>
-</button>
+                <button mat-mini-fab class="custom-mini-fab m-lg-2"
+                (click)="openEditCollaborater(collaborater.id)"
+                matTooltip="modifier" color="primary" matTooltipPosition="above"  >
+                <mat-icon>edit</mat-icon>
+                </button>
 
-<button mat-mini-fab class="custom-mini-fab1"
-                    
-matTooltip="Dupliquer" color="accent" matTooltipPosition="above"  >
-<mat-icon>content_copy</mat-icon>
-</button>
-
-<button mat-mini-fab class="custom-mini-fab m-lg-2"  color="warn"
-(click)="deleteCollaborater(collaborater.id)"
-matTooltip="supprimer" matTooltipPosition="above"
->
-<mat-icon>delete</mat-icon>
-</button>
-
+                <button mat-mini-fab class="custom-mini-fab1"
+                matTooltip="Dupliquer" color="accent" matTooltipPosition="above"  >
+                <mat-icon>content_copy</mat-icon>
+                </button>
+                <button mat-mini-fab class="custom-mini-fab m-lg-2"  color="warn"
+                (click)="deleteCollaborater(collaborater.id)"
+                matTooltip="supprimer" matTooltipPosition="above"
+                *ngIf="active">
+                <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-mini-fab class="custom-mini-fab m-lg-2"  color="warn"
+                        (click)="restoreCollaborater(collaborater.id)"
+                        matTooltip="supprimer" matTooltipPosition="above"
+                        *ngIf="!active">
+                  <mat-icon>restore_from_trash</mat-icon>
+                </button>
               </td>
             </ng-container>
 
 
 
 
-            
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
