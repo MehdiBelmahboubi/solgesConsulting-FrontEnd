@@ -19,15 +19,16 @@ import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/he
 import { JourferierService } from 'app/services/jourferier.service';
 import { SnackBarService } from 'app/services/snackBar.service';
 import { JourFerier } from 'app/models/jourferier.model';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-jour-ferier',
   standalone: true,
-  imports: [BreadcrumbComponent, RouterLink, MatTableModule,
-    MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
-    MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
-    MatButtonModule, MatMenuModule, MatIconModule,
-    HeaderSirhClientComponent],
+    imports: [BreadcrumbComponent, RouterLink, MatTableModule,
+        MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
+        MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
+        MatButtonModule, MatMenuModule, MatIconModule,
+        HeaderSirhClientComponent, NgIf],
   templateUrl: './jour-ferier.component.html',
   styleUrl: './jour-ferier.component.scss'
 })
@@ -125,5 +126,31 @@ export class JourFerierComponent implements OnInit {
   applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.jourferierDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  restoreJourFerie(id:number) {
+    this.jrferierService.restoreCalendar(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Jour Feries Activer !!!');
+        this.getJrFeries(this.active);
+      },
+      error: (err) => {
+        console.error('Error activing jour Feries:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  deleteJourFerier(id:number) {
+    this.jrferierService.deleteJrFerie(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Jour Feries Supprimer !!!');
+        this.getJrFeries(this.active);
+      },
+      error: (err) => {
+        console.error('Error deleting jour Feries:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 }

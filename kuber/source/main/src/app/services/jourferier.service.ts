@@ -82,4 +82,16 @@ export class JourferierService extends UnsubscribeOnDestroyAdapter{
     }
     return this.httpClient.get<TypeFete[]>(`${this.appConfig.apiUrl}/jourferies/typesFetes`, { params: param })
   }
+
+  deleteJrFerie(id:number):Observable<any>{
+    let param = new HttpParams();
+    param = param.set('id', id);
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/jourferies`, { params: param });
+  }
+
+  restoreCalendar(id:number):Observable<any>{
+    let param = new HttpParams();
+    param = param.set('id', id);
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/jourferies/restore`, { params: param });
+  }
 }
