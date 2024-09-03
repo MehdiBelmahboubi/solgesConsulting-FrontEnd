@@ -31,16 +31,28 @@ export class CalendarService extends UnsubscribeOnDestroyAdapter{
     if (id) {
       param = param.set('id', id);
     }
-    return this.httpClient.get<Calendar[]>(`${this.appConfig.apiUrl}/calendar`, { params: param })
+    return this.httpClient.get<Calendar[]>(`${this.appConfig.apiUrl}/calendars`, { params: param })
   }
 
   addCalendar(calendar:Calendar):Observable<any>{
     const companyId = this.localStorageService.getCurrentCompany()?.id;
     if (companyId !== undefined) {
       calendar.companyId = companyId;
-      return this.httpClient.post(`${this.appConfig.apiUrl}/calendar`, calendar);
+      return this.httpClient.post(`${this.appConfig.apiUrl}/calendars`, calendar);
     } else {
       throw new Error('Current company ID is undefined');
     }
+  }
+
+  deleteCalendar(id:number):Observable<any>{
+    let param = new HttpParams();
+    param = param.set('id', id);
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/calendars`, { params: param });
+  }
+
+  restoreCalendar(id:number):Observable<any>{
+    let param = new HttpParams();
+    param = param.set('id', id);
+    return this.httpClient.delete(`${this.appConfig.apiUrl}/calendars/restore`, { params: param });
   }
 }

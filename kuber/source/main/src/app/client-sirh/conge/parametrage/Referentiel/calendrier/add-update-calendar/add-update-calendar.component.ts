@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {MatChip} from "@angular/material/chips";
@@ -18,7 +18,7 @@ import {DayOfWeek} from "../../../../../../models/dayOfWeek.model";
 import {Calendar} from "../../../../../../models/calendar.model";
 import {CalendarService} from "../../../../../../services/calendar.service";
 import {SnackBarService} from "../../../../../../services/snackBar.service";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-update-calendar',
@@ -59,7 +59,8 @@ export class AddUpdateCalendarComponent {
               private stylesService:StylesService,
               private dialogRef:MatDialogRef<AddUpdateCalendarComponent>,
               private calendarService:CalendarService,
-              private snackBarService:SnackBarService) { }
+              private snackBarService:SnackBarService,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -79,6 +80,14 @@ export class AddUpdateCalendarComponent {
       Samedi: [false],
       Dimanche: [false]
     });
+    if (this.data) {
+      // Patch form values
+      this.formGroup.patchValue({
+        code: this.data.code,
+        libelle: this.data.libelle,
+        jourFerier: this.data.jourFerier
+      });
+    }
   }
   close() {
     this.dialogRef.close();

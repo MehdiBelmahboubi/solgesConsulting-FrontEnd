@@ -131,14 +131,35 @@ section.content {
 
 }
 
-.small-icon-button1 {
-  width: 3.2em;
-  height: 3.2em;
-  min-width: 3.2em;
-  min-height: 3.2em;
+.custom-mini-fab {
+  width: 1.8em;
+  height: 1.8em;
+  min-width: 1.8em;
+  min-height: 1.8em;
+
+}
+.mat-mdc-mini-fab.mat-accent {
+  --mdc-fab-small-container-color: #787676;
+}
+/* Adjust the size of the icon */
+.custom-mini-fab .mat-icon {
+  font-size: 1.5em;
+  line-height: 1.2em;
+
 }
 
-.small-icon-button1 .mat-icon {
-  font-size: 1.2em;
-  line-height: 1em;
+.custom-mini-fab1 {
+  width: 1.8em;
+  height: 1.8em;
+  min-width: 1.8em;
+  min-height: 1.8em;
+  background: none;
+
+}
+
+.custom-mini-fab1 .mat-icon {
+  font-size: 1.5em;
+  line-height: 1.2em;
+  color: #03035d;
+
 }

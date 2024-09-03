@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,11 +15,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { HeaderSirhClientComponent } from "../../../../header-sirh-client/header-sirh-client.component";
-import {MatDialog} from "@angular/material/dialog";
+import { MatDialog} from "@angular/material/dialog";
 import {AddUpdateCalendarComponent} from "./add-update-calendar/add-update-calendar.component";
 import {CalendarService} from "../../../../../services/calendar.service";
 import {SnackBarService} from "../../../../../services/snackBar.service";
 import {Calendar} from "../../../../../models/calendar.model";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-calendrier',
@@ -29,7 +30,7 @@ import {Calendar} from "../../../../../models/calendar.model";
     MatSortModule, MatCardModule, MatPaginatorModule, MatFormFieldModule,
     MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule,
     MatButtonModule, MatMenuModule, MatIconModule,
-    HeaderSirhClientComponent
+    HeaderSirhClientComponent,NgIf
 ],
   templateUrl: './calendrier.component.html',
   styleUrl: './calendrier.component.scss'
@@ -92,11 +93,18 @@ export class CalendrierComponent  implements OnInit{
   openAddCalendrier() {
     this.dialog.open(AddUpdateCalendarComponent,{width:"1200px"})
   }
+
+  openEditCalendre(data:Calendar) {
+    this.dialog.open(AddUpdateCalendarComponent,{data,width:"1200px"})
+  }
+
   refresh() {
     throw new Error('Method not implemented.');
   }
-  openArchivedCalendrier() {
-    throw new Error('Method not implemented.');
+
+  toggleArchivedStatus() {
+    this.active=!this.active;
+    this.getCalenders(this.active);
   }
 
   applyFilter(event: Event) {
@@ -111,5 +119,31 @@ export class CalendrierComponent  implements OnInit{
   checkboxLabel(): string {
     // Implémentez la logique d'étiquette de la case à cocher ici
     return '';
+  }
+
+  deleteCalendar(id:number) {
+    this.calendarService.deleteCalendar(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Calendrier Supprimer !!!');
+        this.getCalenders(this.active);
+      },
+      error: (err) => {
+        console.error('Error deleting calendriers:', err);
+        this.snackBarService.showError(err);
+      }
+    });
+  }
+
+  restoreCalendar(id:number) {
+    this.calendarService.restoreCalendar(id).subscribe({
+      next: () => {
+        this.snackBarService.showSuccess('Calendrier Activer !!!');
+        this.getCalenders(this.active);
+      },
+      error: (err) => {
+        console.error('Error activing calendriers:', err);
+        this.snackBarService.showError(err);
+      }
+    });
   }
 }
