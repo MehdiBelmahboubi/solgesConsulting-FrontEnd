@@ -19,6 +19,8 @@ import { ContractService } from 'app/services/contract.service';
 import { SnackBarService } from 'app/services/snackBar.service';
 import {AddEditDroitlegalComponent} from "../add-edit-droitlegal/add-edit-droitlegal.component";
 import {AddEditDroitentrepriseComponent} from "../add-edit-droitentreprise/add-edit-droitentreprise.component";
+import {CalendarService} from "../../../../../services/calendar.service";
+import {Calendar} from "../../../../../models/calendar.model";
 
 @Component({
   selector: 'app-config-conge',
@@ -29,16 +31,18 @@ import {AddEditDroitentrepriseComponent} from "../add-edit-droitentreprise/add-e
 })
 export class ConfigCongeComponent implements OnInit {
   formGroup!: FormGroup;
-  contractTypes!: contractType[];
-  classificationTypes!: classificationType[];
+  calendars!: Calendar[];
+  active!:boolean;
 
 
-  constructor(private fb: FormBuilder,private dialog:MatDialog,private contractService:ContractService,private classificationService:ClassificationService,private snackBarService:SnackBarService) { }
+  constructor(private fb: FormBuilder,
+              private dialog:MatDialog,
+              private calendarService:CalendarService,
+              private snackBarService:SnackBarService) { }
 
   ngOnInit(): void {
     this.initializeForm();
-    this.loadContractTypes();
-    this.loadClassificationTypes();
+    this.loadCalendars();
     this.addCheckboxListeners();
   }
 
@@ -59,7 +63,7 @@ export class ConfigCongeComponent implements OnInit {
       Delai: [{ value: '', disabled: true }, Validators.required],
       Minjours: ['', Validators.required],
       Maxjours: ['', Validators.required],
-      Reliquat: [false, Validators.required],
+      reliquat: [false, Validators.required],
       nbrAnnee: [{ value: '', disabled: true }, Validators.required],
       sexe: ['', Validators.required],
       nbrJour: ['', Validators.required],
@@ -68,22 +72,13 @@ export class ConfigCongeComponent implements OnInit {
     });
   }
 
-  loadContractTypes(): void {
-    this.contractService.getAllTypes().subscribe({
-      next: (value) => {
-        this.contractTypes = value;
-      },
-      error: (err) => {
-        console.error('Error fetching Countries :', err);
-        this.snackBarService.showError(err);
-      }
-    })
-  }
 
-  loadClassificationTypes(): void {
-    this.classificationService.getAllTypes().subscribe({
+
+  loadCalendars(): void {
+    this.active=true;
+    this.calendarService.getAllCalendar(this.active).subscribe({
       next: (value) => {
-        this.classificationTypes = value;
+        this.calendars = value;
       },
       error: (err) => {
         console.error('Error fetching Classifications :', err);

@@ -2,9 +2,9 @@
     <app-header-sirh-client [title]="'Configuration'" [items]="['Home']"
         [active_item]="'Conges'"></app-header-sirh-client>
     <div class="container">
-        
+
         <div class="body">
-            
+
             <form [formGroup]="formGroup">
                 <!-- Conteur Section -->
                 <mat-card class="styled-card">
@@ -69,9 +69,8 @@
                                 <label class="form-label mr-2">Type de calendrier:</label>
                                 <mat-form-field class="field-width" appearance="outline">
                                     <mat-select formControlName="calendrierType" name="calendrierType">
-                                        <mat-option value="Homme">Calendaire</mat-option>
-                                        <mat-option value="Femme">Ouvré </mat-option>
-                                        <mat-option value="Femme">Ouvrable </mat-option>
+                                      <mat-option *ngFor="let calendar of calendars" [value]="calendar.id">{{ calendar.libelle
+                                        }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -98,150 +97,6 @@
 
                     </mat-card-content>
                 </mat-card>
-
-                <!-- Droit Légal Section -->
-
-                <!-- <mat-card class="styled-card" *ngIf="formGroup.get('Droitlegal')?.value">
-                    <mat-list>
-                        <mat-list-item>Droit Légal</mat-list-item>
-                        <mat-divider></mat-divider>
-                    </mat-list>
-
-                    <mat-card-content>
-                        <div class="row form-inline">
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="nbrJour" class="form-label mr-2">Nombre de Jour:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput formControlName="nbrJour">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Unites:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Types Unites:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-                        <div class="row form-inline">
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Type de Contrat:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Type de Classification:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="classificationType" name="classificationType" multiple>
-                                        <mat-option *ngFor="let classificationType of classificationTypes"
-                                            [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="sexe" class="form-label mr-2">Sexe :</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="sexe">
-                                        <mat-option value="Homme">Homme</mat-option>
-                                        <mat-option value="Femme">Femme</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-                    </mat-card-content>
-                </mat-card> -->
-
-                <!-- Droit d'entreprise Section -->
-
-                <!-- <mat-card class="styled-card" *ngIf="formGroup.get('Droitentreprise')?.value">
-                    <mat-list>
-                        <mat-list-item>Droit d'entreprise</mat-list-item>
-                        <mat-divider></mat-divider>
-                    </mat-list>
-
-                    <mat-card-content>
-                        <div class="row form-inline">
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="nbrJour" class="form-label mr-2">Nombre de Jour:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <input matInput formControlName="nbrJour">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Unites:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Types Unites:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-                        <div class="row form-inline">
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Type de Contrat:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select name="contractType" formControlName="contractType" multiple>
-                                        <mat-option *ngFor="let contractType of contractTypes"
-                                            [value]="contractType.id">{{
-                                            contractType.code}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="contractType" class="form-label mr-2">Type de Classification:</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="classificationType" name="classificationType" multiple>
-                                        <mat-option *ngFor="let classificationType of classificationTypes"
-                                            [value]="classificationType.id">{{ classificationType.nom}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-center mb-3">
-                                <label for="sexe" class="form-label mr-2">Sexe :</label>
-                                <mat-form-field class="field-width" appearance="outline">
-                                    <mat-select formControlName="sexe">
-                                        <mat-option value="Homme">Homme</mat-option>
-                                        <mat-option value="Femme">Femme</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-                    </mat-card-content>
-                </mat-card> -->
 
                 <!-- Réstruction Section -->
                 <mat-card class="styled-card">
