@@ -44,8 +44,11 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="card-actions justify-content-end">
-      <button mat-raised-button [style.background-color]="backgroundColorBlue" class="add-type-unit" (click)="addCalendar()">
+      <button mat-raised-button [style.background-color]="backgroundColorBlue" class="add-type-unit" (click)="addCalendar()" *ngIf="!data">
         Ajouter
+      </button>
+      <button mat-raised-button [style.background-color]="backgroundColorBlue" class="add-type-unit" (click)="updateCalendar()" *ngIf="data">
+        Modifier
       </button>
     </mat-card-actions>
   </form>

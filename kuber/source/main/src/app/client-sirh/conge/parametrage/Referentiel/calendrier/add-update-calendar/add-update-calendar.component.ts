@@ -19,6 +19,7 @@ import {Calendar} from "../../../../../../models/calendar.model";
 import {CalendarService} from "../../../../../../services/calendar.service";
 import {SnackBarService} from "../../../../../../services/snackBar.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-update-calendar',
@@ -60,6 +61,7 @@ export class AddUpdateCalendarComponent {
               private dialogRef:MatDialogRef<AddUpdateCalendarComponent>,
               private calendarService:CalendarService,
               private snackBarService:SnackBarService,
+              private router: Router,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -113,11 +115,16 @@ export class AddUpdateCalendarComponent {
       next: () => {
         this.snackBarService.showSuccess('Calendar created successfully!');
         this.close();
+        window.location.reload();
       },
       error: (err) => {
         console.error('Error Adding Calendar:', err);
         this.snackBarService.showError(err);
       }
     });
+  }
+
+  updateCalendar() {
+
   }
 }
