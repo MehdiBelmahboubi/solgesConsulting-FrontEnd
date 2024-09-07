@@ -12,15 +12,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderSirhClientComponent } from 'app/client-sirh/header-sirh-client/header-sirh-client.component';
-import { classificationType } from 'app/models/classificationType.model';
-import { contractType } from 'app/models/contractType.model';
-import { ClassificationService } from 'app/services/classification.service';
-import { ContractService } from 'app/services/contract.service';
 import { SnackBarService } from 'app/services/snackBar.service';
 import {AddEditDroitlegalComponent} from "../add-edit-droitlegal/add-edit-droitlegal.component";
 import {AddEditDroitentrepriseComponent} from "../add-edit-droitentreprise/add-edit-droitentreprise.component";
 import {CalendarService} from "../../../../../services/calendar.service";
 import {Calendar} from "../../../../../models/calendar.model";
+import {Router} from "@angular/router";
+import {Droit} from "../../../../../models/droit.model";
 
 @Component({
   selector: 'app-config-conge',
@@ -33,9 +31,11 @@ export class ConfigCongeComponent implements OnInit {
   formGroup!: FormGroup;
   calendars!: Calendar[];
   active!:boolean;
-
+  droitLegal!:Droit;
+  droitEntreprise!:Droit;
 
   constructor(private fb: FormBuilder,
+              private router: Router,
               private dialog:MatDialog,
               private calendarService:CalendarService,
               private snackBarService:SnackBarService) { }
@@ -67,8 +67,6 @@ export class ConfigCongeComponent implements OnInit {
       nbrAnnee: [{ value: '', disabled: true }, Validators.required],
       sexe: ['', Validators.required],
       nbrJour: ['', Validators.required],
-      contractType: ['', Validators.required],
-      classificationType: ['', Validators.required],
     });
   }
 
@@ -100,11 +98,31 @@ export class ConfigCongeComponent implements OnInit {
   }
 
   openDroitLegal() {
-    this.dialog.open(AddEditDroitlegalComponent,{width: '1000px'});
+    const dialogRef = this.dialog.open(AddEditDroitlegalComponent, {
+      width: '1000px',
+      data: this.droitLegal ? this.droitLegal : {}  // Pass existing data if not empty
+    });
+
+    dialogRef.afterClosed().subscribe((result: Droit) => {
+      if (result) {
+        this.droitLegal=result;
+        this.formGroup.patchValue({ Droitlegal: result.nbrJour});
+      }
+    });
   }
 
   openDroitEntreprise() {
-    this.dialog.open(AddEditDroitentrepriseComponent,{width: '1000px'});
+    const dialogRef = this.dialog.open(AddEditDroitentrepriseComponent, {
+      width: '1000px',
+      data: this.droitEntreprise ? this.droitEntreprise : {}  // Pass existing data if not empty
+    });
+
+    dialogRef.afterClosed().subscribe((result: Droit) => {
+      if (result) {
+        this.droitEntreprise=result;
+        this.formGroup.patchValue({ Droitentreprise: result.nbrJour });
+      }
+    });
   }
 
   toggleControl(controlName: string, enable: boolean): void {
@@ -113,5 +131,13 @@ export class ConfigCongeComponent implements OnInit {
     } else {
       this.formGroup.get(controlName)?.disable();
     }
+  }
+
+  addConges() {
+
+  }
+
+  back() {
+    this.router.navigate(['/client/conge/listconge']);
   }
 }
