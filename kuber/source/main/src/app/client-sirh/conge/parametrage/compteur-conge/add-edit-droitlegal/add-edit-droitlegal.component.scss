@@ -63,3 +63,19 @@
   color: #333; /* Text color */
   font-size: 14px; /* Font size */
 }
+
+.chip-cadre {
+  border: 1px solid #ccc; // Border around the cadre
+  border-radius: 4px; // Rounded corners for the cadre
+  padding: 10px; // Padding inside the cadre to provide space around the chips
+  background-color: #f9f9f9; // Light background color for the cadre
+  margin-top: 10px; // Margin above the cadre
+}
+
+.mat-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; // Spacing between chips
+  margin: 0;
+  padding: 0;
+}

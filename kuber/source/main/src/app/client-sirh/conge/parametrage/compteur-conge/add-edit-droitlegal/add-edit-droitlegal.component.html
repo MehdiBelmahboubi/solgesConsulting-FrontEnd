@@ -26,7 +26,7 @@
           <div class="col-xl-5 col-lg-4 col-md-4 col-sm-12 d-flex align-items-center">
             <label class="form-label mr-2">Champ de Contrainte:</label>
             <mat-form-field class="field-width" appearance="outline">
-              <mat-select formControlName="champContrainte" (change)="onTypeChange($event)">
+              <mat-select formControlName="champContrainte" (selectionChange)="onTypeChange($event)">
                 <mat-option value="">Sélectionner ..</mat-option>
                 <mat-option value="contract">Contrat</mat-option>
                 <mat-option value="classification">Classification</mat-option>
@@ -55,18 +55,20 @@
         </div>
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-            <mat-chip *ngFor="let contrainte of contraintes" removable (removed)="removeContrainte(contrainte)">
-              {{ contrainte.champ }}: {{ contrainte.valeur }}
-              <button matChipRemove>
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip>
+            <div class="chip-cadre">
+                <mat-chip *ngFor="let contrainte of contraintes" removable (removed)="removeContrainte(contrainte)">
+                  {{ contrainte.valeur }}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+            </div>
           </div>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions class="card-actions justify-content-end">
-      <button mat-raised-button class="add-type-unit" (click)="addFete()">Ajouter</button>
+      <button mat-raised-button class="add-type-unit" (click)="addDroit()">{{updateMode?'Modifier':'Ajouter'}}</button>
     </mat-card-actions>
   </form>
 </mat-card>
