@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AppConfig, CONFIG_TOKEN } from "@config/config";
 import { Contract } from 'app/models/contract.model';
 import { contractType } from 'app/models/contractType.model';
